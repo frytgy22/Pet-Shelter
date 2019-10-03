@@ -34,9 +34,11 @@ public interface GetClass {
                         method.invoke(object, file);
                     } else if (numberConstructor == 2) {
                         method.invoke(object, forConstructor, file);
-                    } else {
+                    } else if (numberConstructor == 3) {
                         file = (File) method.invoke(object, forConstructor, file);
                         return file;
+                    } else {
+                        method.invoke(object, forConstructor);
                     }
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();

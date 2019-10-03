@@ -48,28 +48,24 @@ public class CommandLine {
             line = input.readLine();
             line = line == null ? "exit" : line.trim();
             if ("dir".equalsIgnoreCase(line)) {
-                GetClass.getsConfigurationClass(configurations, line, file,null,1);
+                GetClass.getsConfigurationClass(configurations, line, file, null, 1);
             } else if ("cd".equalsIgnoreCase(line.substring(0, 2))) {
-               file=  GetClass.getsConfigurationClass(configurations, line.substring(0, 2), file, line.substring(3) + File.separator, 3);
-              // new CommandCd().cd(line.substring(3) + File.separator,file);
+                file = GetClass.getsConfigurationClass(configurations, line.substring(0, 2), file, line.substring(3) + File.separator, 3);
+                // new CommandCd().cd(line.substring(3) + File.separator,file);
             } else if ("pwd".equalsIgnoreCase(line)) {
-                GetClass.getsConfigurationClass(configurations, line, file,null,1);
+                GetClass.getsConfigurationClass(configurations, line, file, null, 1);
             } else if ("cat".equalsIgnoreCase(line.substring(0, 3))) {
-                Command command = new CommandCat();
-                command.cat(file.getPath() + File.separator + line.substring(4));
+                GetClass.getsConfigurationClass(configurations, line.substring(0, 3), file, file.getPath() + File.separator + line.substring(4), 4);
             } else if ("find".equalsIgnoreCase(line.substring(0, 4))) {
-                Command command = new CommandFind();
-                command.find(line.substring(5));
+                GetClass.getsConfigurationClass(configurations, line.substring(0, 4), file, line.substring(5), 4);
             } else if ("jobs".equalsIgnoreCase(line)) {
-                Command command = new CommandFind();
-
+                listJobs.forEach(System.out::println);
             } else if ("help".equalsIgnoreCase(line)) {
                 usage();
             } else if ("exit".equalsIgnoreCase(line)) {
                 break;
             } else if ("download".equalsIgnoreCase(line.substring(0, 8))) {
-                Command command = new CommandDownload();
-                command.download(line.substring(9), file);
+                GetClass.getsConfigurationClass(configurations, line.substring(0, 8), file, line.substring(9), 2);
             }
         }
     }
@@ -85,3 +81,4 @@ public class CommandLine {
                 "    cat «имя_файла» - выводит содержимое текстового файла «имя_файла»\n");
     }
 }
+//cd C:\Users\Win10\Desktop

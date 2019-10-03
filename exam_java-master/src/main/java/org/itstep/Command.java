@@ -24,7 +24,4 @@ public abstract class Command {
 
     public void find(String filenameForSearch) {
     }
-
-    public void jobs(List<String> list) {
-    }
 }
