@@ -38,7 +38,7 @@ cat «имя_файла» - выводит содержимое текстово
  */
 //в конфигурационном файле программы- settings.properties
 public class CommandLine {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
         Configurations configurations = new Configurations();
         File file = new File(".");
         List<String> listJobs = Collections.synchronizedList(new ArrayList<>());//for command jobs
@@ -112,11 +112,13 @@ public class CommandLine {
 
     private static void usage() {
         System.out.println("Java Command Line\n\n" +
-                "Применение: java CommandLine.class \"команда\"  \"аргумент №1\" \"аргумент №2\" ... \"аргумент №N\"\n" +
-                "Где \"команда\":\n" +
                 "    dir — выводит список файлов в текущей директории\n" +
                 "    cd «путь» — перейти в директорию, путь к которой задан первым аргументом\n" +
                 "    pwd — вывести полный путь до текущей директории\n" +
-                "    cat «имя_файла» - выводит содержимое текстового файла «имя_файла»\n");
+                "    cat «имя_файла» - выводит содержимое текстового файла «имя_файла»\n" +
+                "    download «url» «имя_файла» - загружает файл\n" +
+                "    find - выполняет поиск файла в файловой системе\n" +
+                "    jobs - выводит список задач, которые выполняются в фоне\n");
+
     }
 }
