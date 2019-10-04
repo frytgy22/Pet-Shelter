@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /*
 Реализовать консольную программу на Java, которая бы представляла некую реализацию командной строки, то есть могла бы выполнять команды вводимые построчно пользователем.
@@ -39,7 +41,7 @@ public class CommandLine {
     public static void main(String[] args) throws IOException {
         Configurations configurations = new Configurations();
         File file = new File(".");
-        List<String> listJobs = Collections.synchronizedList(new ArrayList<>());
+        List<String> listJobs = Collections.synchronizedList(new ArrayList<>());//for command jobs
         String line;
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Добро пожаловать в Java Command Line!");
@@ -47,30 +49,62 @@ public class CommandLine {
             System.out.print(file.getAbsolutePath() + "> ");
             line = input.readLine();
             line = line == null ? "exit" : line.trim();
+            String stringBeforeSpace = line;
+            String stringAfterSpace = line;
+            if (line.contains(" ")) {
+                stringBeforeSpace = line.substring(0, line.indexOf(" "));
+                stringAfterSpace = line.substring(line.indexOf(" ") + 1);
+            }
             if ("dir".equalsIgnoreCase(line)) {
                 GetClass.getsConfigurationClass(configurations, line, file, null, 1);
-            } else if ("cd".equalsIgnoreCase(line.substring(0, 2))) {
-                file = GetClass.getsConfigurationClass(configurations, line.substring(0, 2), file, line.substring(3) + File.separator, 3);
-                // new CommandCd().cd(line.substring(3) + File.separator,file);
+            } else if ("cd".equalsIgnoreCase(stringBeforeSpace)) {
+                file = GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace + File.separator, 3);
             } else if ("pwd".equalsIgnoreCase(line)) {
                 GetClass.getsConfigurationClass(configurations, line, file, null, 1);
-            } else if ("cat".equalsIgnoreCase(line.substring(0, 3))) {
-                GetClass.getsConfigurationClass(configurations, line.substring(0, 3), file, file.getPath() + File.separator + line.substring(4), 4);
-            } else if ("find".equalsIgnoreCase(line.substring(0, 4))) {
-                GetClass.getsConfigurationClass(configurations, line.substring(0, 4), file, line.substring(5), 4);
+            } else if ("cat".equalsIgnoreCase(stringBeforeSpace)) {
+                GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, file.getPath() + File.separator + stringAfterSpace, 4);
+            } else if ("find".equalsIgnoreCase(stringBeforeSpace)) {
+                if (line.endsWith("&")) {
+                    listJobs.add(stringBeforeSpace);
+                    ExecutorService executorService = Executors.newCachedThreadPool();
+                    String finalStringAfterSpace = stringAfterSpace.substring(0, stringAfterSpace.length() - 1);
+                    File finalFile1 = file;
+                    String finalStringBeforeSpace1 = stringBeforeSpace;
+                    executorService.submit(() -> {
+                        System.out.println(Thread.currentThread().getName());
+                        GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace1, finalFile1, finalStringAfterSpace, 4);
+                    });
+                    executorService.shutdown();
+                } else {
+                    GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 4);
+                }
             } else if ("jobs".equalsIgnoreCase(line)) {
                 listJobs.forEach(System.out::println);
             } else if ("help".equalsIgnoreCase(line)) {
                 usage();
             } else if ("exit".equalsIgnoreCase(line)) {
                 break;
-            } else if ("download".equalsIgnoreCase(line.substring(0, 8))) {
-                GetClass.getsConfigurationClass(configurations, line.substring(0, 8), file, line.substring(9), 2);
+            } else if ("download".equalsIgnoreCase(stringBeforeSpace)) {
+                if (line.endsWith("&")) {
+                    listJobs.add(stringBeforeSpace);
+                    ExecutorService executorService = Executors.newCachedThreadPool();
+                    File finalFile = file;
+                    String finalStringBeforeSpace = stringBeforeSpace;
+                    String finalStringAfterSpace = stringAfterSpace.substring(0, stringAfterSpace.length() - 1);
+                    executorService.submit(() -> {
+                        System.out.println(Thread.currentThread().getName());
+                        GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace, finalFile, finalStringAfterSpace, 2);
+                    });
+                    executorService.shutdown();
+                } else {
+                    GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 2);
+                }
             }
         }
     }
 
-
+    //cd C:\Users\Win10\Desktop find t.txt
+//cat alice.txt
     private static void usage() {
         System.out.println("Java Command Line\n\n" +
                 "Применение: java CommandLine.class \"команда\"  \"аргумент №1\" \"аргумент №2\" ... \"аргумент №N\"\n" +
@@ -81,4 +115,3 @@ public class CommandLine {
                 "    cat «имя_файла» - выводит содержимое текстового файла «имя_файла»\n");
     }
 }
-//cd C:\Users\Win10\Desktop

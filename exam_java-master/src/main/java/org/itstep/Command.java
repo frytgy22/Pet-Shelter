@@ -2,8 +2,6 @@ package org.itstep;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Command {
     public void dir(File file) {

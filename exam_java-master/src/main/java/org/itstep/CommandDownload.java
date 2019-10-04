@@ -8,7 +8,6 @@ import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class CommandDownload extends Command {
     @Override
@@ -16,7 +15,7 @@ public class CommandDownload extends Command {
         try {
             URLConnection con = new URL(url).openConnection();
             con.connect();
-            String name = "";
+            String name;
             if (url.substring(url.length() - 5).contains(".")) {
                 name = fileDirectory.getAbsolutePath() + "\\" +  url.substring(url.lastIndexOf('/') + 1);
             } else {

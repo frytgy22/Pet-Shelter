@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class CommandFind extends Command {
     @Override
-    public void find(String filenameForSearch) {
+    public void find(String fileNameForSearch) {
         File[] paths = File.listRoots();
         for (File file : paths) {
-            new SearchRunnable(filenameForSearch, file);
+            new SearchRunnable(fileNameForSearch, file);
         }
     }
 }
@@ -30,30 +30,28 @@ class SearchingThread implements Runnable {
 
 class SearchRunnable implements Runnable {
     private String search;
-    private File path;
+
     private ArrayList<File> found = new ArrayList<>();
     private ArrayList<Thread> threads = new ArrayList<>();
     private File[] files;
-    private Thread thr;
+    private Thread thread;
 
     public SearchRunnable(String search, File path) {
         super();
         this.search = search;
-        this.path = path;
         files = path.listFiles();
-        thr = new Thread(this);
-        thr.start();
+        thread = new Thread(this);
+        thread.start();
     }
 
     public void searching(File[] files) {
         if (files == null) return;
-        for (File i : files) {
-            if (i.isFile() && i.getName().contains(search)) {
-                System.out.println(i.getAbsolutePath());
-                found.add(i);
+        for (File file : files) {
+            if (file.isFile() && file.getName().contains(search)) {
+                found.add(file);
             }
-            if (i.isDirectory()) {
-                Thread newThread = new Thread(new SearchingThread(i.listFiles(), this));
+            if (file.isDirectory()) {
+                Thread newThread = new Thread(new SearchingThread(file.listFiles(), this));
                 newThread.start();
                 threads.add(newThread);
             }
@@ -72,6 +70,8 @@ class SearchRunnable implements Runnable {
         }
         if (found.size() == 0) {
             System.out.println("Системе не удается найти указанный файл.");
+        } else {
+            found.forEach(System.out::println);
         }
     }
 }
