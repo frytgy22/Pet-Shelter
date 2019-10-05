@@ -16,15 +16,15 @@ public class CommandDownload extends Command {
             URLConnection con = new URL(url).openConnection();
             con.connect();
             String name;
-            if (url.substring(url.length() - 5).contains(".")) {
-                name = fileDirectory.getAbsolutePath() + "\\" +  url.substring(url.lastIndexOf('/') + 1);
+            if (url.substring(url.length() - 5).contains(".") && !url.endsWith(".")) {
+                name = fileDirectory.getAbsolutePath() + "\\" + url.substring(url.lastIndexOf('/') + 1);
             } else {
                 if (url.contains("youtube") || url.contains("mp4")) {
-                    name = fileDirectory.getAbsolutePath() + "\\"+ "fileDownload.mp4";
+                    name = fileDirectory.getAbsolutePath() + "\\" + "fileDownload.mp4";
                 } else if (url.contains("mp3")) {
                     name = fileDirectory.getAbsolutePath() + "\\" + "fileDownload.mp3";
                 } else {
-                    name = fileDirectory.getAbsolutePath() + "\\"  + "fileDownload.zip";
+                    name = fileDirectory.getAbsolutePath() + "\\" + "fileDownload.zip";
                 }
             }
             File file = new File(name);

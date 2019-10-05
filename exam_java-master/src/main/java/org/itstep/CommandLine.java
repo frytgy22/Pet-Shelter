@@ -37,10 +37,12 @@ cat «имя_файла» - выводит содержимое текстово
  */
 //в конфигурационном файле программы- settings.properties
 public class CommandLine {
+    private static List<String> listJobs = Collections.synchronizedList(new ArrayList<>());//for command jobs
+
     public static void main(String[] args) {
         Configurations configurations = new Configurations();
         File file = new File(".");
-        List<String> listJobs = Collections.synchronizedList(new ArrayList<>());//for command jobs
+
         String line = "";
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Добро пожаловать в Java Command Line!");
@@ -73,7 +75,7 @@ public class CommandLine {
                             GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace2, finalFile2, finalFile2.getPath() + File.separator + finalStringAfterSpace, 4);
                         });
                         executorService.shutdown();
-                        listJobs.remove(stringBeforeSpace);
+                        ForThread.getFinishedThread(executorService, listJobs, stringBeforeSpace);
                     } else {
                         GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, file.getPath() + File.separator + stringAfterSpace, 4);
                     }
@@ -89,12 +91,12 @@ public class CommandLine {
                             GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace1, finalFile1, finalStringAfterSpace, 4);
                         });
                         executorService.shutdown();
-                        listJobs.remove(stringBeforeSpace);
+                        ForThread.getFinishedThread(executorService, listJobs, finalStringBeforeSpace1);
                     } else {
                         GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 4);
                     }
                 } else if ("jobs".equalsIgnoreCase(line)) {
-                    System.out.println("В фоне:" + listJobs.size() + "\n");
+                    System.out.println("В фоне:" + listJobs.size());
                     listJobs.forEach(System.out::println);
                 } else if ("help".equalsIgnoreCase(line)) {
                     usage();
@@ -112,7 +114,7 @@ public class CommandLine {
                             GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace, finalFile, finalStringAfterSpace, 2);
                         });
                         executorService.shutdown();
-                        listJobs.remove(stringBeforeSpace);
+                        ForThread.getFinishedThread(executorService, listJobs, finalStringBeforeSpace);
                     } else {
                         GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 2);
                     }
