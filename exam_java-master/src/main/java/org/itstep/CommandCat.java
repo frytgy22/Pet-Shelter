@@ -11,7 +11,7 @@ public class CommandCat extends Command {
     public void cat(String fileName) throws IOException {
 
         if (new File(fileName).exists()) {
-            String string= Files.lines(Paths.get(fileName)).collect(Collectors.joining(" \n"));
+            String string = Files.lines(Paths.get(fileName)).collect(Collectors.joining(" \n"));
             System.out.println(string);
         } else {
             System.out.println("Системе не удается найти указанный файл");

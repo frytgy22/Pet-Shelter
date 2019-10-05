@@ -2,7 +2,6 @@ package org.itstep;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +37,7 @@ cat «имя_файла» - выводит содержимое текстово
  */
 //в конфигурационном файле программы- settings.properties
 public class CommandLine {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Configurations configurations = new Configurations();
         File file = new File(".");
         List<String> listJobs = Collections.synchronizedList(new ArrayList<>());//for command jobs
@@ -63,7 +62,21 @@ public class CommandLine {
                 } else if ("pwd".equalsIgnoreCase(line)) {
                     GetClass.getsConfigurationClass(configurations, line, file, null, 1);
                 } else if ("cat".equalsIgnoreCase(stringBeforeSpace)) {
-                    GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, file.getPath() + File.separator + stringAfterSpace, 4);
+                    if (line.endsWith("&")) {
+                        listJobs.add(stringBeforeSpace);
+                        ExecutorService executorService = Executors.newCachedThreadPool();
+                        String finalStringAfterSpace = stringAfterSpace.substring(0, stringAfterSpace.length() - 1);
+                        File finalFile2 = file;
+                        String finalStringBeforeSpace2 = stringBeforeSpace;
+                        executorService.submit(() -> {
+                            System.out.println(Thread.currentThread().getName());
+                            GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace2, finalFile2, finalFile2.getPath() + File.separator + finalStringAfterSpace, 4);
+                        });
+                        executorService.shutdown();
+                        listJobs.remove(stringBeforeSpace);
+                    } else {
+                        GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, file.getPath() + File.separator + stringAfterSpace, 4);
+                    }
                 } else if ("find".equalsIgnoreCase(stringBeforeSpace)) {
                     if (line.endsWith("&")) {
                         listJobs.add(stringBeforeSpace);
@@ -76,10 +89,12 @@ public class CommandLine {
                             GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace1, finalFile1, finalStringAfterSpace, 4);
                         });
                         executorService.shutdown();
+                        listJobs.remove(stringBeforeSpace);
                     } else {
                         GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 4);
                     }
                 } else if ("jobs".equalsIgnoreCase(line)) {
+                    System.out.println("В фоне:" + listJobs.size() + "\n");
                     listJobs.forEach(System.out::println);
                 } else if ("help".equalsIgnoreCase(line)) {
                     usage();
@@ -97,6 +112,7 @@ public class CommandLine {
                             GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace, finalFile, finalStringAfterSpace, 2);
                         });
                         executorService.shutdown();
+                        listJobs.remove(stringBeforeSpace);
                     } else {
                         GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 2);
                     }
@@ -104,7 +120,7 @@ public class CommandLine {
                     System.out.println(line + " не является внутренней или внешней\n" +
                             "командой, исполняемой программой или пакетным файлом.");
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 System.out.println("Ошибка ввода данных");
             }
         }

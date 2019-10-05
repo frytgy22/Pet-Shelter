@@ -25,7 +25,7 @@ public interface GetClass {
     static File getsConfigurationClass(Configurations configurations, String line, File file, String forConstructor, int numberConstructor) {
         Class<?> cls = null;
         try {
-            cls = Class.forName(configurations.getProperties().getProperty(line));
+            cls = Class.forName(configurations.getProperties().getProperty(line.toLowerCase()));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

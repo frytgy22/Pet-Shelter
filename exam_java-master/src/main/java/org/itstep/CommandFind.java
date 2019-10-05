@@ -8,6 +8,7 @@ public class CommandFind extends Command {
     public void find(String fileNameForSearch) {
         File[] paths = File.listRoots();
         for (File file : paths) {
+            System.out.println("Поиск на диске: " + file.getAbsolutePath());
             new SearchRunnable(fileNameForSearch, file);
         }
     }
@@ -48,6 +49,7 @@ class SearchRunnable implements Runnable {
         if (files == null) return;
         for (File file : files) {
             if (file.isFile() && file.getName().contains(search)) {
+                //System.out.println(file.getAbsolutePath());
                 found.add(file);
             }
             if (file.isDirectory()) {
@@ -69,7 +71,7 @@ class SearchRunnable implements Runnable {
             }
         }
         if (found.size() == 0) {
-            System.out.println("Системе не удается найти указанный файл.");
+            System.out.println("Системе не удается найти указанный файл");//вывод отдельно на каждый диск
         } else {
             found.forEach(System.out::println);
         }
