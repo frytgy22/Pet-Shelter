@@ -17,8 +17,8 @@ public class Configurations {
         properties.setProperty("pwd", "org.itstep.CommandPwd");
         properties.setProperty("cat", "org.itstep.CommandCat");
         properties.setProperty("find", "org.itstep.CommandFind");
-        properties.setProperty("download", "org.itstep.CommandDownload");
         properties.setProperty("jobs", "org.itstep.CommandJobs");
+        properties.setProperty("download", "org.itstep.CommandDownload");
     }
 
     public static void main(String[] args) {

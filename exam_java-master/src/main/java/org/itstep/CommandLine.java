@@ -1,11 +1,7 @@
 package org.itstep;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -43,87 +39,104 @@ public class CommandLine {
         Configurations configurations = new Configurations();
         File file = new File(".");
 
-        String line = "";
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Добро пожаловать в Java Command Line!");
-        while (true) {
-            try {
-                System.out.print(file.getAbsolutePath() + "> ");
-                line = input.readLine();
-                line = line == null ? "exit" : line.trim();
-                String stringBeforeSpace = line;
-                String stringAfterSpace = line;
-                if (line.contains(" ")) {
-                    stringBeforeSpace = line.substring(0, line.indexOf(" "));
-                    stringAfterSpace = line.substring(line.indexOf(" ") + 1);
+        FileInputStream fis;
+        Properties property = new Properties();
+        List<String> listProperties = new ArrayList<>();
+        try {
+            fis = new FileInputStream("settings.properties");
+            property.load(fis);
+
+            for (Map.Entry<Object, Object> objectObjectEntry : property.entrySet()) {
+                listProperties.add((String) objectObjectEntry.getKey());
+            }
+        } catch (IOException e) {
+            System.err.println("ОШИБКА: Файл свойств отсуствует!");
+        }
+
+        if (listProperties.size() > 0) {
+            String line = "";
+            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Добро пожаловать в Java Command Line!");
+            System.out.println(listProperties);
+            while (true) {
+                try {
+                    System.out.print(file.getAbsolutePath() + "> ");
+                    line = input.readLine();
+                    line = line == null ? "exit" : line.trim();
+                    String stringBeforeSpace = line;
+                    String stringAfterSpace = line;
+                    if (line.contains(" ")) {
+                        stringBeforeSpace = line.substring(0, line.indexOf(" "));
+                        stringAfterSpace = line.substring(line.indexOf(" ") + 1);
+                    }
+                    if (listProperties.get(5).equalsIgnoreCase(line)) {//dir
+                        GetClass.getsConfigurationClass(configurations, line, file, null, 1);
+                    } else if (listProperties.get(0).equalsIgnoreCase(stringBeforeSpace)) {//cd
+                        file = GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace + File.separator, 3);
+                    } else if (listProperties.get(6).equalsIgnoreCase(line)) {//pwd
+                        GetClass.getsConfigurationClass(configurations, line, file, null, 1);
+                    } else if (listProperties.get(3).equalsIgnoreCase(stringBeforeSpace)) {//cat
+                        if (line.endsWith("&")) {
+                            listJobs.add(stringBeforeSpace);
+                            ExecutorService executorService = Executors.newCachedThreadPool();
+                            String finalStringAfterSpace = stringAfterSpace.substring(0, stringAfterSpace.length() - 1);
+                            File finalFile2 = file;
+                            String finalStringBeforeSpace2 = stringBeforeSpace;
+                            executorService.submit(() -> {
+                                System.out.println(Thread.currentThread().getName());
+                                GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace2, finalFile2, finalFile2.getPath() + File.separator + finalStringAfterSpace, 4);
+                            });
+                            executorService.shutdown();
+                            ForThread.getFinishedThread(executorService, listJobs, stringBeforeSpace);
+                        } else {
+                            GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, file.getPath() + File.separator + stringAfterSpace, 4);
+                        }
+                    } else if (listProperties.get(2).equalsIgnoreCase(stringBeforeSpace)) {//find
+                        if (line.endsWith("&")) {
+                            listJobs.add(stringBeforeSpace);
+                            ExecutorService executorService = Executors.newCachedThreadPool();
+                            String finalStringAfterSpace = stringAfterSpace.substring(0, stringAfterSpace.length() - 1);
+                            File finalFile1 = file;
+                            String finalStringBeforeSpace1 = stringBeforeSpace;
+                            executorService.submit(() -> {
+                                System.out.println(Thread.currentThread().getName());
+                                GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace1, finalFile1, finalStringAfterSpace, 4);
+                            });
+                            executorService.shutdown();
+                            ForThread.getFinishedThread(executorService, listJobs, finalStringBeforeSpace1);
+                        } else {
+                            GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 4);
+                        }
+                    } else if (listProperties.get(4).equalsIgnoreCase(line)) {//jobs
+                        System.out.println("В фоне:" + listJobs.size());
+                        listJobs.forEach(System.out::println);
+                    } else if ("help".equalsIgnoreCase(line)) {
+                        usage();
+                    } else if ("exit".equalsIgnoreCase(line)) {
+                        break;
+                    } else if (listProperties.get(1).equalsIgnoreCase(stringBeforeSpace)) {//download
+                        if (line.endsWith("&")) {
+                            listJobs.add(stringBeforeSpace);
+                            ExecutorService executorService = Executors.newCachedThreadPool();
+                            File finalFile = file;
+                            String finalStringBeforeSpace = stringBeforeSpace;
+                            String finalStringAfterSpace = stringAfterSpace.substring(0, stringAfterSpace.length() - 1);
+                            executorService.submit(() -> {
+                                System.out.println(Thread.currentThread().getName());
+                                GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace, finalFile, finalStringAfterSpace, 2);
+                            });
+                            executorService.shutdown();
+                            ForThread.getFinishedThread(executorService, listJobs, finalStringBeforeSpace);
+                        } else {
+                            GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 2);
+                        }
+                    } else {
+                        System.out.println(line + " не является внутренней или внешней\n" +
+                                "командой, исполняемой программой или пакетным файлом.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Ошибка ввода данных");
                 }
-                if ("dir".equalsIgnoreCase(line)) {
-                    GetClass.getsConfigurationClass(configurations, line, file, null, 1);
-                } else if ("cd".equalsIgnoreCase(stringBeforeSpace)) {
-                    file = GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace + File.separator, 3);
-                } else if ("pwd".equalsIgnoreCase(line)) {
-                    GetClass.getsConfigurationClass(configurations, line, file, null, 1);
-                } else if ("cat".equalsIgnoreCase(stringBeforeSpace)) {
-                    if (line.endsWith("&")) {
-                        listJobs.add(stringBeforeSpace);
-                        ExecutorService executorService = Executors.newCachedThreadPool();
-                        String finalStringAfterSpace = stringAfterSpace.substring(0, stringAfterSpace.length() - 1);
-                        File finalFile2 = file;
-                        String finalStringBeforeSpace2 = stringBeforeSpace;
-                        executorService.submit(() -> {
-                            System.out.println(Thread.currentThread().getName());
-                            GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace2, finalFile2, finalFile2.getPath() + File.separator + finalStringAfterSpace, 4);
-                        });
-                        executorService.shutdown();
-                        ForThread.getFinishedThread(executorService, listJobs, stringBeforeSpace);
-                    } else {
-                        GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, file.getPath() + File.separator + stringAfterSpace, 4);
-                    }
-                } else if ("find".equalsIgnoreCase(stringBeforeSpace)) {
-                    if (line.endsWith("&")) {
-                        listJobs.add(stringBeforeSpace);
-                        ExecutorService executorService = Executors.newCachedThreadPool();
-                        String finalStringAfterSpace = stringAfterSpace.substring(0, stringAfterSpace.length() - 1);
-                        File finalFile1 = file;
-                        String finalStringBeforeSpace1 = stringBeforeSpace;
-                        executorService.submit(() -> {
-                            System.out.println(Thread.currentThread().getName());
-                            GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace1, finalFile1, finalStringAfterSpace, 4);
-                        });
-                        executorService.shutdown();
-                        ForThread.getFinishedThread(executorService, listJobs, finalStringBeforeSpace1);
-                    } else {
-                        GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 4);
-                    }
-                } else if ("jobs".equalsIgnoreCase(line)) {
-                    System.out.println("В фоне:" + listJobs.size());
-                    listJobs.forEach(System.out::println);
-                } else if ("help".equalsIgnoreCase(line)) {
-                    usage();
-                } else if ("exit".equalsIgnoreCase(line)) {
-                    break;
-                } else if ("download".equalsIgnoreCase(stringBeforeSpace)) {
-                    if (line.endsWith("&")) {
-                        listJobs.add(stringBeforeSpace);
-                        ExecutorService executorService = Executors.newCachedThreadPool();
-                        File finalFile = file;
-                        String finalStringBeforeSpace = stringBeforeSpace;
-                        String finalStringAfterSpace = stringAfterSpace.substring(0, stringAfterSpace.length() - 1);
-                        executorService.submit(() -> {
-                            System.out.println(Thread.currentThread().getName());
-                            GetClass.getsConfigurationClass(configurations, finalStringBeforeSpace, finalFile, finalStringAfterSpace, 2);
-                        });
-                        executorService.shutdown();
-                        ForThread.getFinishedThread(executorService, listJobs, finalStringBeforeSpace);
-                    } else {
-                        GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace, 2);
-                    }
-                } else {
-                    System.out.println(line + " не является внутренней или внешней\n" +
-                            "командой, исполняемой программой или пакетным файлом.");
-                }
-            } catch (Exception e) {
-                System.out.println("Ошибка ввода данных");
             }
         }
     }
