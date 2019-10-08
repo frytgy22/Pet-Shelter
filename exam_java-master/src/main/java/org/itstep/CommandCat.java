@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
-
+// TODO: не надо дублировать имя команды т.е. вместо CommandCat - Cat
 public class CommandCat extends Command {
     @Override
     public void cat(String fileName) throws IOException {
