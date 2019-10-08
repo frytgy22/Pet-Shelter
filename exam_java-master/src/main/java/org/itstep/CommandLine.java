@@ -41,7 +41,7 @@ public class CommandLine {
 
         FileInputStream fis;
         Properties property = new Properties();
-        List<String> listProperties = new ArrayList<>();
+        List<String> listProperties = new ArrayList<>(); // TODO: почему бы не использовать Map?
         try {
             fis = new FileInputStream("settings.properties");
             property.load(fis);
@@ -69,9 +69,10 @@ public class CommandLine {
                         stringBeforeSpace = line.substring(0, line.indexOf(" "));
                         stringAfterSpace = line.substring(line.indexOf(" ") + 1);
                     }
-                    if (listProperties.get(5).equalsIgnoreCase(line)) {//dir
-                        GetClass.getsConfigurationClass(configurations, line, file, null, 1);
+                    if (listProperties.get(5).equalsIgnoreCase(line)) {//dir TODO: хардкод 5 - магическое число. Если бы был Map - такого не было бы
+                        GetClass.getsConfigurationClass(configurations, line, file, null, 1); // TODO: это дорого каждый раз дергать рефлексию. Надо было загрузить все объекты заранее
                     } else if (listProperties.get(0).equalsIgnoreCase(stringBeforeSpace)) {//cd
+                        // TODO: для каждого класса вызывается свой метод - плохо. Надо было определить единственный метод в классе Сommand
                         file = GetClass.getsConfigurationClass(configurations, stringBeforeSpace, file, stringAfterSpace + File.separator, 3);
                     } else if (listProperties.get(6).equalsIgnoreCase(line)) {//pwd
                         GetClass.getsConfigurationClass(configurations, line, file, null, 1);
