@@ -1,4 +1,4 @@
-package org.itstep;
+package org.itstep.commands;
 
 import lombok.Data;
 
@@ -7,16 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class CommandFind extends Command {
+public class Find implements Command {
     private List<String> list = new ArrayList<>();
 
     @Override
-    public void find(String fileNameForSearch) {
-        File[] paths = File.listRoots();
-        for (File file : paths) {
-            list = showFilesAndDirectories(file, list, fileNameForSearch);
+    public String execute(String... arg) {
+        if (arg.length > 0) {
+            String fileNameForSearch = arg[0];
+            File[] paths = File.listRoots();
+            for (File file : paths) {
+                list = showFilesAndDirectories(file, list, fileNameForSearch);
+            }
+            return list.toString();
         }
-        list.forEach(System.out::println);
+        return "Ошибка ввода";
     }
 
     public List<String> showFilesAndDirectories(File file, List<String> list, String fileNameForSearch) {

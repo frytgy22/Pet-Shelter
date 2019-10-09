@@ -12,13 +12,12 @@ public class Configurations {
 
     public Configurations() {
         properties = new Properties();
-        properties.setProperty("dir", "org.itstep.CommandDir");
-        properties.setProperty("cd", "org.itstep.CommandCd");
-        properties.setProperty("pwd", "org.itstep.CommandPwd");
-        properties.setProperty("cat", "org.itstep.CommandCat");
-        properties.setProperty("find", "org.itstep.CommandFind");
-        properties.setProperty("jobs", "org.itstep.CommandJobs");
-        properties.setProperty("download", "org.itstep.CommandDownload");
+        properties.setProperty("dir", "org.itstep.commands.Dir");
+        properties.setProperty("cd", "org.itstep.commands.Cd");
+        properties.setProperty("pwd", "org.itstep.commands.Pwd");
+        properties.setProperty("cat", "org.itstep.commands.Cat");
+        properties.setProperty("find", "org.itstep.commands.Find");
+        properties.setProperty("download", "org.itstep.commands.Download");
     }
 
     public static void main(String[] args) {
