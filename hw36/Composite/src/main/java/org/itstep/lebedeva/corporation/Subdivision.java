@@ -17,21 +17,12 @@ public class Subdivision implements Item {
         department.add(d);
     }
 
-    private void remove(Item d) {
-        department.remove(d);
-    }
-
-    public List<Item> getDepartment() {
-        return department;
-    }
-
     public String getReport() {
-        String report = "Reprot " + name + "\n";
+        StringBuilder report = new StringBuilder("Subdivision{" + "name='" + name + '\'' + ",sent report!\n");
         for (Item item : department) {
-            report += department.getReport();
+            report.append(item.getReport());
         }
-
-        return report;
+        return report.toString();
     }
 
     @Override

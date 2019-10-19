@@ -42,10 +42,8 @@ public class Main {
         development.add(office);
         development.add(os);
 
-        corporation.getReport();
-
         for (Item item : corporation) {
-            item.getReport();
+            System.out.println(item.getReport());
         }
     }
 }

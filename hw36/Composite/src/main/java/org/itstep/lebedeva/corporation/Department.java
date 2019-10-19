@@ -15,7 +15,7 @@ public class Department implements Item {
     }
 
     public String getReport() {
-        return "Department{" + "name='" + name + '\'' + '}' + " sent report!";
+        return "Department{" + "name='" + name + '\'' + '}' + ",sent report!\n";
     }
 
     static class DepartmentIterator implements Iterator<Item> {
