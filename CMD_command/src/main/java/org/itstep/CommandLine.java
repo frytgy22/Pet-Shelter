@@ -51,7 +51,7 @@ public class CommandLine {
                     stringAfterSpace = line.substring(line.indexOf(" ") + 1);
                 }
                 if (commandLine.commands.containsKey(stringBeforeSpace)) {
-                    if (line.endsWith("&")) {
+                    if (stringAfterSpace.endsWith("&")) {
                         commandLine.multiThreadJobs.getList().add(stringBeforeSpace);
                         ExecutorService executorService = Executors.newCachedThreadPool();
                         String finalStringBeforeSpace = stringBeforeSpace;
