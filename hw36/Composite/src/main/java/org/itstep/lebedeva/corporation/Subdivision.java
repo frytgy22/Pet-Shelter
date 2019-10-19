@@ -1,40 +1,46 @@
 package org.itstep.lebedeva.corporation;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Subdivision {
+public class Subdivision implements Item {
     private String name;
-    private List<Department> department;
+    private List<Item> department;
 
     public Subdivision(String name) {
         this.name = name;
         department = new ArrayList<>();
     }
 
-    public void add(Department d) {
+    public void add(Item d) {
         department.add(d);
     }
 
-    private void remove(Department d) {
+    private void remove(Item d) {
         department.remove(d);
     }
 
-    public List<Department> getDepartment() {
+    public List<Item> getDepartment() {
         return department;
     }
 
     public String getReport() {
-        return "Subdivision{" +
-                "name='" + name +
-                '}' + " sent report!";
+        String report = "Reprot " + name + "\n";
+        for (Item item : department) {
+            report += department.getReport();
+        }
+
+        return report;
     }
 
     @Override
     public String toString() {
-        return "Subdivision{" +
-                "name='" + name + '\'' +
-                ", department=" + department +
-                '}';
+        return "Subdivision{" + "name='" + name + '\'' + ", department=" + department + '}';
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return department.iterator();
     }
 }
