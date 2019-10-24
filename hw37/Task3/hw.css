@@ -1,0 +1,50 @@
+body {
+  font-family:     Arial, Helvetica, sans-serif;
+  background-size: cover;
+  line-height:     1.9em;
+}
+#question {
+  border:          3px outset #31c4cf;
+  background-color:#bae5eb;
+  padding:          25px 10px 25px 10px;
+  position:        fixed; 
+  left:            30%;
+  margin:          25px;
+  font-style:      italic;
+  width:           10%;
+}
+#guarantee {
+  border:          3px outset #ffc665;
+  background-color:#fff0ab;
+  padding:         25px;
+  position:        absolute; 
+  left:            46%;
+  margin:          25px;
+  width:           48%;
+}
+h1{
+  text-align:      center;
+}
+h3{
+  padding:         0px;
+  text-align:      center;
+  margin:          0px ;
+}
+#programm{
+  line-height:     1em;
+  border:          1px dashed #fff0ab;
+  background-color:#bae5eb;
+}
+.colortext {
+  color:           black; 
+}
+.redtext {
+  color:           #a31d32; 
+}
+mark{
+  background:      #e5c8e0;
+  color:           #004c6a;
+}
+hr {
+ border:          1px solid #605d5d;
+}
