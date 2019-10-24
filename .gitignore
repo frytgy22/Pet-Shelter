@@ -69,7 +69,7 @@ fabric.properties
 
 *.class
 
-target/*
+target
 .classpath
 .factorypath
 .project
