@@ -74,4 +74,4 @@ target
 .factorypath
 .project
 .settings
-.gitignore
+.vscode
