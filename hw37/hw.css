@@ -1,0 +1,75 @@
+body {
+  font-family:     Arial, Helvetica, sans-serif;
+  background:      url(images/fon_pyatna_svetlyy_tekstura_50630_2048x1152.jpg) no-repeat   center center fixed;
+  background-size: cover;
+  text-align:      center;
+}
+#logo {
+   position:       absolute;
+   top:            80px;
+   right:          10px;
+}
+h3, h4{
+  color:            gray;
+  /*border-bottom:   thin dotted #888888;*/
+  text-align:       left;
+}
+#hw {
+  background-color:#f4f5e4;
+  border:          3px outset #898980;
+  padding:         5px 10px 5px 10px;
+  margin:          0px 10px 10px 10px;
+  float:           left;
+  border-radius:   15px;
+}
+#guarantee {
+  line-height:     1.9em;
+  border:          3px outset #898980;
+  background-color:#f4f5e4;
+  padding:         25px;
+  position:        absolute; 
+  left:            30%;
+  border-radius:   15px;
+  margin:          0px 15px 15px 15px;
+}
+#up {
+  border:           3px outset #898980;
+  background-color: gray;
+  color:            #f4f5e4;
+  padding:          15px;
+  margin:           0px 5px 15px 5px;
+  font-size:        80%;
+}
+#names {
+  margin :          15px 15px 15px 15px;
+}
+#par {
+  font-style:       italic;
+  font-size:        80%;
+}
+#font2{
+  background:       url(images/fon_pyatna_svetlyy_tekstura_50630_2048x1152.jpg) no-repeat   center center fixed;
+  border:           1px dashed #f4f5e4;
+  border-radius:    15px;
+  margin:           20px;
+  padding:          5px;
+}
+blockquote, p {
+  text-align:       left;
+}
+#music{
+  line-height:      1.9em;
+  font-size:        80%;
+  border:           3px outset #898980;
+  background-color: gray;
+  color:            #f4f5e4;
+  padding:          0px 15px 0px 15px;
+  margin:           0px 15px 15px 15px;
+  font-style:       italic;
+  position:         fixed;
+  left:             0px;
+  bottom:           0px;
+}
+#text{
+  text-align:       center;
+}
