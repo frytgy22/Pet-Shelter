@@ -1,7 +1,5 @@
 package org.itstep.lebedeva;
 
-import java.util.Iterator;
-
 import org.itstep.lebedeva.corporation.*;
 
 /*
@@ -16,34 +14,21 @@ public class Main {
     public static void main(String[] args) {
         Subdivision corporation = new Subdivision("MS");
 
-        Subdivision hh = new Subdivision("HH");
-        Subdivision market = new Subdivision("Market");
         Subdivision development = new Subdivision("Development");
-
-        Department usa = new Department("USA");
-        Department uk = new Department("UK");
-        Department eu = new Department("EU");
+        corporation.add(development);
 
         Department game = new Department("Game");
         Department office = new Department("Office");
-        Department os = new Department("OS");
-
-        corporation.add(hh);
-        corporation.add(market);
-        corporation.add(development);
-
-        hh.add(new Subdivision("Demo"));
-
-        market.add(usa);
-        market.add(uk);
-        market.add(eu);
-
         development.add(game);
         development.add(office);
-        development.add(os);
+
+        Subdivision usa = new Subdivision("USA");
+        Department github = new Department("github");
+        usa.add(github);
+        development.add(usa);
 
         for (Item item : corporation) {
-            System.out.println(item.getReport());
+            System.out.println(item);
         }
     }
 }

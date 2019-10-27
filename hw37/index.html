@@ -1,60 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Romeo and Juliet</title>
     <link rel="stylesheet" type="text/css" href="hw.css">
 </head>
+
 <body>
-<img id="logo" src="images/1.png" alt="logotype java"/>
-<img  src="images/99.png" alt="animal" width="200" height="200" 
-     style="position: fixed; right: 0px; bottom: 0px;">
+    <img id="logo" src="images/1.png" alt="logotype java" />
+    <img src="images/99.png" alt="animal" width="200" height="200" style="position: fixed; right: 0px; bottom: 0px;">
 
-<div id="up">Чтоб убрать логотип, кликните по нему.</div>
-<div id="music">
-    <p id="text">А пока проверяете задания,<br>можете послушать музыку:)</p>
-    <p>
-        <audio  src="music/2.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
-    </p>
-    <p>
-        <audio  src="music/3.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
-    </p>
-    <p>
-        <audio  src="music/4.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
-    </p>
-    <p>
-        <audio  src="music/6.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
-    </p>
-    <p>
-        <audio  src="music/7.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
-    </p>
-</div>
-<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
-<script>
-    var name = prompt("Enter your name:");
-    if (name === "null" || name.length === 0) {
-        name = "strange";
-    }
-    $("body").append("<h1 id='names'>" + "Hello, " + name + "!</h1>");
-    $("#names").hide().fadeIn(1000).fadeOut(1000);
-    $("body").append("<h3 id='hw'>" + "TASK 1" + "</h3>");
-    $("#hw").hide().fadeIn(20000);
-    $("body").append("<div id='guarantee'> <h2 id='font2'>Romeo and Juliet</h2><h3>ACT</h3><h3>PROLOGUE</h3></div>");
-    $("#guarantee").append("<blockquote>Two households, both alike in dignity,</br>In fair Verona, where we lay our    scene,</br>From ancient grudge break to new mutiny,</br>Where civil blood makes civil hands unclean.</br>From forth the fatal loins of these two foes</br>A pair of star-cross'd lovers take their life;</br>Whose misadventured piteous overthrows</br>Do with their death bury their parents' strife.</br>The fearful passage of their death-mark'd love,</br>And the continuance of their parents' rage,</br>Which, but their children's end, nought could remove,</br>Is now the two hours' traffic of our stage;</br>The which if you with patient ears attend,</br>What here shall miss, our toil shall strive to mend.</blockquote>");
-   $("#guarantee").append("<h3>SCENE I. Verona. A public place.</h3>");
-   $("#guarantee").append("<blockquote id='par'>Enter SAMPSON and GREGORY, of the house of Capulet, armed with swords and bucklers</blockquote>");
-   $("#guarantee").append("<h4>SAMPSON</h4><blockquote>Gregory, o' my word, we'll not carry coals.</blockquote><h4>GREGORY</h4><blockquote>No, for then we should be colliers.</blockquote>");
-   $("#guarantee").append("<p><u><strong>Посмотреть 2-е задание можно </strong></u><a href='Task2/index.html 'title='Card game'>ЗДЕСЬ</a><img src='images/1234.png'  alt='steps' align='left' width='128' height='128'/> </p>");
-   $("#guarantee").hide().fadeIn(30000);
+    <div id="up">Чтоб убрать логотип, кликните по нему.</div>
+    <div id="music">
+        <p id="text">А пока проверяете задания,<br>можете послушать музыку:)</p>
+        <p>
+            <audio src="music/2.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
+        </p>
+        <p>
+            <audio src="music/3.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
+        </p>
+        <p>
+            <audio src="music/4.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
+        </p>
+        <p>
+            <audio src="music/6.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
+        </p>
+        <p>
+            <audio src="music/7.mp3" controls>Извините, но ваш браузер не поддерживает элемент 'audio'.</audio>
+        </p>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+        var name = prompt("Enter your name:");
+        if (name === "null" || name.length === 0) {
+            name = "strange";
+        }
+        $("body").append("<h1 id='names'>" + "Hello, " + name + "!</h1>");
+        $("#names").hide().fadeIn(1000).fadeOut(1000);
+        $("body").append("<h3 id='hw'>" + "TASK 1" + "</h3>");
+        $("#hw").hide().fadeIn(20000);
+        $("body").append(
+        "<div id='guarantee'> <h2 id='font2'>Romeo and Juliet</h2><h3>ACT</h3><h3>PROLOGUE</h3></div>");
+        $("#guarantee").append(
+            "<blockquote>Two households, both alike in dignity,</br>In fair Verona, where we lay our    scene,</br>From ancient grudge break to new mutiny,</br>Where civil blood makes civil hands unclean.</br>From forth the fatal loins of these two foes</br>A pair of star-cross'd lovers take their life;</br>Whose misadventured piteous overthrows</br>Do with their death bury their parents' strife.</br>The fearful passage of their death-mark'd love,</br>And the continuance of their parents' rage,</br>Which, but their children's end, nought could remove,</br>Is now the two hours' traffic of our stage;</br>The which if you with patient ears attend,</br>What here shall miss, our toil shall strive to mend.</blockquote>"
+            );
+        $("#guarantee").append("<h3>SCENE I. Verona. A public place.</h3>");
+        $("#guarantee").append(
+            "<blockquote id='par'>Enter SAMPSON and GREGORY, of the house of Capulet, armed with swords and bucklers</blockquote>"
+            );
+        $("#guarantee").append(
+            "<h4>SAMPSON</h4><blockquote>Gregory, o' my word, we'll not carry coals.</blockquote><h4>GREGORY</h4><blockquote>No, for then we should be colliers.</blockquote>"
+            );
+        $("#guarantee").append(
+            "<p><u><strong>Посмотреть 2-е задание можно </strong></u><a href='Task2/index.html 'title='Card game'>ЗДЕСЬ</a><img src='images/1234.png'  alt='steps' align='left' width='128' height='128'/> </p>"
+            );
+        $("#guarantee").hide().fadeIn(30000);
 
-   function move() {
-        $("#logo").show(1500).fadeOut(500);
-   };
-   var id = setInterval(move, 2000);
+        function move() {
+            $("#logo").show(1500).fadeOut(500);
+        };
+        var id = setInterval(move, 2000);
 
-   $("#logo").click(function () {
-        clearInterval(id);
-   });
-</script>
+        $("#logo").click(function () {
+            clearInterval(id);
+        });
+    </script>
 </body>
+
 </html>

@@ -11,7 +11,7 @@ public class Department implements Item {
 
     @Override
     public String toString() {
-        return "Department{" + "name='" + name + '\'' + '}';
+        return "Отдел: " + name;
     }
 
     public String getReport() {
