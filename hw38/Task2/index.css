@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    font-family: "Tahoma", sans-serif;
+    background: url(images/5.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#toDo {
+    background: white;
+    width: 30%;
+    line-height: 1.9em;
+    padding: 20px;
+    left: 32%;
+    margin-top: 80px;
+    border: 3px outset #FFFFF0;
+    position: absolute;
+}
+
+li:nth-child(odd) {
+    background-color: rgba(0, 2, 2, 0.7);
+    color: #ffdf16;
+}
+
+li:nth-child(even) {
+    background-color: #ffdf16;
+}
+
+ul {
+    list-style-position: inside;
+    list-style-image: url("../icons/unchecked_16.png");
+    margin: 0;
+    padding: 0;
+    border: 1px outset white;
+}
+
+li {
+    padding: 5px 35px;
+    font-weight: bold;
+    border: 1px outset white;
+}
+
+li:nth-child(2), li:nth-child(5), li:nth-child(11) {
+    background: gainsboro;
+    list-style-image: url("../icons/checked_16.png");
+}
+
+ul li::after {
+    content: '❌';
+    font-size: 13px;
+    padding: 25px;
+}
+
+span {
+    text-decoration: line-through;
+    color: #000202;
+}
+
+#down {
+    background: #ffdf16;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    border: 1px outset white;
+    margin: 5px 10px 10px 5px;
+}
+
+p {
+    padding: 15px;
+    margin: 0;
+}

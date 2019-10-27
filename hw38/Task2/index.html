@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My To Do List</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<div id="toDo">
+    <h1>My To Do List</h1>
+    <ul>
+        <li>Hit the gym</li>
+        <li><span>Pay bills</span></li>
+        <li>Meet John</li>
+        <li>Bue eggs</li>
+        <li><span>Read a book</span></li>
+        <li>Organize office</li>
+        <li>Eat dinner</li>
+        <li>Bue apples</li>
+        <li>Meet George</li>
+        <li>Feed the cat</li>
+        <li><span>Write a letter</span></li>
+        <li>Run 1 km</li>
+    </ul>
+</div>
+<img src="images/camomile_PNG665-134x170.png" alt="animal"
+     style="position: fixed; left: 0; bottom: 0;">
+<img id="heading" src="images/Bee27.gif" alt="bee"/>
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+<script>
+    var direction = 'right';
+    var offset = 0;
+    var max = document.body.clientWidth - 200;
+
+    $("#heading").offset({left: offset, top: 10});
+
+    var moveHeading = function () {
+        if (direction === 'right') {
+            $("#heading").offset({left: offset});
+            offset++;
+            if (offset > max) {
+                offset = max;
+                direction = 'left';
+            }
+        }
+        if (direction === 'left') {
+            $("#heading").offset({left: offset});
+            offset--;
+            if (offset < 0) {
+                offset = 0;
+                direction = 'right';
+            }
+        }
+    };
+
+    var id = setInterval(moveHeading, 30);
+
+    var clickHandler = function (event) {
+        clearInterval(id);
+    };
+
+    $("#heading").click(clickHandler);
+</script>
+
+<div id="down">
+    <img src="images/arrow.png" width="70" height="70"
+         style="position: absolute; left: -30%; bottom: -5%;" alt="go">
+    <p id="textDown">You can see the 3 task <a href="../Task3/index.html" title="Task3">HERE</a></p>
+</div>
+</body>
+</html>
