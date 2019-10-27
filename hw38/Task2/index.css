@@ -27,7 +27,7 @@ li:nth-child(even) {
 
 ul {
     list-style-position: inside;
-    list-style-image: url("../icons/unchecked_16.png");
+    list-style-image: url("icons/unchecked_16.png");
     margin: 0;
     padding: 0;
     border: 1px outset white;
@@ -41,13 +41,14 @@ li {
 
 li:nth-child(2), li:nth-child(5), li:nth-child(11) {
     background: gainsboro;
-    list-style-image: url("../icons/checked_16.png");
+    list-style-image: url("icons/checked_16.png");
 }
 
 ul li::after {
     content: '❌';
     font-size: 13px;
     padding: 25px;
+    color: #ff5230;
 }
 
 span {
