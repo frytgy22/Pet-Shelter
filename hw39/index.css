@@ -13,9 +13,11 @@ body {
     padding-left: 15px;
     margin: 25px 25px 5px 25px;
 }
-#header{
+
+#header {
     height: 100px;
 }
+
 nav .headMenu {
     display: none;
     width: 200px;
@@ -24,7 +26,8 @@ nav .headMenu {
     background: url("images/ff.jpg");
     border: 1px solid white;
 }
-nav a{
+
+nav a {
     text-decoration: none;
     color: black;
 }
@@ -69,6 +72,7 @@ img {
     cursor: crosshair;
     background: #4577D4;
 }
+
 .divMenu {
     border: 1px solid white;
 }
@@ -117,7 +121,8 @@ main {
 }
 
 #downMain {
-    margin-left: 40%;
+    margin-left: 43%;
+    width: 100%;
 }
 
 h4 {
@@ -125,7 +130,9 @@ h4 {
     border-bottom: thin dotted #888888;
     font-size: 20px;
 }
-
+main h4{
+    margin-right: 3%;
+}
 .food {
     border: 1px inset #094b76;
     border-radius: 20px;
@@ -173,21 +180,26 @@ aside {
     margin: 0;
     padding: 0;
 }
-#logo{
-   height: 100px;
+
+#logo {
+    height: 100px;
     width: auto;
 }
+
 pre {
     left: 70%;
     position: absolute;
-    font-size: 90%;
-    top: 4%;
+    top: 5%;
     font-weight: bold;
 }
 
 #center img {
     width: 10%;
     padding-right: 1%;
+}
+
+#center h4 {
+    margin-right: 1%;
 }
 
 iframe {
@@ -262,9 +274,11 @@ hr {
     width: 95%;
     margin-left: 2%;
 }
-footer p{
+
+footer p {
     background: none;
 }
-.left{
+
+.left {
     float: left;
 }
