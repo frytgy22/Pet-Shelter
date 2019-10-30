@@ -1,0 +1,270 @@
+body {
+    background: rgba(107, 144, 212, 0.23);
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    background-size: 20px 20px;
+    color: black;
+}
+
+#header, #menuMainDiv {
+    border: 3px outset #898980;
+    background: url("images/ff.jpg");
+    color: #000202;
+    padding-left: 15px;
+    margin: 25px 25px 5px 25px;
+}
+#header{
+    height: 100px;
+}
+nav .headMenu {
+    display: none;
+    width: 200px;
+    margin-left: 65px;
+    padding: 0;
+    background: url("images/ff.jpg");
+    border: 1px solid white;
+}
+nav a{
+    text-decoration: none;
+    color: black;
+}
+
+nav p {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 20px;
+    margin: 0 50px;
+}
+
+nav label {
+    display: block;
+    border-right: 2px solid white;
+    width: 100px;
+    height: 35px;
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    background: url("images/ff.jpg");
+    cursor: pointer;
+    margin-left: 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+nav input:checked + div {
+    display: block;
+}
+
+#menu {
+    display: none;
+}
+
+img {
+    float: left;
+    width: 50px;
+    padding: 4px 10px;
+}
+
+.headMenu :hover, label:hover {
+    cursor: crosshair;
+    background: #4577D4;
+}
+.divMenu {
+    border: 1px solid white;
+}
+
+#menuMainDiv {
+    position: absolute;
+}
+
+#blockMenu {
+    border: 2px solid white;
+    padding-bottom: 51px;
+    padding-top: 0;
+    margin: 10px 25px 0;
+    background: #4577D4;
+}
+
+nav {
+    position: absolute;
+}
+
+#aside1_2 {
+    border: 1px outset black;
+    display: table-cell;
+    background-color: #d2d2d2;
+    width: 30%;
+    padding: 15px;
+    margin: 10px 10px 10px 25px;
+    color: black;
+}
+
+.video {
+    width: 99%;
+    margin-left: 0;
+    padding: 0;
+}
+
+main {
+    border: 3px outset #4577D4;
+    float: left;
+    width: 46%;
+    display: table-cell;
+    background: url("images/ff.jpg");
+    font-size: 105%;
+    padding: 15px;
+    margin: 10px 0 0;
+}
+
+#downMain {
+    margin-left: 40%;
+}
+
+h4 {
+    text-align: center;
+    border-bottom: thin dotted #888888;
+    font-size: 20px;
+}
+
+.food {
+    border: 1px inset #094b76;
+    border-radius: 20px;
+    float: left;
+    padding: 25px;
+    margin: 25px 0 25px 25px;
+    background: linear-gradient(#d2d2d2, white, #d2d2d2) no-repeat;
+    font-size: 50%;
+    text-align: center;
+}
+
+aside {
+    border: 1px outset black;
+    margin: 10px 25px 10px 10px;
+    width: 15%;
+    display: table-cell;
+    background: #d2d2d2;
+    font-size: 105%;
+    padding: 15px;
+}
+
+.headFood {
+    margin-left: 7%;
+    width: 90%;
+}
+
+.video img {
+    width: 99%;
+    margin-left: 0;
+    padding: 0;
+    border: 3px inset #898980;
+}
+
+#center {
+    width: 99%;
+    background: #d2d2d2;
+    color: black;
+    padding: 1% 0 1% 1%;
+}
+
+#logo, #center img {
+    float: right;
+    width: 6%;
+    top: -50px;
+    margin: 0;
+    padding: 0;
+}
+#logo{
+   height: 100px;
+    width: auto;
+}
+pre {
+    left: 70%;
+    position: absolute;
+    font-size: 90%;
+    top: 4%;
+    font-weight: bold;
+}
+
+#center img {
+    width: 10%;
+    padding-right: 1%;
+}
+
+iframe {
+    width: 99%;
+    height: 315px;
+    border: 3px inset #898980;
+}
+
+footer, footer p {
+    background: url("images/ff.jpg");
+    text-align: center;
+    padding: 15px;
+    margin: 10px 25px;
+    width: 96%;
+}
+
+#list1, #list2, #footerLogo {
+    width: 33%;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+#list1 {
+    padding-left: 10%;
+}
+
+#footerLogo {
+    width: 23%;
+    margin-top: -1%;
+}
+
+footer li:hover {
+    text-decoration: underline;
+}
+
+#fb {
+    background-image: url('images/icons/fb_gray.png');
+}
+
+#insta {
+    background: url('images/icons/insta_gray.png');
+}
+
+#youtube {
+    background: url('images/icons/youtube_gray.png');
+}
+
+.logo {
+    width: 64px;
+    height: 64px;
+    margin: 10% 3% 3%;
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+#fb:hover {
+    background-image: url("images/icons/fb.png");
+}
+
+#insta:hover {
+    background-image: url("images/icons/insta.png");
+}
+
+#youtube:hover {
+    background-image: url("images/icons/youtube.png");
+}
+
+hr {
+    width: 95%;
+    margin-left: 2%;
+}
+footer p{
+    background: none;
+}
+.left{
+    float: left;
+}
