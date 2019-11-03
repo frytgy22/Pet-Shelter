@@ -76,3 +76,32 @@ img {
     margin-top: 25px;
     margin-bottom: 25px;
 }
+
+#sticky {
+    margin: 0 20%;
+}
+
+.center {
+    text-align: center;
+}
+
+#sticky img {
+    width: 60%;
+    height: 60%;
+    margin: 0 15%;
+    padding: 0;
+}
+
+mark {
+    background: #e2e2e2;
+    font-style: italic;
+}
+
+.colorGreen {
+    color: lightseagreen;
+    font-weight: bold;
+}
+
+#sticky h3 {
+    border-bottom: thin dotted #888888;
+}

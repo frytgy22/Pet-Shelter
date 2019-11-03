@@ -1,6 +1,7 @@
 body {
     background: #dadada;
     margin: 0;
+    font-family: "Roboto", sans-serif;
 }
 
 thead th {
@@ -31,6 +32,7 @@ table {
     font-size: 20px;
     margin: 25px;
     text-align: center;
+    width: 1870px;
 }
 
 td, th {
@@ -44,5 +46,5 @@ tr:nth-child(odd) {
 }
 
 tr:nth-child(even) {
-    background: #b1a2cd;
+    background: #6b90d4;
 }
