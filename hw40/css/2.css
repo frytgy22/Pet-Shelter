@@ -14,21 +14,22 @@ body {
     position: fixed;
     top: 0;
     bottom: 0;
-    height: 100%;
+    height: 100vh;
     left: 0;
     width: 80px;
     overflow: hidden;
-    transition: width 1s linear;
+    transition: width 1s ease-out;
     z-index: 5;
 }
 
 .menu li {
     position: relative;
     display: block;
-    width: 230px;
+    width: 100%;
+    overflow: hidden;
 }
 
-.menu li > a {
+.menu li>a {
     position: relative;
     display: table;
     border-collapse: collapse;
@@ -36,7 +37,6 @@ body {
     color: white;
     font-size: 14px;
     text-decoration: none;
-    transition: all 1s linear;
 }
 
 .menu .text {
@@ -46,16 +46,16 @@ body {
     width: 190px;
 }
 
-nav ul, nav li {
+nav ul,
+nav li {
     outline: 0;
     margin: 0;
     padding: 0
 }
 
-.menu li:hover > a {
+.menu li:hover>a {
     color: white;
     background-color: #5fa2db;
-    transition-delay: .8s;
 }
 
 img {
@@ -65,16 +65,13 @@ img {
     margin: 0;
 }
 
-#menuSpan {
-    background: #212121;
-    margin: 0;
-    padding-left: 20px;
-}
 
-#noHover {
-    padding: 15px;
+.menu li:first-child {
     margin-top: 25px;
     margin-bottom: 25px;
+    color: white;
+    background: #212121;
+    text-indent: 15px;
 }
 
 #sticky {
