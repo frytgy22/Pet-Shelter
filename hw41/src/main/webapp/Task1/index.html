@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task1</title>
+    <link rel="stylesheet" type="text/css" href="../css/1.css">
+</head>
+<body>
+<div id="main">
+    <p  class="moon"> <img src="../images/moon_flag.png" alt="moon" /></p>
+<div id="card">
+    <div id="title"><h4 class="marPadNull">CREDIT CARD DETAILS</h4></div>
+    <form  action="/registration" method="post">
+        <label >
+            Card Number:<br>
+            <input style="margin-bottom: 15px" name="number" pattern="([0-9]{4}\s){3}([0-9]{4})" placeholder="xxxx xxxx xxxx xxxx" required autocomplete="on" autofocus/>
+        </label>
+        <br>
+        <label>
+            Name On Card:<br>
+            <input id="login" name="login" pattern="([a-zA-ZА-Яа-я]+)\s([a-zA-ZА-Яа-я]+)" placeholder="Name Surname" required autocomplete="on" />
+        </label>
+        <div id="titleTable">
+        <label style="display: table-cell">
+            Expiry Date:<br>
+            <input class="width" type="number" min="01" max="12"  placeholder="xx" required />
+        </label>
+       <label style="display: table-cell">
+           <br>
+           <input class="width" type="number" min="2015" max="2020" placeholder="xxxx"  required />
+       </label>
+        <label style="display: table-cell">
+           CVV/CVN:<br>
+            <input class="width" type="password" pattern="[0-9]{3}" required placeholder="***" autocomplete="on" />
+        </label>
+        </div>
+        <br>
+        <input  type="submit" name="submit" value="Submit"/>
+        <input  type="reset" name="reset" value="Reset"/>
+    </form>
+</div>
+</div>
+</body>
+</html>

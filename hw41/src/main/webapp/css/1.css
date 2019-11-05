@@ -1,0 +1,114 @@
+body {
+    background: #dadada;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+}
+
+#card {
+    background: url(../images/2.jpg) no-repeat center center fixed;
+    background-size: cover;
+    width: 810px;
+    height: 530px;
+    display: table;
+    padding: 0;
+    margin: auto;
+    border-spacing: 15px;
+    border-radius: 15px;
+}
+
+#title {
+    color: white;
+    font-size: 15px;
+    margin: 20px 20px 30px;
+    padding: 15px 0 15px 70px;
+    left: -70px;
+    position: relative;
+    width: 400px;
+    transform: skewX(-25deg);
+    background: linear-gradient(#fe9a11, #ff3a36, #fe9a11);
+    box-shadow: 0 0 5px #e2e2e2;
+}
+
+#title h4 {
+    transform: skewX(25deg);
+}
+
+#card .marPadNull {
+    margin: 0;
+    padding: 0;
+}
+
+#card input {
+    width: 398px;
+    margin: 10px 20px;
+    background: linear-gradient(white, #b4b4b4, grey);
+    padding: 12px;
+    border: 1px outset #b4b4b4;
+    border-bottom: 2px outset #5b5b5b;
+    font-size: 20px;
+}
+
+#card label {
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+#card input[type=submit] {
+    background: #fe9a11;
+    width: 100px;
+    margin-bottom: 0;
+    border-radius: 30px;
+}
+
+#card input[type=reset] {
+    background: #ff3a36;
+    width: 100px;
+    margin-bottom: 0;
+    border-radius: 30px;
+}
+
+#card input:hover {
+    border: 1px inset #fe9a11;
+    border-bottom: 2px outset #ff3a36;;
+    box-shadow: 0 0 5px #fe9a11;
+}
+
+#card .width {
+    width: 92px;
+    margin-left: 0;
+    margin-right: 15px;
+}
+
+#titleTable {
+    display: table;
+    border-spacing: 20px;
+}
+
+#titleTable label {
+    margin-left: 30px;
+}
+#main{
+    width: 900px;
+    height: 600px;
+    margin: 10% auto;
+    padding: 0;
+   background: orange;
+}
+.moon {
+    overflow: hidden;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    z-index: 10;
+    float: right;
+}
+
+.moon img {
+    position: relative;
+    width: 120%;
+    height: 120%;
+
+
+}
