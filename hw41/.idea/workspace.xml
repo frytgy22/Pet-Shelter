@@ -54,6 +54,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -317,7 +318,15 @@
       <workItem from="1572910606694" duration="2551000" />
       <workItem from="1572914113441" duration="2742000" />
       <workItem from="1572941583214" duration="15206000" />
-      <workItem from="1572961329416" duration="25197000" />
+      <workItem from="1572961329416" duration="33477000" />
+      <workItem from="1573028217221" duration="5500000" />
+      <workItem from="1573035813618" duration="9342000" />
+      <workItem from="1573072755775" duration="10764000" />
+      <workItem from="1573114315489" duration="18925000" />
+      <workItem from="1573142732036" duration="10949000" />
+      <workItem from="1573162308054" duration="10845000" />
+      <workItem from="1573200996527" duration="19663000" />
+      <workItem from="1573228383786" duration="464000" />
     </task>
     <servers />
   </component>

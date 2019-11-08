@@ -4,90 +4,109 @@
     <meta charset="UTF-8">
     <title>Task2</title>
     <link rel="stylesheet" type="text/css" href="../css/2.css">
+    <link rel="stylesheet" type="text/css" href="../css/styleButton.css">
+    <link rel="stylesheet" type="text/css" href="../css/buttonDown.css">
 </head>
 <body>
-<div class="row">
-    <div class="col-75">
-        <div class="container">
-            <form action="/action_page.php">
-
-                <div class="row">
-                    <div class="col-50">
-                        <h3>Billing Address</h3>
-                        <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                        <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                        <input type="text" id="email" name="email" placeholder="john@example.com">
-                        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                        <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                        <label for="city"><i class="fa fa-institution"></i> City</label>
-                        <input type="text" id="city" name="city" placeholder="New York">
-
-                        <div class="row">
-                            <div class="col-50">
-                                <label for="state">State</label>
-                                <input type="text" id="state" name="state" placeholder="NY">
-                            </div>
-                            <div class="col-50">
-                                <label for="zip">Zip</label>
-                                <input type="text" id="zip" name="zip" placeholder="10001">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-50">
-                        <h3>Payment</h3>
-                        <label for="fname">Accepted Cards</label>
-                        <div class="icon-container">
-                            <i class="fa fa-cc-visa" style="color:navy;"></i>
-                            <i class="fa fa-cc-amex" style="color:blue;"></i>
-                            <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                            <i class="fa fa-cc-discover" style="color:orange;"></i>
-                        </div>
-                        <label for="cname">Name on Card</label>
-                        <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-                        <label for="ccnum">Credit card number</label>
-                        <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-                        <label for="expmonth">Exp Month</label>
-                        <input type="text" id="expmonth" name="expmonth" placeholder="September">
-
-                        <div class="row">
-                            <div class="col-50">
-                                <label for="expyear">Exp Year</label>
-                                <input type="text" id="expyear" name="expyear" placeholder="2018">
-                            </div>
-                            <div class="col-50">
-                                <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" name="cvv" placeholder="352">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <label>
-                    <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-                </label>
-                <input type="submit" value="Continue to checkout" class="btn">
-            </form>
-        </div>
-    </div>
-
-    <div class="col-25">
-        <div class="container">
-            <h4>Cart
-                <span class="price" style="color:black">
-          <i class="fa fa-shopping-cart"></i>
-          <b>4</b>
-        </span>
-            </h4>
-            <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-            <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-            <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-            <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-            <hr>
-            <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
-        </div>
-    </div>
+<a href="../index.html" class="button2" tabindex="0">Go to home</a>
+<img id="treasure"  src="../images/fish/12.png" alt="treasure">
+<div id="mainButton">
+    <img style="float: right" id="six" src="../images/fish/6.gif" alt="fish"/>
+    <form action="/registration" method="post">
+        <h4>Inputs</h4>
+        <label class="check">
+            <input pattern="[A-Za-z]+" placeholder="Enter some text" autofocus/>
+        </label>
+        <br>
+        <h4>Check boxes</h4>
+        <input type="checkbox" class="checkbox" id="checkbox-1">
+        <label for="checkbox-1">Subscribe</label>
+        <br>
+        <h4>Radio buttons</h4>
+        <input type="radio" checked class="radio" id="radio-1" name="radio">Gender:
+        <label for="radio-1">Male</label>
+        <input type="radio" class="radio" id="radio-2" name="radio">
+        <label for="radio-2">Female</label>
+        <br>
+        <h4>Buttons</h4>
+        <button id="active" type="button">Active</button>
+        <button id="danger" type="button">Danger</button>
+        <button id="disabled" type="button" disabled>Disabled</button>
+        <button class="icon" id="plus" type="button">+</button>
+        <button class="icon" id="minus" type="button">-</button>
+        <br>
+        <h4>Text area</h4>
+        <label>
+            <textarea  name="text">Enter some text...</textarea>
+        </label>
+    </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<img id="one" src="../images/fish/1.gif" alt="fish"
+     style="position: fixed; z-index: 1000 "/>
+<img id="two" src="../images/fish/2.gif" alt="fish"
+     style="position: fixed; z-index: 1000 "/>
+<img id="three" src="../images/fish/3.gif" alt="fish"
+     style="position: fixed; z-index: 1000 "/>
+<img id="four" src="../images/fish/4.gif" alt="fish"
+     style="position: fixed; z-index: 1000 "/>
+<img id="five" src="../images/fish/5.gif" alt="fish"
+     style="position: fixed; z-index: 1000 "/>
+
+<script>
+    var offset = -50;
+    var myWidth = window.innerWidth;
+    var myHeight = window.innerHeight;
+    var rightSet = myWidth + offset;
+    var offset1 = -50;
+    var rightSet1 = myWidth + offset1;
+    var offset2 = -50;
+    var rightSet2 = myWidth + offset2;
+    var offset3 = -50;
+    var rightSet3 = myWidth + offset3;
+    var moveRight = function () {
+        $("#one").offset({left: offset, top: myHeight / 1.5});
+        offset++;
+        if (offset > myWidth) {
+            offset = -50;
+        }
+    };
+
+    var fishFive = function () {
+        $("#five").offset({left: rightSet, top: myHeight / 2});
+        rightSet--;
+        if (rightSet < 0) {
+            rightSet = myWidth + offset;
+        }
+    };
+    var fishTwo = function () {
+        $("#two").offset({left: rightSet2, top: myHeight / 3.5});
+        rightSet2--;
+        if (rightSet2 < 0) {
+            rightSet2 = myWidth + offset2;
+        }
+    };
+
+    var fishThree = function () {
+        $("#three").offset({left: rightSet1, top: myHeight / 5});
+        rightSet1--;
+        if (rightSet1 < 0) {
+            rightSet1 = myWidth + offset1;
+        }
+    };
+    var fishFour = function () {
+        $("#four" + name).offset({left: rightSet3, top: myHeight / 8});
+        rightSet3--;
+        if (rightSet3 < 0) {
+            rightSet3 = myWidth + offset3;
+        }
+    };
+    setInterval(moveRight, 30);
+    setInterval(fishThree, 10);
+    setInterval(fishFour, 20);
+    setInterval(fishFive, 15);
+    setInterval(fishTwo, 30);
+</script>
 </body>
 </html>

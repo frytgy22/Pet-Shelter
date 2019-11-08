@@ -1,0 +1,246 @@
+body {
+    background: linear-gradient(rgba(0, 220, 252, 0.76), rgba(244, 54, 255, 0.74)) no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.icon {
+    padding: 10px;
+    background: url(../images/username.png) no-repeat;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background-size: 39px;
+}
+
+#email {
+    background: url(../images/email.png) no-repeat;
+    background-size: 39px;
+}
+
+#password {
+    background: url(../images/pswd.png) no-repeat;
+    background-size: 39px;
+}
+
+input {
+    font-size: 18px;
+}
+
+.input-container {
+    display: flex;
+    width: 500px;
+    margin-bottom: 15px;
+}
+
+.input-field {
+    margin-top: 8px;
+    margin-right: 0;
+    width: 400px;
+    height: 15px;
+    padding: 10px 10px 10px 15px;
+    border: none;
+    border-bottom: 2px solid #5b5b5b;
+    background: #dadada;
+}
+
+.smallLine {
+    width: 178px;
+    margin-right: 20px;
+}
+
+main {
+    background: #dadada;
+    width: 1000px;
+    height: 480px;
+    margin: 100px auto;
+    display: table;
+}
+
+#blockOne {
+    width: 500px;
+    margin: 0;
+    padding: 0 10px 0 35px;
+    /*background: #3fadff;*/
+    display: table-cell;
+}
+
+#blockTwo {
+    width: 500px;
+    margin: 0;
+    padding: 0 15px 0 0;
+    /*background: #ffd272;*/
+    display: table-cell;
+}
+
+#blockTwo input {
+    margin-bottom: 5px;
+}
+
+#blockTwo .smallLine, select {
+    width: 205px;
+}
+
+#blockTwo select {
+    margin: 8px 20px 10px 0;
+    padding: 6px 5px 6px 10px;
+    border: none;
+    border-bottom: 2px solid #5b5b5b;
+    font-size: 18px;
+    width: 230px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #dadada url(../images/446.png) no-repeat right;
+    background-size: 15px;
+}
+
+#blockThree {
+    width: 350px;
+    margin: 30px 0 40px 30px;
+    padding: 0;
+    /*background: rgba(255, 8, 74, 0.48);*/
+}
+
+#blockThree label {
+    font-size: 16px;
+}
+
+input[type=checkbox] {
+    margin-bottom: 10px;
+}
+
+.line {
+    border-bottom: 3px solid #5b5b5b;
+}
+
+.lineOne {
+    border-bottom: 1px solid #5b5b5b;
+}
+
+hr {
+    color: #989898;
+    border: none;
+    background-color: #989898;
+    height: 1px;
+}
+
+button[type=submit] {
+    float: right;
+    font-size: 15px;
+    margin: 20px 30px 30px;
+    padding: 7px 40px;
+    color: #fff;
+    background-color: blue;
+    background-image: -moz-linear-gradient(#bdd7fa, #5d66b1 50%, #010767 20%, #40def7);
+    background-image: -webkit-linear-gradient(#bdd7fa, #5d66b1 50%, #010767 20%, #40def7);
+    background-image: -o-linear-gradient(#bdd7fa, #5d66b1 50%, #010767 20%, #40def7);
+    border: 1px outset #010767;
+    border-radius: 10px;
+}
+
+button[type=submit]:hover {
+    background-image: -moz-linear-gradient(#bad4f8, #b2b7da 50%, #8b90bb 50%, #3ed8f3);
+    background-image: -webkit-linear-gradient(#bad4f8, #b2b7da 50%, #8b90bb 50%, #3ed8f3);
+    background-image: -o-linear-gradient(#bad4f8, #b2b7da 50%, #8b90bb 50%, #3ed8f3);
+}
+
+h4 {
+    font-size: 20px;
+    margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+    main {
+        width: 600px;
+    }
+
+    #blockOne {
+        display: block;
+        width: 550px;
+    }
+
+    .icon {
+        padding-right: 30px;
+    }
+
+    #blockOne .input-field {
+        width: 455px;
+        margin-left: 10px;
+    }
+
+    #blockOne .smallLine {
+        width: 200px;
+    }
+
+    #blockTwo {
+        margin-left: 35px;
+        display: block;
+        margin-top: 50px;
+    }
+
+    #blockTwo .smallLine {
+        width: 230px;
+    }
+
+    #blockTwo select {
+        width: 255px;
+    }
+
+    .line, .lineOne {
+        border-bottom: 2px solid #5b5b5b;
+    }
+}
+
+
+@media (max-width: 600px) {
+    main {
+        width: 450px;
+    }
+
+    .input-container {
+        display: table;
+    }
+
+    #blockTwo, #blockOne {
+        width: 400px;
+    }
+
+    #blockOne .input-field {
+        width: 305px;
+    }
+
+    #min {
+        margin-left: 40px;
+        margin-top: 20px;
+    }
+
+    #minTwo {
+        margin-bottom: 15px;
+    }
+
+    #minThree {
+        margin-top: 10px;
+    }
+
+    #blockTwo .smallLine {
+        width: 355px;
+    }
+
+    #blockTwo select {
+        width: 380px;
+    }
+
+    .forMin {
+        margin-bottom: 5px;
+    }
+
+    input, select {
+        font-size: 16px;
+    }
+    .line, .lineOne {
+        border-bottom: 2px solid #5b5b5b;
+    }
+}

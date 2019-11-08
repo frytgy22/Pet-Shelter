@@ -1,16 +1,17 @@
 body {
-    background: #dadada;
+    background: url(../images/7.jpg) no-repeat center center fixed;
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
     font-size: 20px;
+    color: white;
 }
 
 #card {
     background: url(../images/2.jpg) no-repeat center center fixed;
     background-size: cover;
-    width: 810px;
-    height: 530px;
+    width: 740px;
+    height: 480px;
     display: table;
     padding: 0;
     margin: auto;
@@ -19,20 +20,31 @@ body {
 }
 
 #title {
-    color: white;
+    text-align: left;
     font-size: 15px;
     margin: 20px 20px 30px;
-    padding: 15px 0 15px 70px;
+    padding: 15px 100px 15px 70px;
     left: -70px;
     position: relative;
     width: 400px;
     transform: skewX(-25deg);
-    background: linear-gradient(#fe9a11, #ff3a36, #fe9a11);
+    background: linear-gradient(#ff4422, #ffa615);
     box-shadow: 0 0 5px #e2e2e2;
 }
 
 #title h4 {
     transform: skewX(25deg);
+    padding-left: 0;
+    text-shadow: 0 -1px rgba(0, 0, 0, .1);
+    animation: pulsate 1.2s linear infinite;
+    font-size: 21px;
+}
+
+@keyframes pulsate {
+    50% {
+        color: #fff;
+        text-shadow: 0 -1px rgba(0, 0, 0, .3), 0 0 5px #ffd, 0 0 8px #fff;
+    }
 }
 
 #card .marPadNull {
@@ -55,24 +67,20 @@ body {
     margin-left: 20px;
 }
 
-#card input[type=submit] {
-    background: #fe9a11;
-    width: 100px;
-    margin-bottom: 0;
-    border-radius: 30px;
-}
-
 #card input[type=reset] {
-    background: #ff3a36;
+    background: #ff4422;
     width: 100px;
     margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 0;
     border-radius: 30px;
+    float: right;
 }
 
 #card input:hover {
-    border: 1px inset #fe9a11;
-    border-bottom: 2px outset #ff3a36;;
-    box-shadow: 0 0 5px #fe9a11;
+    border: 1px inset #ff704a;
+    border-bottom: 2px outset #e3632f;
+    box-shadow: 0 0 5px #ff704a;
 }
 
 #card .width {
@@ -89,26 +97,32 @@ body {
 #titleTable label {
     margin-left: 30px;
 }
-#main{
+
+#main {
     width: 900px;
     height: 600px;
-    margin: 10% auto;
+    margin: 0;
     padding: 0;
-   background: orange;
+    top: 10%;
+    left: 27%;
+    position: absolute;
 }
+
 .moon {
     overflow: hidden;
     position: relative;
     width: 300px;
     height: 300px;
     z-index: 10;
-    float: right;
+    left: 520px;
+    top: -320px;
+    border-radius: 15px;
 }
 
 .moon img {
     position: relative;
     width: 120%;
     height: 120%;
-
-
+    right: -55px;
 }
+
