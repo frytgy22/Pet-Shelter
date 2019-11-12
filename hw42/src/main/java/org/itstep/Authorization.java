@@ -1,12 +1,11 @@
 package org.itstep;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.List;
 
 
@@ -19,8 +18,12 @@ public class Authorization extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+
+        ServletContext servletContext = getServletContext();
+        File file = new File(servletContext.getRealPath("/WEB-INF") + "/registration.txt");
+
         RegisteredUsers registeredUsers = RegisteredUsers.getInstance();
-        List<User> users = registeredUsers.list(new File("/home/valeria/Desktop/registration.txt"));
+        List<User> users = registeredUsers.list(file);
 
         PrintWriter writer = resp.getWriter();
         if (validData(login, password)) {
@@ -74,8 +77,16 @@ public class Authorization extends HttpServlet {
             }
         } else {
             resp.setStatus(401);
-            writer.println("<h1 style=\"color: red\">Wrong login or password!</h1>" +
-                    "<img  src=\"./images/1.png\" alt=\"logotype java\"/>\n");
+            StringBuilder webXmlBuilder = new StringBuilder();
+            try (InputStream stream = servletContext.getResourceAsStream("/WEB-INF/page401.html");
+                 InputStreamReader streamReader = new InputStreamReader(stream);
+                 BufferedReader reader = new BufferedReader(streamReader)) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    webXmlBuilder.append(line);
+                }
+                writer.println(webXmlBuilder.toString());
+            }
         }
     }
 

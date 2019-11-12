@@ -1,5 +1,6 @@
 package org.itstep;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,21 +19,22 @@ public class RegistrationServlet extends HttpServlet {
         final String sub = req.getParameter("sub");
 
         User user = new User(login, password, gender, phone, email, sub);
-
         RegisteredUsers registeredUsers = RegisteredUsers.getInstance();
 
-        File file = new File("/home/valeria/Desktop/registration.txt");
-        List<User> users = registeredUsers.list(file);
-        if (!file.exists()) {
+        ServletContext servletContext = getServletContext();
+        File file = new File(servletContext.getRealPath("/WEB-INF") + "/registration.txt");
+        if (!file.exists()) {//
             file.createNewFile();
         }
 
+        List<User> users = registeredUsers.list(file);
         registeredUsers.add(user);
 
         try (OutputStream outputStream = new FileOutputStream(file)) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(users);
         }
+
         PrintWriter writer = resp.getWriter();
         writer.println("Hello, " + user.getLogin());
     }

@@ -51,7 +51,7 @@ table {
 
 th, td {
     height: 40px;
-    border: 2px outset #7e7e7e;
+    border: 2px outset white;
     text-align: center;
     padding: 10px;
     font-size: 18px;
@@ -63,7 +63,7 @@ td:hover {
 
 thead, col {
     background: #7e7e7e;
-    color: #e1ceb8;
+    color: white;
     font-size: 20px;
     font-weight: bolder;
     border: 2px outset black;

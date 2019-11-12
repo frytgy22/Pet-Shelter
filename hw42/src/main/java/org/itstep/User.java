@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class User implements Serializable, Comparable<User> {
+public class User implements Serializable {
     private static final long serialVersionUID = 10L;
     private String login;
     private String password;
@@ -18,9 +18,4 @@ public class User implements Serializable, Comparable<User> {
     private String phone;
     private String email;
     private String subscribe;
-
-    @Override
-    public int compareTo(User o) {
-        return this.getLogin().compareTo(o.getLogin());
-    }
 }
