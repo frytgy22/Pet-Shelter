@@ -1,7 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="32affd42-7167-499c-88a0-bac1cbafa5a2" name="Default Changelist" comment="" />
+    <list default="true" id="32affd42-7167-499c-88a0-bac1cbafa5a2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task00.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task08.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task09.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task10.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/array/Task12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task00.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task08.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task09.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task10.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task13.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task14.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task15.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task16.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task17.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task18.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part1/string/Task19.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task00.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task08.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/array/Task17.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/mstatic/Task01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/mstatic/Task02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/mstatic/Task03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/mstatic/Task04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/mstatic/Task05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part2/mstatic/Task06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/regexp/Task01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/regexp/Task02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/regexp/Task03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/regexp/Task04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/regexp/Task05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/regexp/Task06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/sort/Task00.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/sort/Task01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/sort/Task02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/sort/Task03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/sort/Task04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/sort/Task05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/sort/Task06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/sort/Task07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part3/sort/Task08.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part4/buffer/Task01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part4/buffer/Task02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part4/buffer/Task03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part4/buffer/Task04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part4/buffer/Task05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part4/buffer/Task06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part4/buffer/Task07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part4/buffer/Task08.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/example/part4/buffer/Task09.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task08.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task09.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task10.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/homework02/Task12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/Abc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/BinarySearch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/Classifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/EscapeRout.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/Me.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/RandomAccsess.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/StringArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/StringCheese.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/Unmodifiable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/step/puzzle/WhereRezult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/BaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest08.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest09.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest10.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ua/step/homework02/TaskTest12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,10 +122,21 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1TnwvMNdNugVNHkvIwKAMqGl76G" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -58,10 +180,22 @@
       <option name="presentableId" value="Default" />
       <updated>1574109396538</updated>
       <workItem from="1574109400078" duration="3892000" />
+      <workItem from="1574147819716" duration="211000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
