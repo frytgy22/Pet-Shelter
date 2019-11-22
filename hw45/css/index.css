@@ -1,0 +1,231 @@
+
+html, body, div, span, h1, ul, li {
+    margin: 0;
+    padding: 0
+}
+
+img {
+    display: block;
+    border: 3px ridge white;
+}
+
+body {
+    font: normal 20px Roboto, 'Helvetica CY', Verdana, sans-serif;
+    color: #333;
+    background: url(../images/22.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.wrap {
+    width: 100%;
+    max-width: 1280px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 40px 15px 0
+}
+
+
+.headline {
+    max-width: 1024px;
+    font-size: 20px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.gallery {
+    width: 100%;
+    visibility: hidden;
+    margin: 0 auto 30px 110px;
+}
+
+.slider {
+    width: 100%;
+    max-width: 1024px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.stage {
+    overflow: hidden
+}
+
+.stage > div {
+    float: left;
+    position: relative
+}
+
+.stage > div img {
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    border-radius: 30px;
+}
+
+.control {
+    width: 100%;
+    margin-left: -110px;
+    margin-top: 100px;
+    text-align: center;
+    position: relative
+}
+
+.nav-ctrl {
+    display: none;
+    line-height: 20px;
+    margin-top: 10px;
+
+}
+
+.nav-ctrl span, p {
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 30px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 5px;
+    border: outset 3px gainsboro;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    outline: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: white;
+    cursor: pointer;
+
+}
+
+.nav-ctrl .disable, .nav-ctrl .disable:hover {
+    border: outset 3px gainsboro;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    cursor: default
+}
+
+.dots-ctrl {
+    display: none;
+    margin-top: 10px
+}
+
+.dots-ctrl li {
+    display: inline-block
+}
+
+.dots-ctrl span {
+    width: 10px;
+    height: 10px;
+    display: block;
+    margin: 5px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0.4;
+    cursor: pointer
+}
+
+.dots-ctrl .active span, .dots-ctrl span:hover {
+    opacity: 1
+}
+
+@-webkit-keyframes swing {
+    15% {
+        -webkit-transform: translateX(9px);
+        transform: translateX(9px);
+    }
+    30% {
+        -webkit-transform: translateX(-9px);
+        transform: translateX(-9px);
+    }
+    40% {
+        -webkit-transform: translateX(6px);
+        transform: translateX(6px);
+    }
+    50% {
+        -webkit-transform: translateX(-6px);
+        transform: translateX(-6px);
+    }
+    65% {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@keyframes swing {
+    15% {
+        -webkit-transform: translateX(9px);
+        transform: translateX(9px);
+    }
+    30% {
+        -webkit-transform: translateX(-9px);
+        transform: translateX(-9px);
+    }
+    40% {
+        -webkit-transform: translateX(6px);
+        transform: translateX(6px);
+    }
+    50% {
+        -webkit-transform: translateX(-6px);
+        transform: translateX(-6px);
+    }
+    65% {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+.anim {
+    -webkit-animation: swing 3.5s ease;
+    animation: swing 3.5s ease;
+}
+
+.noAnim {
+    -webkit-animation: none;
+    animation: none;
+}
+
+input {
+    width: 30px;
+    margin-left: -12px;
+    margin-top: -10px;
+    background-color: white;
+    height: 25px;
+    padding: 2px 3px 3px 0;
+    border: outset 3px gainsboro;
+    border-left: none;
+}
+
+#buttonOn {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-right: none;
+}
+
+#buttonOff {
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: default;
+}
+
+h1 {
+    font-size: 30px;
+    text-shadow: 0 -1px rgba(0, 0, 0, .1);
+    animation: pulsate 3s linear infinite;
+
+}
+
+@keyframes pulsate {
+    50% {
+        color: #fff;
+        text-shadow: 0 -1px rgba(0, 0, 0, .3), 0 0 5px #ffd, 0 0 8px #fff;
+    }
+}
