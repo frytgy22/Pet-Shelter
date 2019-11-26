@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <link rel="stylesheet" type="text/css" href="css/list.css">
+</head>
+<body>
+<h1>TODO List</h1>
+<hr>
+<label>
+    <input id="input" placeholder="New TODO item" maxlength="60" autofocus/>
+</label>
+<button class="threed" id="button">Add item</button>
+<main>
+    <ul id="ul"></ul>
+</main>
+<script>
+
+    let ul = document.getElementById("ul");
+    let input = document.getElementById("input");
+    let button = document.getElementById("button");
+    button.addEventListener('click', callBack);
+
+    function createItem(text) {
+        let li = document.createElement("li");
+        let img = document.createElement("img");
+        img.src = "images/unchecked_16.png";
+        img.alt = 'unchecked';
+        li.appendChild(img);
+        li.appendChild(document.createTextNode(text));
+        let span = document.createElement("span");
+        span.appendChild(document.createTextNode('❌'));
+        li.appendChild(span);
+        return li;
+    }
+
+    function callBack() {
+        let li = createItem(input.value);
+        ul.appendChild(li);
+        input.value = '';
+    }
+
+    let selected;
+    document.querySelector('main').onclick = function (event) {
+        let target = event.target;
+        console.log(target.tagName);
+        if (target.tagName === 'SPAN') {
+            removeTask(target);
+        }
+        if (target.tagName === 'IMG') {
+            replaceImg(target);
+        }
+    };
+
+    function removeTask(span) {
+        selected = span;
+        selected.parentElement.style.display = 'none';
+    }
+
+    let selectImg;
+
+    function replaceImg(img) {
+        selectImg = img;
+        if (img.src.indexOf("images/unchecked_16.png") !== -1) {
+            img.src = "images/checked_16.png";
+            selectImg.parentElement.classList.remove("uncheck");
+            selectImg.parentElement.classList.add("check")
+        } else {
+            img.src = "images/unchecked_16.png";
+            selectImg.parentElement.classList.remove("check");
+            selectImg.parentElement.classList.add("uncheck");
+        }
+    }
+
+</script>
+</body>
+</html>
