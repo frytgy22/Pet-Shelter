@@ -44,7 +44,7 @@ ul {
 main {
     margin: auto;
     width: 772px;
-    padding: 10px 2px 10px 0;
+    padding: 10px 3px 10px 0;
     background: #8bcf1c;
 }
 
@@ -124,6 +124,10 @@ li img:hover, span:hover, button:hover {
         transition: all 0.4s linear;
         width: 450px;
         height: 75px;
+    }
+
+    span {
+        top: 0;
     }
 }
 

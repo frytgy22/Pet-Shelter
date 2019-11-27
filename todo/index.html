@@ -15,6 +15,7 @@
 <main>
     <ul id="ul"></ul>
 </main>
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 <script>
 
     let ul = document.getElementById("ul");
@@ -28,10 +29,10 @@
         img.src = "images/unchecked_16.png";
         img.alt = 'unchecked';
         li.appendChild(img);
-        li.appendChild(document.createTextNode(text));
         let span = document.createElement("span");
         span.appendChild(document.createTextNode('❌'));
         li.appendChild(span);
+        li.appendChild(document.createTextNode(text));
         return li;
     }
 
@@ -55,7 +56,9 @@
 
     function removeTask(span) {
         selected = span;
-        selected.parentElement.style.display = 'none';
+        //selected.parentElement.style.display = 'none';
+        $(selected.parentElement).hide(1000);
+        //.toggle("slow");
     }
 
     let selectImg;
