@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 9.  Написать функцию, которая возвращает уникальные в массиве.
+    //     Например
+    // console.log(unique([7, 9, 0, -2]));
+    // console.log(unique([7, 7, 9, 0, -2]));
+    // console.log(unique([7, 9, 9, -2]));
+    // console.log(unique([1, 1, 1, 1]));
+    //
+    // Ожидаемые результаты:
+    //     [7, 9, 0, -2]
+    //         [9, 0, -2]
+    //         [7, -2]
+    //         []
+
+    function unique(arr) {
+        let uniqueArray = [];
+        for (let i = 0; i < arr.length; i++) {
+            let kol = 0;
+            for (let j = 0; j < arr.length; j++) {
+                if (arr[i] === arr[j])
+                    kol++;
+            }
+            if (kol === 1)
+                uniqueArray.push(arr[i]);
+        }
+        return uniqueArray;
+    }
+
+    console.log(unique([7, 9, 0, -2]));
+    console.log(unique([7, 7, 9, 0, -2]));
+    console.log(unique([7, 9, 9, -2]));
+    console.log(unique([1, 1, 1, 1]));
+
+
+</script>
+</body>
+</html>

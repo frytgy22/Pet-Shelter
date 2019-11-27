@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    // Задание 1
+    // - объявить глобальную переменную color
+    // - объявить функцию setColor()
+    // - в функции setColor() объявить локальную переменную color
+    // - с вероятностью 50% задать значение локальной переменной или глобальной
+    // - для глобальной переменной задается цвет красный, для локальной - черный
+    // - вывести значение локальной и глобальной переменной в консоль через console.log()
+    // - передать значение измененной переменной в функцию drawBox()
+    // - объявить функцию drawBox() с одним параметром color
+    // - вывести через document.writeln() в html блочный элемент (div) закрашенный цветом color
+
+    var color;
+
+    function setColor() {
+        function randomColor() {
+            let color;
+            let random = Math.floor(Math.random() * 2);
+            if (random === 0) {
+                color = "black";
+            }
+            console.log("Locale: " + color);
+            return color;
+        }
+
+        let newColor = randomColor();
+        if (newColor === "black") {
+            console.log("Global: " + color);
+            return newColor;
+        }
+        color = "red";
+        console.log("Global: " + color);
+        return color;
+    }
+
+    let newColor = setColor();
+
+    function drawBox(color) {
+        document.writeln("<div id=\"div\"></div>");
+        document.getElementById("div").style.background = color;
+    }
+
+    drawBox(newColor);
+</script>
+</body>
+</html>

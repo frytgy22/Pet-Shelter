@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 6. Напишите JavaScript функцию, которая принимает числои вставляет тире (-) послекаждого четного числа.
+    //     Например: входное число 25468 на выходе должно быть 2-54-6-8
+
+
+    function even(number) {
+        let string = "";
+        for (let i = 0; i < number.length; i++) {
+
+            if (number.charAt(i) % 2 !== 0 || i === number.length - 1) {
+                string += number.charAt(i);
+            } else {
+                string += number.charAt(i) + "-";
+            }
+        }
+        return string;
+    }
+
+    console.log(even("25468"));
+</script>
+</body>
+</html>
