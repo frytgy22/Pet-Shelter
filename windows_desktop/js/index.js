@@ -1,25 +1,13 @@
 window.addEventListener('load', () => {
-
-    //перетаскивание, удаление в корзину файла
     var mouse = {
-        moveX: 0,
-        moveY: 0,
         mouseDown: false,
+        inTrash: false,
     };
-
-    document.querySelector('main').addEventListener('drop', function (ev) {
-        mouse.moveY = ev.pageY;
-        mouse.moveX = ev.pageX;
-        ev.preventDefault();
-        mouse.mouseDown = false;
-    });
-    document.querySelector('main').addEventListener('dragover', function (ev) {
-        ev.preventDefault();
-    });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Delete' && mouse.mouseDown) {
-            trash.img.src = trash.icons['full'];
             file.delete();
+            mouse.inTrash = false;
+            mouse.mouseDown = false;
         }
     });
 
@@ -31,15 +19,10 @@ window.addEventListener('load', () => {
         init: function () {
             let img = createImg('trash image', 64, 480, 700);
             img.src = this.icons['empty'];
-            img.style.zIndex = '100';
-            img.addEventListener('dragover', function (ev) {
-                ev.preventDefault();
-            });
-            img.addEventListener('drop', function (ev) {
-                ev.preventDefault();
-                file.delete();
-                img.src = trash.icons['full'];
-            });
+            img.setAttribute('class', 'trash');
+            img.ondragstart = function () {
+                return false;
+            };
             img.addEventListener('contextmenu', function (e) {
                 e.preventDefault();
                 document.getElementById('ul').style.display = 'block';
@@ -47,53 +30,91 @@ window.addEventListener('load', () => {
             this.img = img;
             this.draw();
         },
-
         draw: function () {
             document.body.appendChild(this.img);
         }
     };
 
     const file = {
-        icon: "images/3.png",
+        icon: 'images/3.png',
 
         init: function () {
             let img = createImg('file image', 64, 10, 10);
             img.src = this.icon;
-            img.draggable = true;
-
-            img.addEventListener('mousedown', this.mouseDown.bind(this));
-            img.addEventListener('mouseup', function () {
-                mouse.mouseDown = false;
-            });
-            img.addEventListener('mouseout', function () {
-                mouse.mouseDown = false;
-            });
-            img.addEventListener('dragstart', function (e) {
-                e.dataTransfer.setData('text/plain', 'This text may be dragged');
-            });
-            img.addEventListener('dragend', this.mouseEnd.bind(this),);
+            img.ondragstart = function () {
+                return false;
+            };
+            img.addEventListener('mousedown', this.mousedown.bind(this));
             this.img = img;
             this.draw();
+
         },
 
-        mouseDown: function () {
-            mouse.mouseDown = true;
+        mousedown: function (event) {
+            if (event.which === 1) {//если клик левый (DEPRECATED, не нашла, чем заменить)
+                let img = this.img;
+                mouse.mouseDown = true;
+                let shiftX = event.clientX - img.getBoundingClientRect().left;
+                let shiftY = event.clientY - img.getBoundingClientRect().top;
+
+                function moveAt(pageX, pageY) {
+                    img.style.left = pageX - shiftX + 'px';
+                    img.style.top = pageY - shiftY + 'px';
+                }
+
+                moveAt(event.pageX, event.pageY);
+                let currentDrop = null;
+
+                function onMouseMove(event) {
+                    if (document.body.clientWidth < (event.pageX + img.offsetWidth - (shiftX)) ||
+                        document.body.clientHeight < (event.pageY + img.offsetHeight +
+                            document.querySelector('footer').offsetHeight + 10 - (shiftY)) ||
+                        event.pageX <= 1 || event.pageY <= 1) {
+                        document.body.removeEventListener('mousemove', onMouseMove);
+                        return;
+                    }
+
+                    moveAt(event.pageX, event.pageY);
+                    img.hidden = true;
+                    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);//ищем объект под файлом
+                    img.hidden = false;
+                    if (!elemBelow) return;
+                    let dropBelow = elemBelow.closest('.trash');
+                    if (currentDrop !== dropBelow) {
+                        //   currentDrop=null,если мы были не над trash до этого события (например, над пустым пространством)
+                        //   dropBelow=null,если мы не над trash именно сейчас, во время этого события
+                        if (currentDrop) {
+                            // логика обработки процесса "вылета"
+                            mouse.inTrash = false;
+                        }
+                        currentDrop = dropBelow;
+                        if (currentDrop) {
+                            // логика обработки процесса, когда мы "влетаем" в элемент trash
+                            mouse.inTrash = true;
+                        }
+                    }
+                }
+
+                document.body.addEventListener('mousemove', onMouseMove);
+                img.onmouseup = function () {
+                    mouse.mouseDown = false;
+                    if (mouse.inTrash) {
+                        file.delete();
+                        mouse.inTrash = false;
+                    }
+                    document.body.removeEventListener('mousemove', onMouseMove);
+                    img.onmouseup = null;
+                };
+            }
         },
-        mouseEnd: function (e) {
-            this.img.style.top = mouse.moveY - this.img.offsetHeight / 2 + 'px';
-            this.img.style.left = mouse.moveX - this.img.offsetWidth / 2 + 'px';
-            document.getElementById('fileName').style.top = mouse.moveY - this.img.offsetHeight / 2 + 'px';
-            document.getElementById('fileName').style.left = mouse.moveX - this.img.offsetWidth / 2 + 'px';
-        },
+        remove: false,
         draw: function () {
             document.body.appendChild(this.img);
         },
-        remove: false,
-
         delete: function () {
-            this.img.style.display = 'none';
             this.remove = true;
-            document.getElementById('fileName').style.display = 'none';
+            trash.img.src = trash.icons.full;
+            this.img.style.display = 'none';
         }
     };
 
@@ -110,7 +131,7 @@ window.addEventListener('load', () => {
         return img;
     }
 
-////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////
 
     //меню пуск
     let win = document.getElementById('win');
@@ -131,9 +152,8 @@ window.addEventListener('load', () => {
 
     /////////////////////////////////////////////////////////////////
 
-    //меню корзины
+    //меню корзины (правый клик)
     let ul = document.getElementById('ul');
-    let name = document.getElementById('fileName');
     let child = ul.childNodes;
     for (let i = 0; i < child.length; i++) {
         child[i].addEventListener('click', function () {
@@ -141,16 +161,6 @@ window.addEventListener('load', () => {
             ul.style.display = 'none';
             if (answer && file.remove) {
                 trash.img.src = trash.icons.empty;
-                if (i === 1) {
-                    file.img.style.display = 'block';
-                    if (name !== null) {
-                        name.style.display = 'block';
-                    }
-                    file.remove = false;
-                } else {
-                    file.img.remove();
-                    name.remove();
-                }
             }
         });
     }

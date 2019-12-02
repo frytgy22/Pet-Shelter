@@ -53,20 +53,6 @@ footer img {
     transition: all 0.4s linear;
 }
 
-main p {
-    position: absolute;
-    font-size: 12px;
-    top: 10px;
-    left: 10px;
-    margin-top: 65px;
-    margin-left: 5px;
-    font-weight: bold;
-}
-
-main p:hover {
-    text-decoration: underline;
-}
-
 #menu {
     top: 435px;
     left: -20px;
