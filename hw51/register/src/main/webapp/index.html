@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="./css/index.css">
+<body>
+<form id="form" action="/registration" method="post">
+
+    <div id="blockOne">
+        <h4>Registration forms</h4>
+        <div class="input-container">
+            <i class="icon"></i>
+            <label>
+                <input id="log" class="input-field" type="text" placeholder="Login" autofocus name="login"
+                       maxlength="30"/>
+            </label>
+        </div>
+        <div class="input-container">
+            <i id="email" class="icon"></i>
+            <label>
+                <input class="input-field" placeholder="Email address" type="email" name="email" maxlength="30"
+                       required/>
+            </label>
+        </div>
+        <div class="input-container">
+            <i id="password" class="icon"></i>
+            <label>
+                <input class="input-field" type="password" maxlength="16" placeholder="Password" name="password"
+                       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,16}$" required>
+            </label>
+        </div>
+        <div class="input-container">
+            <i class="icon" id="iphone"></i>
+            <label>
+                <input class="input-field" type="text" placeholder="Phone" name="phone"
+                       pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[0-9]{3}[-\s\./0-9]*$" maxlength="16" required/>
+            </label>
+        </div>
+
+        <div class="input-container">
+            <label id="radio">Gender:
+                <input type="radio" checked name="gender" value="Male"/>Male
+            </label>
+            <label id="gender">
+                <input type="radio" name="gender" value="Female"/>Female
+            </label>
+            <label id="submit"><input type="submit" value="SUBMIT"/></label>
+        </div>
+
+        <div class="input-container">
+            <label id="sub">Subscribe<input type="checkbox" name="sub"/></label>
+        </div>
+    </div>
+</form>
+</body>
+</html>

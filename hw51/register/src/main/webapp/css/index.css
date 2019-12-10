@@ -1,0 +1,143 @@
+body {
+    background: #efe5d0 url(../images/4.jpg) no-repeat center center fixed;
+    background-size: cover;
+    margin: 20px;
+    font-family: "Roboto", sans-serif;
+}
+
+form {
+    display: table;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgba(0, 220, 252, 0.51);
+    margin: 10% auto auto auto;
+    font-size: 20px;
+    border: 1px outset white;
+}
+
+.icon {
+    padding: 10px;
+    background: url(../images/username.png) no-repeat;
+    width: 40px;
+    height: 40px;
+    margin-right: -50px;
+    z-index: 1;
+    text-align: center;
+    margin-top: -2px;
+}
+
+#email {
+    background: url(../images/email.png) no-repeat;
+}
+
+#password {
+    background: url(../images/pswd.png) no-repeat;
+}
+
+input, label {
+    font-size: 18px;
+}
+
+.input-container {
+    display: flex;
+    width: 450px;
+    margin-bottom: 15px;
+}
+
+.input-field {
+    margin-left: -10px;
+    width: 350px;
+    height: 21px;
+    padding: 10px 0 12px 60px;
+    border: none;
+    border-bottom: 2px solid #5b5b5b;
+    background: #dadada;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+main {
+    background: #dadada;
+    width: 1000px;
+    height: 480px;
+    margin: 100px auto;
+    display: table;
+}
+
+#blockOne {
+    width: 450px;
+    margin: 0;
+    padding: 0 10px 0 35px;
+    display: table-cell;
+}
+
+#iphone {
+    background: url(../images/p2.png) no-repeat;
+    background-size: 48px;
+}
+
+
+h4 {
+    font-size: 25px;
+    margin-top: 40px;
+}
+
+table {
+    font-size: 20px;
+    border: 2px outset black;
+    background-color: #a5e0ff;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    height: 40px;
+    border: 2px outset white;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+td:hover {
+    color: #f34515;
+}
+
+thead, col {
+    background: #7e7e7e;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 2px outset black;
+}
+
+#radio, #sub, #gender {
+    text-align: left;
+    font-weight: bold;
+}
+
+#phone {
+    padding-left: 32px;
+}
+
+input[type=submit] {
+    width: 70px;
+    height: 70px;
+    padding: 8px 25px 8px 10px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 13px;
+    background: #dadada;
+    position: relative;
+    margin-left: 100px;
+    border: 2px outset silver;
+}
+
+h2 {
+    color: white;
+    font-size: 20px;
+}
+
+#sub {
+    margin-top: -65px;
+}
