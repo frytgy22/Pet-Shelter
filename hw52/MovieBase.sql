@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `Genres` (
   `GenreId` int(11) NOT NULL AUTO_INCREMENT,
   `GenreName` varchar(20) NOT NULL,
   PRIMARY KEY (`GenreId`),
-  UNIQUE KEY `GenreName` (`GenreName`),
+  UNIQUE KEY `GenreName` (`GenreName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --

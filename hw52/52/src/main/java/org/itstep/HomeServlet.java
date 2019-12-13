@@ -10,10 +10,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-
 @WebServlet(
         name = "movie",
-        urlPatterns = "/*"
+        urlPatterns = "/registration"
 )
 @WebFilter(filterName = "FilterCharset", urlPatterns = {"/*"})
 public class HomeServlet extends HttpServlet implements Filter {
@@ -43,21 +42,19 @@ public class HomeServlet extends HttpServlet implements Filter {
             try (Connection connection = DriverManager.getConnection(connString, user, password)) {
                 Statement statementInsert = connection.createStatement();
 
-                //TODO каждый executeUpdate почему-то отрабатывает по 2 раза (через main такой проблемы нет), не нашла как исправить
+                statementInsert.executeUpdate("INSERT INTO Directors ( FirstName, LastName, Nationality, Birth) VALUES\n" +
+                        "('Дэвид', 'Литч', 'EU', '1986-06-02')");
 
-//                    statementInsert.executeUpdate("INSERT INTO Directors ( FirstName, LastName, Nationality, Birth) VALUES\n" +
-//                            "('Дэвид', 'Литч', 'EU', '1986-06-02')");
-//
-//                    statementInsert.executeUpdate("INSERT INTO Movies (DirectorId, Title, ReleaseYear, Rating, Plot, MovieLength) VALUES\n" +
-//                            "(6, 'Дэдпул 2', 2018, 4, 'Продолжение невероятных приключений болтливого наёмника, который после" +
-//                            " расправы над своим врагом решает заняться истреблением плохишей по всему миру.', 170)");
-//
-//                    statementInsert.executeUpdate("INSERT INTO Actors ( FirstName, LastName, Nationality, Birth) VALUES\n" +
-//                            "('Райан', 'Рейнольдс', 'EU', '1988-11-01')");
-//
-//                    statementInsert.executeUpdate("INSERT INTO MovieActor (MovieId, ActorId) VALUES (11, 9)");
-//
-//                    statementInsert.executeUpdate("INSERT INTO MovieGenres (MovieId, GenreId) VALUES(11, 3),(11, 1)");
+                statementInsert.executeUpdate("INSERT INTO Movies (DirectorId, Title, ReleaseYear, Rating, Plot, MovieLength) VALUES\n" +
+                        "(6, 'Дэдпул 2', 2018, 4, 'Продолжение невероятных приключений болтливого наёмника, который после" +
+                        " расправы над своим врагом решает заняться истреблением плохишей по всему миру.', 170)");
+
+                statementInsert.executeUpdate("INSERT INTO Actors ( FirstName, LastName, Nationality, Birth) VALUES\n" +
+                        "('Райан', 'Рейнольдс', 'EU', '1988-11-01')");
+
+                statementInsert.executeUpdate("INSERT INTO MovieActor (MovieId, ActorId) VALUES (11, 9)");
+
+                statementInsert.executeUpdate("INSERT INTO MovieGenres (MovieId, GenreId) VALUES(11, 3),(11, 1)");
 
                 //1. Выбрать все фильмы и отсортировать по названию
 
@@ -66,19 +63,8 @@ public class HomeServlet extends HttpServlet implements Filter {
                         "<html lang=\"ru\">\n" +
                         "<head>\n" +
                         "    <meta charset=\"utf-8\">\n" +
-                        "    <title>Admin</title>\n" +
-                        "<style>\n" +
-                        "        table {\n" +
-                        "            border: 1px solid;\n" +
-                        "            border-collapse: collapse;\n" +
-                        "        }\n" +
-                        "        th {\n" +
-                        "            border: 1px solid;\n" +
-                        "        }\n" +
-                        "        td {\n" +
-                        "            border: 1px solid;\n" +
-                        "        }\n" +
-                        "    </style>" +
+                        "    <title>Movie</title>\n" +
+                        "<link rel=\"stylesheet\" href=\"../css/index.css\">" +
                         "</head>\n" +
                         "<body>");
 
@@ -139,7 +125,7 @@ public class HomeServlet extends HttpServlet implements Filter {
                 // 4. Выбрать все фильмы, выпущенные в прошлом году
 
                 Statement statement4 = connection.createStatement();
-                ResultSet resultSet4 = statement4.executeQuery("SELECT Movies.Title, Movies.ReleaseYear FROM Movies WHERE Movies.ReleaseYear = YEAR(CURDATE()) - 6");//2013, ибо 2018 нет
+                ResultSet resultSet4 = statement4.executeQuery("SELECT Movies.Title, Movies.ReleaseYear FROM Movies WHERE Movies.ReleaseYear = YEAR(CURDATE()) - 1");
                 writer.println("<p> </p><table>" +
                         "<thead >\n" +
                         "        <tr>\n" +
