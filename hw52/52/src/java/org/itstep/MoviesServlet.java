@@ -10,18 +10,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
+
 @WebServlet(
         name = "movie",
-        urlPatterns = "/registration"
+        urlPatterns = "/movie"
 )
 @WebFilter(filterName = "FilterCharset", urlPatterns = {"/*"})
-public class HomeServlet extends HttpServlet implements Filter {
+public class MoviesServlet extends HttpServlet implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {//длинный, но единственный способ который нашла, чтоб вывести русский текст
+    public void init(FilterConfig filterConfig) throws ServletException {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {//длинный, но единственный способ который нашла, чтоб вывести русский текст
         servletRequest.setCharacterEncoding("UTF-8");
         servletResponse.setCharacterEncoding("UTF-8");
         filterChain.doFilter(servletRequest, servletResponse);
@@ -41,7 +42,6 @@ public class HomeServlet extends HttpServlet implements Filter {
 
             try (Connection connection = DriverManager.getConnection(connString, user, password)) {
                 Statement statementInsert = connection.createStatement();
-
                 statementInsert.executeUpdate("INSERT INTO Directors ( FirstName, LastName, Nationality, Birth) VALUES\n" +
                         "('Дэвид', 'Литч', 'EU', '1986-06-02')");
 
@@ -63,8 +63,19 @@ public class HomeServlet extends HttpServlet implements Filter {
                         "<html lang=\"ru\">\n" +
                         "<head>\n" +
                         "    <meta charset=\"utf-8\">\n" +
-                        "    <title>Movie</title>\n" +
-                        "<link rel=\"stylesheet\" href=\"../css/index.css\">" +
+                        "    <title>Admin</title>\n" +
+                        "<style>\n" +
+                        "        table {\n" +
+                        "            border: 1px solid;\n" +
+                        "            border-collapse: collapse;\n" +
+                        "        }\n" +
+                        "        th {\n" +
+                        "            border: 1px solid;\n" +
+                        "        }\n" +
+                        "        td {\n" +
+                        "            border: 1px solid;\n" +
+                        "        }\n" +
+                        "    </style>" +
                         "</head>\n" +
                         "<body>");
 
@@ -221,8 +232,4 @@ public class HomeServlet extends HttpServlet implements Filter {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
-    }
 }
