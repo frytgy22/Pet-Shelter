@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+<div class="parent">
+    <div class="block">
+        <form class="box" action="search" method="get">
+            <main>
+                <label><input placeholder="First name" name="firstName" autofocus required pattern="[A-zА-я]+"/></label>
+                <br>
+                <label><input placeholder="Last name" name="lastName" required pattern="[A-zА-я]+"/></label>
+                <br>
+                <label><input id="submit" class="box" type="submit" value="SEARCH"/></label>
+            </main>
+        </form>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <context-param>
+    <param-name>db:url</param-name>
+    <param-value>jdbc:mysql://localhost/people?serverTimezone=Europe/Kiev&amp;characterEncoding=utf8</param-value>
+  </context-param>
+  <context-param>
+    <param-name>db:user</param-name>
+    <param-value>root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>db:pass</param-name>
+    <param-value/>
+  </context-param>
+
+  <servlet>
+    <servlet-name>init</servlet-name>
+    <servlet-class>org.itstep.InitDatabaseServlet</servlet-class>
+
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>init</servlet-name>
+    <url-pattern>/init</url-pattern>
+  </servlet-mapping>
+
+</web-app>

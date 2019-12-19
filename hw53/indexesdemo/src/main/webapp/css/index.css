@@ -1,0 +1,159 @@
+body {
+    background: url(../images/22.jpg) no-repeat center center fixed;
+    background-size: cover;
+    margin: 20px;
+    font-family: "Roboto", sans-serif;
+    color: white;
+}
+
+.parent {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+
+.block {
+    width: 550px;
+    height: 550px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+form {
+    background: linear-gradient(yellowgreen, cadetblue);
+    border-radius: 300px;
+    max-width: 100%;
+    max-height: 100%;
+    height: 450px;
+    width: 450px;
+    position: relative;
+    margin: -1000px auto 0;
+}
+
+input {
+    margin: 20px auto;
+    color: black;
+    width: 300px;
+    height: 40px;
+    border: 2px outset cadetblue;
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+main {
+    padding-top: 110px;
+    padding-left: 60px;
+}
+
+input:hover {
+    border: 2px inset cadetblue;
+}
+
+#submit {
+    width: 100px;
+    height: 50px;
+    border-radius: 40px;
+    padding: 10px;
+    float: right;
+    margin-right: 70px;
+    text-shadow: rgba(255, 255, 255, .5) 0 -1px 0, rgba(0, 0, 0, .2) 0 .18em .15em;
+    border: none;
+    outline: none;
+    background: #a2cf70 radial-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .5));
+    transition: background .2s ease-in-out;
+}
+
+#submit:hover {
+    background-color: hsl(88, 70%, 75%);
+    border: none;
+}
+
+.box {
+    box-shadow: inset rgba(255, 255, 255, .6) 0 .3em .3em,
+    inset rgba(0, 0, 0, .2) 0 -.1em .3em,
+    rgb(128, 161, 103) 0 7px 1px,
+    rgba(0, 0, 0, .2) 0 .5em 5px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+li {
+    margin: 10px;
+}
+
+@-webkit-keyframes swing {
+    15% {
+        -webkit-transform: translateX(9px);
+        transform: translateX(9px);
+    }
+    30% {
+        -webkit-transform: translateX(-9px);
+        transform: translateX(-9px);
+    }
+    40% {
+        -webkit-transform: translateX(6px);
+        transform: translateX(6px);
+    }
+    50% {
+        -webkit-transform: translateX(-6px);
+        transform: translateX(-6px);
+    }
+    65% {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@keyframes swing {
+    15% {
+        -webkit-transform: translateX(9px);
+        transform: translateX(9px);
+    }
+    30% {
+        -webkit-transform: translateX(-9px);
+        transform: translateX(-9px);
+    }
+    40% {
+        -webkit-transform: translateX(6px);
+        transform: translateX(6px);
+    }
+    50% {
+        -webkit-transform: translateX(-6px);
+        transform: translateX(-6px);
+    }
+    65% {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+.transform {
+    -webkit-animation: swing 2s ease;
+    animation: swing 2s ease;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
