@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="parent">
+    <div class="block">
+        <form action="registration" method="post">
+            <div id="line" class="box effect">
+                <img src="images/4.png" alt="icon">
+                <h3>Registration</h3>
+            </div>
+            <label><input type="email" maxlength="20" required name="email" placeholder="Email" autofocus/></label>
+            <label><input name="login" maxlength="20" required placeholder="Login"/></label><br>
+            <label><input type="password" maxlength="20" required name="password" placeholder="Password"/></label>
+
+            <label>
+                <input type="text" placeholder="Phone" name="phone"
+                       pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[0-9]{3}[-\s\./0-9]*$" maxlength="16" required/>
+            </label>
+
+            <label>
+                <input type="text" onfocus="(this.type='date')" placeholder="Date of birth"
+                       name="date" onblur="(this.type='text')"/>
+            </label>
+
+            <label>
+                <select size="1" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </label>
+
+            <label class="flex"><input id="submit" type="submit" value="SIGN UP"></label>
+            <a href="signIn.jsp">Already have an account?</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>
