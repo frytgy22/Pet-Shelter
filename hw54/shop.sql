@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 21, 2019 at 02:39 PM
+-- Generation Time: Dec 23, 2019 at 11:31 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -75,24 +75,24 @@ CREATE TABLE IF NOT EXISTS `goods` (
   `goodsID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `counter` int(11) NOT NULL,
-  PRIMARY KEY (`goodsID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `cost` decimal(5,2) NOT NULL DEFAULT 0.00
+) ;
 
 --
 -- Dumping data for table `goods`
 --
 
-INSERT INTO `goods` (`goodsID`, `name`, `counter`) VALUES
-(1, 'Зеленый дракон', 10),
-(2, 'Филадельфия макси', 10),
-(3, 'Калифорния сякэ', 10),
-(4, 'Красный дракон', 10),
-(5, 'Феликс ролл с лососем', 10),
-(6, 'Парадайз', 10),
-(7, 'Филадельфия спайси-кунцей', 10),
-(8, 'Токио', 10),
-(9, 'Унаги-кунцей филадельфия', 10),
-(10, 'Лосось тай', 10);
+INSERT INTO `goods` (`goodsID`, `name`, `counter`, `cost`) VALUES
+(1, 'Зеленый дракон', 10, '0.00'),
+(2, 'Филадельфия макси', 10, '0.00'),
+(3, 'Калифорния сякэ', 10, '0.00'),
+(4, 'Красный дракон', 10, '0.00'),
+(5, 'Феликс ролл с лососем', 10, '0.00'),
+(6, 'Парадайз', 10, '0.00'),
+(7, 'Филадельфия спайси-кунцей', 10, '0.00'),
+(8, 'Токио', 10, '0.00'),
+(9, 'Унаги-кунцей филадельфия', 10, '0.00'),
+(10, 'Лосось тай', 10, '0.00');
 
 -- --------------------------------------------------------
 
@@ -117,8 +117,10 @@ CREATE TABLE IF NOT EXISTS `orders` (
 --
 
 CREATE TABLE IF NOT EXISTS `ordersGoods` (
+  `ordersGoodsID` int(11) NOT NULL AUTO_INCREMENT,
   `orderID` int(11) NOT NULL,
   `goodsID` int(11) NOT NULL,
+  PRIMARY KEY (`ordersGoodsID`),
   KEY `ordersGoods_fk1` (`orderID`),
   KEY `ordersGoods_fk2` (`goodsID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

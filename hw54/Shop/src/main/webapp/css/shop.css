@@ -3,6 +3,8 @@ body {
     color: #c8cfd6;
     font-family: "Gentium Book Basic", sans-serif;
     font-size: 22px;
+    margin: 0;
+    padding: 0;
 }
 
 aside {
@@ -49,7 +51,7 @@ aside h1 {
 
 ul {
     list-style-type: none;
-    margin: 50px 0 ;
+    margin: 50px 0;
 }
 
 img {
@@ -105,7 +107,7 @@ main {
     margin: auto auto 40px;
 }
 
-.button25 {
+.button1 {
     position: absolute;
     width: 75px;
     height: 35px;
@@ -113,14 +115,17 @@ main {
     text-decoration: none;
     text-shadow: 0 -1px 1px #777;
     color: #fff;
-    border: 2px solid #F64C2B;
     border-radius: 5px;
-    box-shadow: 0 0 0 60px rgba(0, 0, 0, 0) inset, .1em .1em .2em #800;
-    background: linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17);
     bottom: 0;
     margin: 10px;
     right: 0;
     font-size: 14px;
+}
+
+.button25 {
+    border: 2px solid #F64C2B;
+    box-shadow: 0 0 0 60px rgba(0, 0, 0, 0) inset, .1em .1em .2em #800;
+    background: linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17);
 }
 
 .button25:active {
@@ -131,23 +136,22 @@ footer {
     text-align: center;
     bottom: 0;
     height: 50px;
-    width: 102%;
-    position: fixed;
     background: #272d35;
-    margin-top: 10px;
-    left: -10px;
-    box-shadow: -5px 10px 10px 10px #11161a;
+    margin-top: 100px;
+    box-shadow: -15px 5px 10px 10px #11161a;
+    padding: 0;
     font-size: 14px;
 }
 
 footer p {
-    margin-top: 16px;
+    padding-top: 15px;
 }
 
 #icon, #basket {
-    position: absolute;
+    position: fixed;
     top: 5px;
     left: 20px;
+    z-index: 1000;
 }
 
 .inBlock {
@@ -159,12 +163,12 @@ footer p {
 }
 
 #basket {
+    text-align: right;
+    right: 10px;
     top: 0;
-    right: 5px;
 }
 
 .circle {
-    float: right;
     box-shadow: 0 0 0 60px rgba(0, 0, 0, 0) inset, .1em .1em .2em #800;
     background: linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17);
     width: 30px;
@@ -184,6 +188,7 @@ footer p {
     width: 70px;
     height: 65px;
 }
+
 @-webkit-keyframes swing {
     15% {
         -webkit-transform: translateX(9px);
@@ -238,9 +243,136 @@ footer p {
     }
 }
 
-.threed:hover {
+section:hover {
     -webkit-animation: swing 0.6s ease;
     animation: swing 0.6s ease;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
+}
+
+section {
+    width: 110px;
+    float: right;
+}
+
+#goods span {
+    color: red;
+    float: right;
+    right: 0;
+    margin-top: 10px;
+    padding-right: 5px;
+    font-size: 20px;
+}
+
+#goods li {
+    transition: all 0.4s linear;
+    background: #2f3c45;
+    width: 700px;
+    height: 40px;
+    border: 1px outset white;
+    color: white;
+    margin: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    float: none;
+    font-size: 20px;
+
+}
+
+#goods ul {
+    background: red;
+    list-style-type: none;
+    text-align: left;
+    padding: 0;
+    width: 700px;
+    font-size: 18px;
+    margin: 0 auto 100px;
+}
+
+#goods li img {
+    padding: -10px 10px 0;
+    width: 60px;
+    height: 40px;
+    margin: 0 10px;
+
+}
+
+#goods li p {
+    font-size: 18px;
+    text-align: left;
+    color: #c8cfd6;
+    font-weight: normal;
+    text-decoration: none;
+
+}
+
+#goods li:hover {
+    box-shadow: none;
+}
+
+h3 {
+    text-align: center;
+    padding-top: 20px;
+    color: #20252c;
+}
+
+#order {
+    width: 785px;
+    background: #c8cfd6;
+    margin: auto;
+    border-radius: 10px;
+    position: relative;
+    max-width: 100%;
+    margin-top: -2000px;
+    z-index: 100;
+    display: none;
+    box-shadow: inset rgba(255, 255, 255, .6) 0 .3em .3em,
+    inset rgba(0, 0, 0, .2) 0 -.1em .3em,
+    rgb(200, 207, 214) 0 7px 1px,
+    rgba(0, 0, 0, .2) 0 .5em 5px;
+}
+
+.transform {
+    -webkit-animation: swing 2s ease;
+    animation: swing 2s ease;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+.parent {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.block {
+    width: 785px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+#sub {
+    color: #fff;
+    width: 100px;
+    height: 40px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#close {
+    width: 30px;
+    height: 30px;
+    float: right;
+    padding: 10px;
+}
+
+form input {
+    display: none;
 }

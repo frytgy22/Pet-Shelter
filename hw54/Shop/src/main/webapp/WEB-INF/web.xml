@@ -14,12 +14,4 @@
         <url-pattern>/signIn</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>Shop</servlet-name>
-        <jsp-file>/shop.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Shop</servlet-name>
-        <url-pattern>/shop</url-pattern>
-    </servlet-mapping>
 </web-app>

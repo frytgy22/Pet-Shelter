@@ -10,19 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.*;
 
 @WebServlet(
-        name = "authorisation",
-        urlPatterns = "/authorization",
+        name = "order",
+        urlPatterns = "/order",
         initParams = {
                 @WebInitParam(name = "db:url", value = "jdbc:mysql://localhost/shop?serverTimezone=Europe/Kiev&characterEncoding=utf8"),
                 @WebInitParam(name = "db:user", value = "root"),
                 @WebInitParam(name = "db:pass", value = "")
         }
 )
-public class AuthorizationServlet extends HttpServlet {
+public class Order extends HttpServlet {
     JDBCConnectionPool jdbcConnectionPool;
 
     @Override
@@ -35,35 +37,48 @@ public class AuthorizationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final String LOGIN = req.getParameter("login");
-        final String PASSWORD = req.getParameter("password");
-
         PrintWriter printWriter = resp.getWriter();
         Connection conn = jdbcConnectionPool.checkOut();
 
-        try {
-            Integer customerId = sqlQuery.existInBaseAND(conn, "password", LOGIN, PASSWORD);//проверяю по email, password что пользователь зарегистрирован
-            if (customerId != null) { //если есть в базе, перенаправляю в магазин
-
-                Cookie cookie1 = new Cookie("login", LOGIN);//запоминаю логин
-                cookie1.setMaxAge(24 * 60 * 60);//длина сессии
-                resp.addCookie(cookie1);
-
-                Cookie cookie2 = new Cookie("id", Integer.toString(customerId));//запоминаю id
-                cookie2.setMaxAge(24 * 60 * 60);//длина сессии
-                resp.addCookie(cookie2);
-
-                resp.sendRedirect("/shop");
-            } else {
-                printWriter.println("<img  src=\"../images/4.jpg\"/>" + "Wrong login or password!" +
-                        "<script>" +
-                        "setTimeout(() => window.location = 'http://localhost:8080', 3000);" +
-                        "</script>");
+        String id = "";
+        Cookie[] cookies = req.getCookies();
+        for (Cookie cookie : cookies) {
+            if ("id".equals(cookie.getName())) {
+                id = cookie.getValue();
             }
+        }
+
+        List<String> ordersId = Collections.synchronizedList(new ArrayList<>());
+        int countParameters = 1;//name input записаны в form от 0++
+
+        Enumeration<String> parameterNames = req.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            parameterNames.nextElement();
+            ordersId.add(req.getParameter(Integer.toString(countParameters)));//считываю id всех заказанных товаров в List
+            countParameters++;
+        }
+        int idSeller;
+        try {
+            Random random = new Random();//получаю id продавца
+            Integer countSellers = sqlQuery.getCountSellers(conn,"sellers");
+            if (countSellers != null) {
+                idSeller = random.nextInt((countSellers - 1) + 1);//from 1 to all count sellers
+            }
+
+            String INSERT_ORDER = "INSERT INTO orders(sellerID,customerID) VALUES(?,?)";
+            String INSERT_GOODS = "INSERT INTO ordersGoods(orderID,goodsID) VALUES(2,2)";
+
+
         } catch (SQLException e) {
             e.printStackTrace();
             printWriter.println("<img src=\"../images/4.jpg\"/>");
         }
+
+        printWriter.println(ordersId.toString());
+        printWriter.println(id);
+
+
         jdbcConnectionPool.checkIn(conn);
     }
 }
+

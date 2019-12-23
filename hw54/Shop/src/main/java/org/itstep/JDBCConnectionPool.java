@@ -3,9 +3,13 @@ package org.itstep;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 
 @EqualsAndHashCode(callSuper = true)
 @Data

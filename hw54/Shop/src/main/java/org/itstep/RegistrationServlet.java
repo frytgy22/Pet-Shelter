@@ -54,7 +54,7 @@ public class RegistrationServlet extends HttpServlet {
         Connection conn = jdbcConnectionPool.checkOut();
         try (PreparedStatement preparedStatement = conn.prepareStatement(INSERT)) {
 
-            boolean customerInBase = SqlQuery.existInBaseOR(conn, "email", LOGIN, EMAIL); //проверяю по email, login что пользователь не зарегистрирован
+            boolean customerInBase = sqlQuery.existInBaseOR(conn, "email", LOGIN, EMAIL); //проверяю по email, login что пользователь не зарегистрирован
 
             if (customerInBase) {//если есть в базе, перенаправляю на авторизацию
                 printWriter.println("<img  src=\"../images/4.jpg\"/>" + "customer already exists!" +

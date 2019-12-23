@@ -1,33 +1,11 @@
-<%@ page import="java.io.PrintWriter" %><%--
-  Created by IntelliJ IDEA.
-  User: valeria
-  Date: 20.12.2019
-  Time: 20:34
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%
-    Cookie[] cookies = request.getCookies();
-    PrintWriter printWriter = response.getWriter();
-
-    for (Cookie cookie : cookies) {
-        if (cookie.getName().equals("login")) {
-            String cookieValue = cookie.getValue();
-            printWriter.println("<script>" +
-                    "window.addEventListener('load', () => {" +
-                    "document.getElementById(\"p\").appendChild(document.createTextNode(" + cookieValue + "));});" +
-                    "</script>");
-            break;
-        }
-    }
-%>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Shop</title>
     <link rel="stylesheet" href="css/shop.css">
     <script src="js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 </head>
 <body>
 <aside>
@@ -39,8 +17,10 @@
     <p id="p" class="inBlock"></p>
 </div>
 <div id="basket">
-    <img class="inBlock" src="images/11.png" alt="icon">
-    <div class="inBlock circle"><p class="inBlock" id="count">0</p></div>
+    <section>
+        <img class="inBlock" src="images/11.png" alt="icon">
+        <div class="inBlock circle"><p class="inBlock" id="count">0</p></div>
+    </section>
 </div>
 <main>
     <ul>
@@ -74,6 +54,18 @@
         </li>
     </ul>
 </main>
+<div class="parent">
+    <div class="block">
+        <div id="order">
+            <img id="close" src="images/close.png" alt="close">
+            <h3>Заказ</h3>
+            <ul id="goods"></ul>
+            <form method="post" action="order">
+                <button class="button25" id="sub">оформить</button>
+            </form>
+        </div>
+    </div>
+</div>
 <footer><p>Copyright &copy; SUSHI SHOP 2020</p></footer>
 </body>
 </html>
