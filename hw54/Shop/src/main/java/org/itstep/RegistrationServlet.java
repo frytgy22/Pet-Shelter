@@ -1,6 +1,7 @@
 package org.itstep;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +27,7 @@ import java.util.List;
         }
 )
 public class RegistrationServlet extends HttpServlet {
-    JDBCConnectionPool jdbcConnectionPool;
+    JDBCConnectionPool jdbcConnectionPool; //class extends ObjectPool
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -38,7 +39,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        ServletContext servletContext = getServletContext();
         final String EMAIL = req.getParameter("email");
         final String LOGIN = req.getParameter("login");
         final String PASSWORD = req.getParameter("password");
@@ -47,17 +48,17 @@ public class RegistrationServlet extends HttpServlet {
         final int GENDER = ("male".equalsIgnoreCase(req.getParameter("gender"))) ? 1 : 2;
         final String INSERT = "INSERT INTO customers(email,login,password,phone,dateOfBirth,genderID) VALUES (?,?,?,?,?,?)";
 
-
+        String error = PageError.showPage404(servletContext, "page404.html");
         PrintWriter printWriter = resp.getWriter();
         List<Object> customer = Arrays.asList(EMAIL, LOGIN, PASSWORD, PHONE, DATE_OF_BIRTH, GENDER);
 
         Connection conn = jdbcConnectionPool.checkOut();
         try (PreparedStatement preparedStatement = conn.prepareStatement(INSERT)) {
 
-            boolean customerInBase = sqlQuery.existInBaseOR(conn, "email", LOGIN, EMAIL); //проверяю по email, login что пользователь не зарегистрирован
+            boolean customerInBase = SqlQuery.existInBaseOR(conn, "email", LOGIN, EMAIL); //проверяю по email, login что пользователь не зарегистрирован
 
             if (customerInBase) {//если есть в базе, перенаправляю на авторизацию
-                printWriter.println("<img  src=\"../images/4.jpg\"/>" + "customer already exists!" +
+                printWriter.println(error + "Customer already  exists!" +
                         "<script>" +
                         "setTimeout(() => window.location = 'http://localhost:8080/signIn', 3000);" +
                         "</script>");
@@ -71,7 +72,7 @@ public class RegistrationServlet extends HttpServlet {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            printWriter.println("<img src=\"../images/4.jpg\"/>");
+            printWriter.println(error);
         }
         jdbcConnectionPool.checkIn(conn);
     }

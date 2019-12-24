@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * The method checks by login AND second value, if the customer is in the DB
  */
-public interface sqlQuery {
+public interface SqlQuery {
     static Integer existInBaseAND(Connection connection, String select, String login, String forEquals) throws SQLException {
         final String SELECT = "SELECT customers.login, customers.customersID FROM customers WHERE login = ? AND " + select + " = ? ";
 
@@ -70,12 +70,10 @@ public interface sqlQuery {
     }
 
     /**
-     * get counter all "?" in base
+     * get counter "?" in base
      */
-    static Integer getCountSellers(Connection connection,String search) throws SQLException {
-        final String SELECT = "SELECT COUNT(*) FROM ?";
+    static Integer getCountId(Connection connection, String SELECT) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT)) {
-            preparedStatement.setString(1,search);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getInt("COUNT(*)");

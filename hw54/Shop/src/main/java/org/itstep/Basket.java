@@ -55,7 +55,7 @@ public class Basket extends HttpServlet implements Filter {
         Connection conn = jdbcConnectionPool.checkOut();
         ServletContext servletContext = getServletContext();
         StringBuilder webXmlBuilder = new StringBuilder();
-        try (InputStream stream = servletContext.getResourceAsStream("shop.html");
+        try (InputStream stream = servletContext.getResourceAsStream("shop.html");//вывод страницы магазина
              InputStreamReader streamReader = new InputStreamReader(stream);
              BufferedReader reader = new BufferedReader(streamReader)) {
             String line;
@@ -79,18 +79,25 @@ public class Basket extends HttpServlet implements Filter {
         }
 
         try {
-            List<Goods> goods = sqlQuery.getGoods(conn);
+            List<Goods> goods = SqlQuery.getGoods(conn);  //получаю перечень всех товаров с бд
 
-            for (int i = 0; i < goods.size(); i++) { //записываю в value button кол-во товара (button.id == goods.id)
+            for (int i = 0; i < goods.size(); i++) { //записываю в value button кол-во соответствуюшего товара (button.id == goods.id)
                 printWriter.println("<script>" +
                         "window.addEventListener('load', () => {" +
                         "            let but=document.getElementById(" + (i + 1) + ");\n" +
                         "            but.setAttribute('value'," + goods.get(i).getCount() + ");" +
                         "            but.setAttribute('name',\"" + goods.get(i).getName() + "\");" +
+                        "            if(but.value < 1){but.disabled = true;\n" +            //если кол-во < 1, кнопка "купить" не активна
+                        "                but.style.background = \"linear-gradient(#a4a4a4, #a4a4a4 48%, #848484 52%, #3c3c3c)\";\n" +
+                        "                but.style.boxShadow = \"none\";\n" +
+                        "                but.style.border = \" 2px solid #848484\";\n" +
+                        "                but.style.paddingLeft='3px';" +
+                        "                but.replaceChild(document.createTextNode(\"ПРОДАНО\"), but.firstChild);};" +
                         "});</script>");
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            printWriter.println(PageError.showPage404(servletContext, "page404.html"));
         }
         jdbcConnectionPool.checkIn(conn);
     }

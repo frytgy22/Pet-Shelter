@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 23, 2019 at 11:31 AM
+-- Generation Time: Dec 24, 2019 at 01:20 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -75,8 +75,9 @@ CREATE TABLE IF NOT EXISTS `goods` (
   `goodsID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `counter` int(11) NOT NULL,
-  `cost` decimal(5,2) NOT NULL DEFAULT 0.00
-) ;
+  `cost` decimal(5,2) NOT NULL DEFAULT 0.00,
+  PRIMARY KEY (`goodsID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `goods`
@@ -89,7 +90,7 @@ INSERT INTO `goods` (`goodsID`, `name`, `counter`, `cost`) VALUES
 (4, 'Красный дракон', 10, '0.00'),
 (5, 'Феликс ролл с лососем', 10, '0.00'),
 (6, 'Парадайз', 10, '0.00'),
-(7, 'Филадельфия спайси-кунцей', 10, '0.00'),
+(7, 'Филадельфия спайси-кунцей', 0, '0.00'),
 (8, 'Токио', 10, '0.00'),
 (9, 'Унаги-кунцей филадельфия', 10, '0.00'),
 (10, 'Лосось тай', 10, '0.00');
@@ -104,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `ordersID` int(11) NOT NULL AUTO_INCREMENT,
   `sellerID` int(11) NOT NULL,
   `customerID` int(11) NOT NULL,
-  `date` date NOT NULL DEFAULT curdate(),
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`ordersID`),
   KEY `order_seller_fk` (`sellerID`),
   KEY `customer_order_fk` (`customerID`)

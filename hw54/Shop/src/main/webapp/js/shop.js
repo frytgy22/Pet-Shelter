@@ -45,11 +45,10 @@ window.addEventListener('load', () => {
 ////////////////////////////////////////////////////////////////////////////////////////
 
     var buttons = document.getElementsByClassName("button1"); //listeners for buttons
-    var arrayOrder = [];
+    var arrayOrder = [];//for id goods
     let goods = document.getElementById("goods");
 
     for (let i = 0; i < buttons.length; i++) {
-        console.log(buttons[i].name);
         buttons[i].addEventListener("click", buttonReplaceValue);
         buttons[i].addEventListener("click", countGoodsInBasket);
         buttons[i].addEventListener("click", function () {
@@ -78,13 +77,14 @@ window.addEventListener('load', () => {
         console.log(this.value);//count goods
         console.log(this.name);//name goods
         if (!this.disabled) {
-            this.value = (parseInt(this.value) - 1).toString();
-            if (this.value == 0) {
+            this.value = (parseInt(this.value) - 1).toString(); //если кол-во = 0, кнопка не активна
+            if (this.value < 1) {
                 this.disabled = true;
                 this.style.background = "linear-gradient(#a4a4a4, #a4a4a4 48%, #848484 52%, #3c3c3c)";
                 this.style.boxShadow = "none";
-                this.style.border = " 2px solid #9f9f9f";
-                this.replaceChild(document.createTextNode("продано"), this.firstChild);
+                this.style.border = " 2px solid #848484";
+                this.replaceChild(document.createTextNode("ПРОДАНО"), this.firstChild);
+                this.style.paddingLeft = '3px';
             }
         }
     }
@@ -113,8 +113,8 @@ window.addEventListener('load', () => {
 
     document.querySelector("form").addEventListener("submit", function (e) {
         e.preventDefault();
-        setTimeout(createForm, 3000);//при клике на "отпрваить заказ" записываю все id заказов в форму
-    });//timeout 3 sec, что прошла вся запись в form
+        setTimeout(createForm, 2000);//при клике на "отпрваить заказ" записываю все id заказов в форму
+    });//timeout 2 sec, что прошла вся запись в form
 
 
     function createForm() {
@@ -124,22 +124,30 @@ window.addEventListener('load', () => {
         form.submit();
     }
 
-    document.querySelector("section").addEventListener("click", function () {//показать корзину
-        document.getElementById("order").style.display = "block";
-        $("#order").animate({top: "+=2100"}, 1500);
+    document.querySelector("section").addEventListener("click", seeBasket);//показать корзину;
 
-        function addClass() {
-            $("#order").addClass('transform');
+    function seeBasket() {
+        if (arrayOrder.length > 0) {
+            document.getElementById("order").style.display = "block";
+            $("#order").animate({top: "+=2100"}, 1500);
+
+            function addClass() {
+                $("#order").addClass('transform');
+            }
+
+            setTimeout(addClass, 1900);
+            $("main").animate({opacity: 0,}, 2000);
+            document.querySelector("section").removeEventListener("click", seeBasket);
+        } else {
+            alert("Корзина пуста!");
         }
-        setTimeout(addClass, 1900);
+    }
 
-        $("main").animate({opacity: 0,}, 3000);
-    });
-
-    document.getElementById("close").addEventListener("click",function () {
+    document.getElementById("close").addEventListener("click", function () {
         document.getElementById("order").style.display = "none";
         $("#order").animate({top: "-=2100"}, 1500);
-        $("main").animate({opacity: 1,}, 3000);
+        $("main").animate({opacity: 1,}, 2000);
+        document.querySelector("section").addEventListener("click", seeBasket);
     });
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -156,12 +164,13 @@ window.addEventListener('load', () => {
         selected = span;
         let text = selected.parentElement.textContent.toString(); //увеличиваю кол-во товара
         let but = document.getElementsByName(text.substring(1))[0];
-        if (but.value == 0) {
+        if (but.value < 1) {
             but.disabled = false;
             but.style.background = " linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17)";
             but.style.boxShadow = "0 0 0 60px rgba(0, 0, 0, 0) inset, .1em .1em .2em #800";
             but.style.border = "2px solid #F64C2B";
             but.replaceChild(document.createTextNode("КУПИТЬ"), but.firstChild);
+            but.style.paddingLeft = '7px';
         }
         but.value = (parseInt(but.value) + 1).toString();
         $(selected.parentElement).hide(1000);
