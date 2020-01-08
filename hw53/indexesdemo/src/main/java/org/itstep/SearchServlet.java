@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(
-        name = "search",
-        urlPatterns = "/search"
-)
+@WebServlet(name = "search", urlPatterns = "/search")
 public class SearchServlet extends HttpServlet {
+
+    final String SELECT = "SELECT COUNT(*) FROM person WHERE first_name = ? AND last_name = ?";
+
     String url;
     String user;
     String password;
@@ -32,16 +32,17 @@ public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String FIRST_NAME = req.getParameter("firstName");
         final String LAST_NAME = req.getParameter("lastName");
-        final String SELECT = "SELECT COUNT(*) FROM person WHERE first_name = ? AND last_name = ?";
         int count = 0;
         PrintWriter printWriter = resp.getWriter();
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver"); // этот код должен вызываться всего лишь один раз за время работы
+                                                       // программы.
 
             try (Connection connection = DriverManager.getConnection(url, user, password)) {
                 Statement statement = connection.createStatement();
-               // statement.executeUpdate("CREATE INDEX person_first_name_idx ON person (first_name)");
+                // statement.executeUpdate("CREATE INDEX person_first_name_idx ON person
+                // (first_name)");
 
                 PreparedStatement preparedStatement = connection.prepareStatement(SELECT);
                 preparedStatement.setString(1, FIRST_NAME);
