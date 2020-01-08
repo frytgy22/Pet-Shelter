@@ -3,7 +3,8 @@ package org.itstep.domain;
 import lombok.Getter;
 
 @Getter
-public class BuilderUser {  //создание User с разными параметрами конструктора
+// в lombok есть билдер https://projectlombok.org/features/Builder
+public class BuilderUser { // создание User с разными параметрами конструктора
     private int id;
     private String login;
     private String password;
