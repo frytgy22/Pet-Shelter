@@ -10,7 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
+// пул объектов обычно делают синглетоном
+// когда освобождаются соединения?
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class JDBCConnectionPool extends ObjectPool<Connection> {
@@ -57,4 +58,3 @@ public class JDBCConnectionPool extends ObjectPool<Connection> {
         }
     }
 }
-
