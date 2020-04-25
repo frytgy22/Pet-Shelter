@@ -19,7 +19,7 @@
     color: black;
 }
 
-.form {
+.padding {
     padding: 100px 50px;
 }
 
@@ -28,4 +28,8 @@
     inset rgba(0, 0, 0, .2) 0 -.1em .3em,
     rgba(0, 0, 0, .4) 0 .1em 1px,
     rgba(0, 0, 0, .3) 0 .2em 6px;
+}
+
+.table {
+    margin-top: 100px;
 }

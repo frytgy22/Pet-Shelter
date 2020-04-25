@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="include/head.html"></head>
+
+<body>
+<header th:include="include/header.html"></header>
+
+<main role="main">
+
+    <form class="padding" method="post" th:object="${catBreedDto}">
+        <h3 class="text-center">Cat breed</h3>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Breed name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" th:field="*{name}" autofocus maxlength="50">
+                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+
+    <footer th:include="include/footer.html" class="fixed-bottom"></footer>
+</main>
+
+</body>
+</html>

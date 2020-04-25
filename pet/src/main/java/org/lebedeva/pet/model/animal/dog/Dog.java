@@ -1,9 +1,12 @@
-package org.lebedeva.pet.model;
+package org.lebedeva.pet.model.animal.dog;
 
 import lombok.*;
+import org.lebedeva.pet.model.animal.Gender;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
@@ -27,12 +30,15 @@ public class Dog{
 
     @Past
     @NonNull
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
     private String photo;
 
+    @NonNull
+    @NotBlank
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
 

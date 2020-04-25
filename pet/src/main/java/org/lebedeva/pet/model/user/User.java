@@ -1,7 +1,8 @@
-package org.lebedeva.pet.model;
+package org.lebedeva.pet.model.user;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.lebedeva.pet.model.user.Role;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

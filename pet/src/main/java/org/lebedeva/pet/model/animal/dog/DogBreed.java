@@ -1,4 +1,4 @@
-package org.lebedeva.pet.model;
+package org.lebedeva.pet.model.animal.dog;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
@@ -13,10 +13,9 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "cat_breed")
-@ToString(exclude = {"cats"})
-public class CatBreed {
-
+@Table(name = "dog_breed")
+@ToString(exclude = {"dogs"})
+public class DogBreed {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -31,5 +30,5 @@ public class CatBreed {
             cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER
     )
-    private Set<Cat> cats = new HashSet<>();
+    private Set<Dog> dogs = new HashSet<>();
 }
