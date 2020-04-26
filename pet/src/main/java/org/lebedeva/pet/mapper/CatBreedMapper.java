@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
 //(componentModel = "spring", uses = {CatMapper.class})
-public interface CatBreedMapper extends EntityMapper<CatBreedDto, CatBreed> {
+public interface CatBreedMapper  {
     @Mapping(target = "cats", ignore = true)
     CatBreed toEntity(CatBreedDto dto);
 

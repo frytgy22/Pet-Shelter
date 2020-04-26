@@ -4,54 +4,44 @@
 <body>
 <header th:include="include/header.html"></header>
 
-<main role="main">
-    <h3 class="text-center ">Cat breeds</h3>
-    <table class="table table-hover table-dark ">
+<main class="my-size" role="main">
+    <h3 class="text-center">Cat breeds</h3>
+
+    <span class="float-left text-danger" th:text="${message}"></span>
+
+    <a class="btn btn-primary float-right" th:href="@{/cats/breeds/create}">
+        <svg th:replace="include/icon/add.html"></svg>
+        Add new breed</a>
+
+    <table class="table table-hover">
         <thead>
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">№</th>
             <th scope="col">Name</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="group : ${catBreeds}">
-            <th th:text="${group.id}" scope="row"></th>
-            <td th:text="${group.name}"></td>
+        <tr th:each="breed, i: ${catBreeds}">
+            <th th:text="${i.count}" scope="row"></th>
+            <td th:text="${breed.name}"></td>
             <td>
-                <a th:href="@{/students/edit/{id}(id=${group.id})}">
-                    <svg class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                              d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0
-                              01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"
-                              clip-rule="evenodd"/>
-                        <path fill-rule="evenodd"
-                              d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0
-                               00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z"
-                              clip-rule="evenodd"/>
-                    </svg>
+                <a th:href="@{/cats/breeds/edit/{id}(id=${breed.id})}">
+                    <svg th:replace="include/icon/edit.html"></svg>
                 </a>
             </td>
 
             <td>
-                <a th:href="@{/students/delete/{id}(id=${group.id})}">
-                    <svg class="bi bi-trash-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                              d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1
-                               1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5
-                               0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5
-                                0 001 0v-7z"
-                              clip-rule="evenodd"/>
-                    </svg>
+                <a th:href="@{/cats/breeds/delete/{id}(id=${breed.id})}">
+                    <svg th:replace="include/icon/delete.html"></svg>
                 </a>
             </td>
         </tr>
         </tbody>
     </table>
 
+    <div th:replace="include/pagination.html"></div>
     <footer th:include="include/footer.html" class="fixed-bottom"></footer>
 </main>
 

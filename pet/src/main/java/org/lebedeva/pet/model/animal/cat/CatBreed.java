@@ -2,7 +2,6 @@ package org.lebedeva.pet.model.animal.cat;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
-import org.lebedeva.pet.model.animal.cat.Cat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -15,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "cat_breed")
-//@ToString(exclude = {"cats"})
+@ToString(exclude = {"cats"})
 public class CatBreed {
 
     @Id

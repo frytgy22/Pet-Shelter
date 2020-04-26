@@ -19,10 +19,6 @@
     color: black;
 }
 
-.padding {
-    padding: 100px 50px;
-}
-
 .box {
     box-shadow: inset rgba(255, 255, 255, .6) 0 .3em .3em,
     inset rgba(0, 0, 0, .2) 0 -.1em .3em,
@@ -30,6 +26,12 @@
     rgba(0, 0, 0, .3) 0 .2em 6px;
 }
 
-.table {
+.h3-top {
     margin-top: 100px;
+}
+
+.my-size {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 100px;
 }

@@ -6,14 +6,13 @@ import org.lebedeva.pet.service.CatBreedService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @Controller
@@ -33,11 +32,17 @@ public class CatBreedController {
         this.catBreedService = catBreedService;
     }
 
+    @ModelAttribute("message")
+    public void setMessage() {
+    }
+
     @GetMapping
     public String index(Model model, Integer page, Integer size) {
-        pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size);
-        Page<CatBreedDto> catBreeds = catBreedService.findAll(pageable);
-        model.addAttribute("catBreeds", catBreeds.getContent());
+        pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("name"));
+        Page<CatBreedDto> catBreedsPage = catBreedService.findAll(pageable);
+        model.addAttribute("url", BASE_URL);
+        model.addAttribute("page", catBreedsPage);
+        model.addAttribute("catBreeds", catBreedsPage.getContent());
         return INDEX_PATH;
     }
 
@@ -49,17 +54,50 @@ public class CatBreedController {
 
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute CatBreedDto catBreedDto,
-                         BindingResult bindingResult) {
-        log.info("cat: {}", catBreedDto);
+                         BindingResult bindingResult,
+                         RedirectAttributes attributes) {
+
         if (!bindingResult.hasErrors()) {
             try {
                 catBreedService.save(catBreedDto);
+                attributes.addFlashAttribute("message", "Saved successfully!");
             } catch (Exception e) {
+                attributes.addFlashAttribute("message", "Saving failed. The breed already exists!");
                 log.error(e.getLocalizedMessage(), e);
             }
             return REDIRECT_INDEX;
         }
         log.error(bindingResult.toString());
         return FORM_PATH;
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id, RedirectAttributes attributes) {
+        try {
+            catBreedService.delete(id);
+            attributes.addFlashAttribute("message", "Deleted successfully!");
+        } catch (Exception e) {
+            attributes.addFlashAttribute("message", "Deletion failed!");
+            log.error(e.getLocalizedMessage(), e);
+        }
+        return REDIRECT_INDEX;
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        try {
+            model.addAttribute("catBreedDto", catBreedService.findById(id).orElseThrow(Exception::new));
+            return FORM_PATH;
+        } catch (Exception ex) {
+            log.error(ex.getLocalizedMessage(), ex);
+        }
+        return REDIRECT_INDEX;
+    }
+
+    @PostMapping("/edit/{id}")
+    public String edit(@Validated @ModelAttribute CatBreedDto catBreedDto,
+                       BindingResult bindingResult,
+                       RedirectAttributes attributes) {
+        return create(catBreedDto, bindingResult, attributes);
     }
 }

@@ -45,9 +45,9 @@ public class CatBreedServiceImpl implements CatBreedService {
     @Override
     public Optional<CatBreedDto> findById(Integer id) throws Exception {
         CatBreed breed = catBreedRepository.findById(id).orElse(null);
-        return breed!=null ?
+        return breed != null ?
                 Optional.of(catBreedMapper.toDto(breed))
-                :Optional.empty();
+                : Optional.empty();
     }
 
     @Override
