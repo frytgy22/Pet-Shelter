@@ -1,10 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="include/head.html"></head>
+
 <body>
+<header th:replace="include/header.html"></header>
+
+<main class="my-size" role="main">
+    <h3 class="text-center">Cats</h3>
+
+    <span class="float-left text-danger" th:text="${message}"></span>
+
+    <a class="btn btn-primary float-right" th:href="@{/cats/create}">
+        <svg th:replace="include/icon/add.html"></svg>
+        Add new cat</a>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Breed</th>
+            <th scope="col">Birth date</th>
+            <th scope="col">Description</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cat, i: ${cats}">
+            <th th:text="${i.count}" scope="row"></th>
+            <td th:text="${cat.photo}"></td>
+            <td th:text="${cat.gender}"></td>
+            <td th:text="${cat.breedName}"></td>
+            <td th:text="${cat.birthDate}"></td>
+            <td th:text="${cat.description}"></td>
+            <td>
+                <a th:href="@{/cats/edit/{id}(id=${cat.id})}">
+                    <svg th:replace="include/icon/edit.html"></svg>
+                </a>
+            </td>
+
+            <td>
+                <a th:href="@{/cats/delete/{id}(id=${cat.id})}">
+                    <svg th:replace="include/icon/delete.html"></svg>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:replace="include/pagination.html"></div>
+    <div th:include="include/footer.html" class="fixed-bottom"></div>
+</main>
 
 </body>
 </html>

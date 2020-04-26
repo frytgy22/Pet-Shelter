@@ -1,8 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:include="include/head.html"></head>
+<head th:replace="include/head.html"></head>
 
 <body>
-<header th:include="include/header.html"></header>
+<header th:replace="include/header.html"></header>
 
 <main role="main" class="my-size">
     <h3 class="text-center">Cat breed</h3>
@@ -20,7 +20,7 @@
         </div>
     </form>
 
-    <footer th:include="include/footer.html" class="fixed-bottom"></footer>
+    <div th:include="include/footer.html" class="fixed-bottom"></div>
 </main>
 
 </body>

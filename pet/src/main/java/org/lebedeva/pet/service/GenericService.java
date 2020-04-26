@@ -10,7 +10,7 @@ public interface GenericService<D, E> {
 
     Page<D> findAll(Pageable pageable);
 
-    Optional<D> findById(Integer id) throws Exception;
+    Optional<D> findById(Integer id);
 
     void delete(Integer id);
 }

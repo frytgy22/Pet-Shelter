@@ -1,8 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:include="include/head.html"></head>
+<head th:replace="include/head.html"></head>
 
 <body>
-<header th:include="include/header.html"></header>
+<header th:replace="include/header.html"></header>
 
 <main role="main">
 
@@ -75,7 +75,7 @@
                 <h2>Cats</h2>
                 <p>In this section you can see all the cats in the shelter, give the animal to the shelter and learn
                     how to properly care for the cats.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" th:href="@{/cats}" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
                 <img class="rounded-circle image-middle box" src="" th:src="@{/images/middle/7.jpg}" alt="pet">
@@ -83,7 +83,7 @@
                 <h2>Dogs</h2>
                 <p>In this section you can see all the dogs in the shelter, send the animal to the shelter and
                     learn about training and proper feeding.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" th:href="@{/dogs}" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
                 <img class="rounded-circle image-middle box" src="" th:src="@{/images/middle/2.jpg}" alt="pet">
@@ -92,7 +92,7 @@
                 <p>In this section, you can familiarize yourself with the services of a veterinarian and see health
                     tips for your pet..
                 </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" th:href="@{/vet}" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
@@ -159,7 +159,7 @@
 
     </div><!-- /.container -->
 
-    <footer th:include="include/footer.html"></footer>
+    <footer th:replace="include/footer.html"></footer>
 </main>
 
 </body>

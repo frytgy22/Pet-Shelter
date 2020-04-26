@@ -5,14 +5,15 @@ import org.lebedeva.pet.mapper.CatBreedMapper;
 import org.lebedeva.pet.model.animal.cat.CatBreed;
 import org.lebedeva.pet.repository.CatBreedRepository;
 import org.lebedeva.pet.service.CatBreedService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -28,30 +29,41 @@ public class CatBreedServiceImpl implements CatBreedService {
 
     @Override
     public CatBreed save(CatBreedDto dto) {
-        CatBreed breed = catBreedRepository.findOneWithEagerRelationships(dto.getId()).orElse(new CatBreed());
-        breed.setName(dto.getName());
-        return catBreedRepository.save(breed);
+//        CatBreed breed = catBreedRepository.findOneWithEagerRelationships(dto.getId()).orElse(new CatBreed());
+//        breed.setName(dto.getName());
+//        return catBreedRepository.save(breed);
+        CatBreed catBreed = catBreedMapper.toEntity(dto);
+        return catBreedRepository.save(catBreed);
     }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     @Override
     public Page<CatBreedDto> findAll(Pageable pageable) {
-
         return catBreedRepository.findAll(pageable)
                 .map(catBreedMapper::toDto);
     }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     @Override
-    public Optional<CatBreedDto> findById(Integer id) throws Exception {
-        CatBreed breed = catBreedRepository.findById(id).orElse(null);
-        return breed != null ?
-                Optional.of(catBreedMapper.toDto(breed))
-                : Optional.empty();
+    public Optional<CatBreedDto> findById(Integer id) {
+//        CatBreed breed = catBreedRepository.findById(id).orElse(null);
+//        return breed != null ?
+//                Optional.of(catBreedMapper.toDto(breed))
+//                : Optional.empty();
+        return catBreedRepository.findById(id)
+                .map(catBreedMapper::toDto);
     }
 
     @Override
     public void delete(Integer id) {
         catBreedRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    @Override
+    public List<CatBreedDto> findCatBreedsDto() {
+        return catBreedRepository.findAll().stream()
+                .map(catBreedMapper::toDto)
+                .collect(Collectors.toList());
     }
 }

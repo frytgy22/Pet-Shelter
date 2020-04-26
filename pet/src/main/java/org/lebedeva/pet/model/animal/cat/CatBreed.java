@@ -22,7 +22,6 @@ public class CatBreed {
     private Integer id;
 
     @NonNull
-    @NotBlank
     @Length(max = 50)
     @Column(unique = true, nullable = false)
     private String name;
