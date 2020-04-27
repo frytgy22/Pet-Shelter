@@ -48,10 +48,10 @@
         </div>
         <div class="form-check">
             <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="gender2" value="GIRL">
-            <span class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
             <label class="form-check-label" for="gender2">
                 Girl
             </label>
+            <span class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
         </div>
 
         <div class="text-center">
