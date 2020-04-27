@@ -4,7 +4,6 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +13,8 @@ import java.util.Set;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "cat_breed")
-@ToString(exclude = {"cats"})
+@ToString(exclude = "cats")
+@EqualsAndHashCode(exclude = "cats")
 public class CatBreed {
 
     @Id

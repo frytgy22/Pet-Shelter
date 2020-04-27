@@ -1,4 +1,4 @@
-package org.lebedeva.pet.mapper;
+package org.lebedeva.pet.mapper.animal.cat;
 
 import org.lebedeva.pet.dto.cat.CatDto;
 import org.lebedeva.pet.model.animal.Gender;
@@ -10,7 +10,7 @@ import org.mapstruct.Mapper;
 public interface CatMapper {
 
     default Cat toEntity(CatDto dto) throws EnumConstantNotPresentException {
-        return new Cat(dto.getId(), new CatBreed(dto.getBreedId(),"test",null),
+        return new Cat(dto.getId(), new CatBreed(dto.getBreedId(), "", null),
                 dto.getBirthDate(), dto.getPhoto(), Gender.valueOf(dto.getGender()), dto.getDescription());
     }
 

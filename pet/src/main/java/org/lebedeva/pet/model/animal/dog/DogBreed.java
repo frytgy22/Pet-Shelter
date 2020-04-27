@@ -4,7 +4,6 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,15 +13,16 @@ import java.util.Set;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "dog_breed")
-@ToString(exclude = {"dogs"})
+@ToString(exclude = "dogs")
+@EqualsAndHashCode(exclude = "dogs")
 public class DogBreed {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NonNull
-    @NotBlank
-    @Length(max = 100)
+    @Length(max = 50)
     @Column(unique = true, nullable = false)
     private String name;
 

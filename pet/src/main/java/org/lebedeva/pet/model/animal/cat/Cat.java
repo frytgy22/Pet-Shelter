@@ -18,6 +18,7 @@ import java.time.LocalDate;
 @Table(name = "cats")
 @RequiredArgsConstructor
 @ToString(exclude = "breed")
+@EqualsAndHashCode(exclude = "breed")
 public class Cat {
 
     @Id
@@ -32,7 +33,6 @@ public class Cat {
 
     @PastOrPresent
     @NonNull
-    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;

@@ -5,9 +5,9 @@
 <header th:replace="include/header.html"></header>
 
 <main role="main" class="my-size">
-    <h3 class="text-center">Cat breed</h3>
+    <h3 class="text-center">Dog breed</h3>
 
-    <form method="post" th:object="${catBreedDto}">
+    <form method="post" th:object="${dogBreedDto}">
         <div class="form-group">
             <label for="name">Breed name</label>
             <input type="hidden" th:field="*{id}">

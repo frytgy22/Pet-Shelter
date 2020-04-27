@@ -50,8 +50,9 @@ public class CatController {
 
     @GetMapping
     public String index(Model model, Integer page, Integer size) {
-        pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("birthDate"));
+        pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("breed"));
         Page<CatDto> catsDtoPage = catService.findAll(pageable);
+
         model.addAttribute("url", BASE_URL);
         model.addAttribute("page", catsDtoPage);
         model.addAttribute("cats", catsDtoPage.getContent());
@@ -68,7 +69,6 @@ public class CatController {
     public String create(@Validated @ModelAttribute CatDto catDto,
                          BindingResult bindingResult,
                          RedirectAttributes attributes) {
-log.info("cat {}",catDto);
         if (!bindingResult.hasErrors()) {
             try {
                 catService.save(catDto);

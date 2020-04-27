@@ -1,7 +1,7 @@
 package org.lebedeva.pet.service.impl;
 
 import org.lebedeva.pet.dto.cat.CatBreedDto;
-import org.lebedeva.pet.mapper.CatBreedMapper;
+import org.lebedeva.pet.mapper.animal.cat.CatBreedMapper;
 import org.lebedeva.pet.model.animal.cat.CatBreed;
 import org.lebedeva.pet.repository.CatBreedRepository;
 import org.lebedeva.pet.service.CatBreedService;

@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<div class="row">
+<div th:if="${page.totalPages > 1}" class="row">
     <div class="col">
         <ul class="pagination justify-content-center ">
             <li th:if="${page.hasPrevious()}" class="page-item">

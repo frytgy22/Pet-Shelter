@@ -26,7 +26,6 @@ public class CatDto {
 
     @PastOrPresent
     @NonNull
-    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
 

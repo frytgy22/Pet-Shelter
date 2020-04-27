@@ -1,8 +1,8 @@
 package org.lebedeva.pet.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.lebedeva.pet.dto.cat.CatBreedDto;
-import org.lebedeva.pet.service.CatBreedService;
+import org.lebedeva.pet.dto.dog.DogBreedDto;
+import org.lebedeva.pet.service.DogBreedService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,20 +16,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @Controller
-@RequestMapping(CatBreedController.BASE_URL)
-public class CatBreedController {
+@RequestMapping(DogBreedController.BASE_URL)
+public class DogBreedController {
 
-    public static final String VIEW_PATH = "cat/breed";
-    public static final String BASE_URL = "/cats/breeds";
+    public static final String VIEW_PATH = "dog/breed";
+    public static final String BASE_URL = "/dogs/breeds";
     public static final String FORM_PATH = VIEW_PATH + "/form";
     public static final String INDEX_PATH = VIEW_PATH + "/index";
     public static final String REDIRECT_INDEX = "redirect:" + BASE_URL;
 
     private Pageable pageable;
-    private final CatBreedService catBreedService;
+    private final DogBreedService dogBreedService;
 
-    public CatBreedController(CatBreedService catBreedService) {
-        this.catBreedService = catBreedService;
+    public DogBreedController(DogBreedService dogBreedService) {
+        this.dogBreedService = dogBreedService;
     }
 
     @ModelAttribute("message")
@@ -39,28 +39,28 @@ public class CatBreedController {
     @GetMapping
     public String index(Model model, Integer page, Integer size) {
         pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("name"));
-        Page<CatBreedDto> catBreedsPage = catBreedService.findAll(pageable);
+        Page<DogBreedDto> dogBreedsPage = dogBreedService.findAll(pageable);
 
         model.addAttribute("url", BASE_URL);
-        model.addAttribute("page", catBreedsPage);
-        model.addAttribute("catBreeds", catBreedsPage.getContent());
+        model.addAttribute("page", dogBreedsPage);
+        model.addAttribute("dogBreeds", dogBreedsPage.getContent());
         return INDEX_PATH;
     }
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("catBreedDto", new CatBreedDto());
+        model.addAttribute("dogBreedDto", new DogBreedDto());
         return FORM_PATH;
     }
 
     @PostMapping("/create")
-    public String create(@Validated @ModelAttribute CatBreedDto catBreedDto,
+    public String create(@Validated @ModelAttribute DogBreedDto dogBreedDto,
                          BindingResult bindingResult,
                          RedirectAttributes attributes) {
 
         if (!bindingResult.hasErrors()) {
             try {
-                catBreedService.save(catBreedDto);
+                dogBreedService.save(dogBreedDto);
                 attributes.addFlashAttribute("message", "Saved successfully!");
             } catch (Exception e) {
                 attributes.addFlashAttribute("message", "Saving failed. The breed already exists!");
@@ -75,7 +75,7 @@ public class CatBreedController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id, RedirectAttributes attributes) {
         try {
-            catBreedService.delete(id);
+            dogBreedService.delete(id);
             attributes.addFlashAttribute("message", "Deleted successfully!");
         } catch (Exception e) {
             attributes.addFlashAttribute("message", "Deletion failed!");
@@ -87,7 +87,7 @@ public class CatBreedController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
         try {
-            model.addAttribute("catBreedDto", catBreedService.findById(id).orElseThrow(Exception::new));
+            model.addAttribute("dogBreedDto", dogBreedService.findById(id).orElseThrow(Exception::new));
             return FORM_PATH;
         } catch (Exception ex) {
             log.error(ex.getLocalizedMessage(), ex);
@@ -96,9 +96,9 @@ public class CatBreedController {
     }
 
     @PostMapping("/edit/{id}")
-    public String edit(@Validated @ModelAttribute CatBreedDto catBreedDto,
+    public String edit(@Validated @ModelAttribute DogBreedDto dogBreedDto,
                        BindingResult bindingResult,
                        RedirectAttributes attributes) {
-        return create(catBreedDto, bindingResult, attributes);
+        return create(dogBreedDto, bindingResult, attributes);
     }
 }
