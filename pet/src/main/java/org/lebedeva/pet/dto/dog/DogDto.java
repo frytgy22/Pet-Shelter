@@ -32,12 +32,12 @@ public class DogDto {
     private String photo;
 
     @NonNull
-    @NotNull
+    @NotNull(message = "must be set")
     @Pattern(regexp = "GIRL|BOY")
     private String gender;
 
     @NonNull
     @NotBlank
-    @Length(max = 255)
+    @Length(max = 5000)
     private String description;
 }

@@ -6,40 +6,56 @@
 
 <main class="my-size" role="main">
     <h3 class="text-center">Dogs</h3>
+    <p class="float-right text-danger" th:text="${message}"></p>
 
-    <span class="float-left text-danger" th:text="${message}"></span>
+    <div class="grey-color">
+    <div class="btn-group float-left" role="group" aria-label="sort">
+        <button type="button" class="btn btn-secondary sort-color">Sorting by breed</button>
+        <button type="button" class="btn btn-secondary sort-color">Sorting by age</button>
+        <button type="button" class="btn btn-secondary sort-color">Sorting by gender</button>
+    </div>
 
     <a class="btn btn-primary float-right" th:href="@{/dogs/create}">
         <svg th:replace="include/icon/add.html"></svg>
         Add new dog</a>
+    </div>
 
     <table class="table table-hover">
-        <thead>
+        <thead class="thead-light">
         <tr>
-            <th scope="col">№</th>
+            <th scope="col">Id</th>
             <th scope="col">Photo</th>
             <th scope="col">Gender</th>
             <th scope="col">Breed</th>
             <th scope="col">Birth date</th>
-            <th scope="col">Description</th>
+            <th scope="col">Info</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="dog, i: ${dogs}">
-            <th th:text="${i.count}" scope="row"></th>
-            <td th:text="${dog.photo}"></td>
+        <tr th:each="dog : ${dogs}">
+            <th th:text="${dog.id}" scope="row"></th>
+            <td>
+                <img th:if="${dog.photo == null or dog.photo == ''}" class="avatar box" src=""
+                     th:src="@{/uploads/avatar.png}" alt="pet">
+
+                <img th:unless="${dog.photo == null or dog.photo == ''}" class="avatar box"
+                     src="" th:src="@{/uploads/dogs/{photo}(photo=${dog.id + '/' + dog.photo})}" alt="pet">
+            </td>
             <td th:text="${dog.gender}"></td>
             <td th:text="${dog.breedName}"></td>
             <td th:text="${dog.birthDate}"></td>
-            <td th:text="${dog.description}"></td>
+            <td>
+                <a th:href="@{/dogs/info/{id}(id=${dog.id})}">
+                    <svg th:replace="include/icon/info.html"></svg>
+                </a>
+            </td>
             <td>
                 <a th:href="@{/dogs/edit/{id}(id=${dog.id})}">
                     <svg th:replace="include/icon/edit.html"></svg>
                 </a>
             </td>
-
             <td>
                 <a th:href="@{/dogs/delete/{id}(id=${dog.id})}">
                     <svg th:replace="include/icon/delete.html"></svg>
@@ -53,6 +69,6 @@
 
 </main>
 
-<div th:include="include/footer.html" class="fixed-bottom"></div>
+<!--<div th:include="include/footer.html" class="fixed-bottom"></div>-->
 </body>
 </html>

@@ -159,7 +159,12 @@
 
     </div><!-- /.container -->
 
-    <footer th:replace="include/footer.html"></footer>
+    <footer class="container">
+        <hr class="featurette-divider">
+        <p class="float-right"><a th:href="@{/}">Back to top</a></p>
+        <p>&copy; 2020 Pet shelter Company &middot; <a th:href="@{/}">Privacy</a> &middot; <a th:href="@{/}">Terms</a>
+        </p>
+    </footer>
 </main>
 </body>
 </html>

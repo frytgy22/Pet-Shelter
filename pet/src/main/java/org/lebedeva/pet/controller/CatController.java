@@ -5,6 +5,8 @@ import org.lebedeva.pet.dto.cat.CatBreedDto;
 import org.lebedeva.pet.dto.cat.CatDto;
 import org.lebedeva.pet.service.CatBreedService;
 import org.lebedeva.pet.service.CatService;
+import org.lebedeva.pet.service.UploadFileService;
+import org.lebedeva.pet.validator.MultipartFileValidator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -25,7 +28,9 @@ public class CatController {
 
     public static final String VIEW_PATH = "cat";
     public static final String BASE_URL = "/cats";
+    public static final String UPLOADS_DIR = "/cats/";
     public static final String FORM_PATH = VIEW_PATH + "/form";
+    public static final String INFO_PATH = VIEW_PATH + "/info";
     public static final String INDEX_PATH = VIEW_PATH + "/index";
     public static final String REDIRECT_INDEX = "redirect:" + BASE_URL;
 
@@ -33,10 +38,17 @@ public class CatController {
 
     private final CatService catService;
     private final CatBreedService catBreedService;
+    private final UploadFileService uploadFileService;
+    private final MultipartFileValidator fileValidator;
 
-    public CatController(CatService catService, CatBreedService catBreedService) {
+    public CatController(CatService catService,
+                         CatBreedService catBreedService,
+                         UploadFileService uploadFileService,
+                         MultipartFileValidator fileValidator) {
         this.catService = catService;
         this.catBreedService = catBreedService;
+        this.uploadFileService = uploadFileService;
+        this.fileValidator = fileValidator;
     }
 
     @ModelAttribute("catBreeds")
@@ -68,10 +80,20 @@ public class CatController {
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute CatDto catDto,
                          BindingResult bindingResult,
-                         RedirectAttributes attributes) {
+                         RedirectAttributes attributes,
+                         MultipartFile img) {
+
+        if (img != null) {
+            fileValidator.validate(img, bindingResult);
+        }
         if (!bindingResult.hasErrors()) {
             try {
-                catService.save(catDto);
+                if (img != null && !img.isEmpty()) {
+                    catDto.setPhoto(img.getOriginalFilename());
+                    uploadFileService.uploadFile(img, UPLOADS_DIR, catService.save(catDto).getId());
+                } else {
+                    catService.save(catDto);
+                }
                 attributes.addFlashAttribute("message", "Saved successfully!");
             } catch (Exception e) {
                 attributes.addFlashAttribute("message", "Saving failed!");
@@ -109,7 +131,19 @@ public class CatController {
     @PostMapping("/edit/{id}")
     public String edit(@Validated @ModelAttribute CatDto catDto,
                        BindingResult bindingResult,
-                       RedirectAttributes attributes) {
-        return create(catDto, bindingResult, attributes);
+                       RedirectAttributes attributes,
+                       MultipartFile img) {
+        return create(catDto, bindingResult, attributes, img);
+    }
+
+    @GetMapping("/info/{id}")
+    public String info(@PathVariable int id, Model model) {
+        try {
+            model.addAttribute("cat", catService.findById(id).orElseThrow(Exception::new));
+            return INFO_PATH;
+        } catch (Exception ex) {
+            log.error(ex.getLocalizedMessage(), ex);
+        }
+        return REDIRECT_INDEX;
     }
 }

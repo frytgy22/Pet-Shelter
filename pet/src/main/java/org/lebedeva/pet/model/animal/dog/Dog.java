@@ -46,6 +46,6 @@ public class Dog {
 
     @NonNull
     @NotBlank
-    @Length(max = 255)
+    @Length(max = 5000)
     private String description;
 }

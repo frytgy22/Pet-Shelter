@@ -1,9 +1,10 @@
-package org.lebedeva.pet.service;
+package org.lebedeva.pet.service.impl;
 
 import org.lebedeva.pet.dto.dog.DogDto;
 import org.lebedeva.pet.mapper.animal.dog.DogMapper;
 import org.lebedeva.pet.model.animal.dog.Dog;
 import org.lebedeva.pet.repository.DogRepository;
+import org.lebedeva.pet.service.DogService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

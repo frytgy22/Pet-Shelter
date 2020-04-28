@@ -32,12 +32,12 @@ public class CatDto {
     private String photo;
 
     @NonNull
-    @NotNull
-    @Pattern(regexp = "GIRL|BOY")
+    @NotNull(message = "must be set")
+    @Pattern(regexp = "GIRL|BOY",message = "must be girl or boy")
     private String gender;
 
     @NonNull
     @NotBlank
-    @Length(max = 255)
+    @Length(max = 5000)
     private String description;
 }

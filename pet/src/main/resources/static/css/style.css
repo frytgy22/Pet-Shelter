@@ -30,6 +30,25 @@
     margin-top: 100px;
 }
 
+.avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+}
+
+.photo {
+    max-width: 40%;
+    max-height: 40%;
+}
+.sort-color{
+    color: #5a5a5a;
+    background: #e9ecef;
+    border: 1px solid gainsboro;
+}
+.grey-color{
+    width: 100%;
+    background: #e9ecef;
+}
 .my-size {
     padding-left: 50px;
     padding-right: 50px;
