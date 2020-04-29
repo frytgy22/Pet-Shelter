@@ -6,18 +6,17 @@
 
 <main class="my-size" role="main">
     <h3 class="text-center">Dogs</h3>
-    <p class="float-right text-danger" th:text="${message}"></p>
+    <p class="text-danger" th:text="${message}"></p>
 
     <div class="grey-color">
-    <div class="btn-group float-left" role="group" aria-label="sort">
-        <button type="button" class="btn btn-secondary sort-color">Sorting by breed</button>
-        <button type="button" class="btn btn-secondary sort-color">Sorting by age</button>
-        <button type="button" class="btn btn-secondary sort-color">Sorting by gender</button>
-    </div>
-
-    <a class="btn btn-primary float-right" th:href="@{/dogs/create}">
-        <svg th:replace="include/icon/add.html"></svg>
-        Add new dog</a>
+        <div class="btn-group " role="group" aria-label="sort">
+            <a th:href="@{/dogs(sort='breed')}" class="btn btn-secondary sort-color">Sorting by breed</a>
+            <a th:href="@{/dogs(sort='birthDate')}" class="btn btn-secondary sort-color">Sorting by age</a>
+            <a th:href="@{/dogs(sort='gender')}" class="btn btn-secondary sort-color">Sorting by gender</a>
+        </div>
+        <a class="btn btn-primary float-right" th:href="@{/dogs/create}">
+            <svg th:replace="include/icon/add.html"></svg>
+            Add new dog</a>
     </div>
 
     <table class="table table-hover">

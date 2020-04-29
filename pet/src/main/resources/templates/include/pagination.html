@@ -4,7 +4,7 @@
     <div class="col">
         <ul class="pagination justify-content-center ">
             <li th:if="${page.hasPrevious()}" class="page-item">
-                <a class="page-link" th:href="@{${url}(page=${page.number - 1},size=${page.size})}"
+                <a class="page-link" th:href="@{${url}(page=${page.number - 1},size=${page.size},sort=${sort})}"
                    tabindex="-1">Previous</a>
             </li>
             <li th:unless="${page.hasPrevious()}" class="page-item disabled">
@@ -13,17 +13,17 @@
 
             <th:block th:each="i: ${#numbers.sequence(1, page.totalPages)}">
                 <li th:if="${page.number + 1 == i}" class="page-item active">
-                    <a class="page-link" th:href="@{${url}(page=${i - 1},size=${page.size})}"
+                    <a class="page-link" th:href="@{${url}(page=${i - 1},size=${page.size},sort=${sort})}"
                        tabindex="-1">[[${i}]]</a>
                 </li>
                 <li th:unless="${page.number + 1 == i}" class="page-item">
-                    <a class="page-link" th:href="@{${url}(page=${i - 1},size=${page.size})}"
+                    <a class="page-link" th:href="@{${url}(page=${i - 1},size=${page.size},sort=${sort})}"
                        tabindex="-1">[[${i}]]</a>
                 </li>
             </th:block>
 
             <li th:if="${page.hasNext()}" class="page-item">
-                <a class="page-link" th:href="@{${url}(page=${page.number + 1},size=${page.size})}"
+                <a class="page-link" th:href="@{${url}(page=${page.number + 1},size=${page.size},sort=${sort})}"
                    tabindex="-1">Next</a>
             </li>
             <li th:unless="${page.hasNext()}" class="page-item disabled">

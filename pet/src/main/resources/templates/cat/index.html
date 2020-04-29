@@ -6,20 +6,22 @@
 
 <main class="my-size" role="main">
     <h3 class="text-center">Cats</h3>
-    <p class="float-right text-danger" th:text="${message}"></p>
+    <p class="text-danger" th:text="${message}"></p>
 
-    <div class="btn-group float-left" role="group" aria-label="sort">
-        <button type="button" class="btn btn-secondary">Sorting by breed</button>
-        <button type="button" class="btn btn-secondary">Sorting by age</button>
-        <button type="button" class="btn btn-secondary">Sorting by gender</button>
+    <div class="grey-color">
+        <div class="btn-group " role="group" aria-label="sort">
+            <a th:href="@{/cats(sort='breed')}" class="btn btn-secondary sort-color">Sorting by breed</a>
+            <a th:href="@{/cats(sort='birthDate')}" class="btn btn-secondary sort-color">Sorting by age</a>
+            <a th:href="@{/cats(sort='gender')}" class="btn btn-secondary sort-color">Sorting by gender</a>
+        </div>
+
+        <a class="btn btn-primary float-right" th:href="@{/cats/create}">
+            <svg th:replace="include/icon/add.html"></svg>
+            Add new cat</a>
     </div>
 
-    <a class="btn btn-primary float-right" th:href="@{/cats/create}">
-        <svg th:replace="include/icon/add.html"></svg>
-        Add new cat</a>
-
     <table class="table table-hover">
-        <thead class="thead-light" >
+        <thead class="thead-light">
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Photo</th>

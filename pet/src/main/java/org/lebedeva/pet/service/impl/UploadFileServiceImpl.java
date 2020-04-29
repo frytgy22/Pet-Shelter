@@ -3,21 +3,17 @@ package org.lebedeva.pet.service.impl;
 import org.lebedeva.pet.service.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class UploadFileServiceImpl implements UploadFileService {
@@ -30,17 +26,6 @@ public class UploadFileServiceImpl implements UploadFileService {
     @Autowired
     public UploadFileServiceImpl(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
-    }
-
-    @Override
-    public List<String> listFiles(String uploadsDir) throws IOException {
-        Resource resource = resourceLoader.getResource(uploadsDir);
-        if (resource.exists()) {
-            return Files.list(Paths.get(resource.getURI()))
-                    .map(path -> path.getFileName().toString())
-                    .collect(Collectors.toList());
-        }
-        return null;
     }
 
     @Override

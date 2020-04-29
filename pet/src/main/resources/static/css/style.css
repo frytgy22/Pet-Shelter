@@ -40,15 +40,22 @@
     max-width: 40%;
     max-height: 40%;
 }
-.sort-color{
-    color: #5a5a5a;
+
+.sort-color {
     background: #e9ecef;
-    border: 1px solid gainsboro;
+    border: 1px solid #e5e5e5;
+    color: #393939;
 }
-.grey-color{
+
+.sort-color a:hover{
+    color: white;
+}
+
+.grey-color {
     width: 100%;
     background: #e9ecef;
 }
+
 .my-size {
     padding-left: 50px;
     padding-right: 50px;

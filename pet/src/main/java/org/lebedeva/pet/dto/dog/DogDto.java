@@ -19,7 +19,7 @@ public class DogDto {
     private Integer id;
 
     @NonNull
-    @NotNull
+    @NotNull(message = "must be set")
     private Integer breedId;
 
     private String breedName;
@@ -33,7 +33,7 @@ public class DogDto {
 
     @NonNull
     @NotNull(message = "must be set")
-    @Pattern(regexp = "GIRL|BOY")
+    @Pattern(regexp = "GIRL|BOY", message = "must be girl or boy")
     private String gender;
 
     @NonNull
