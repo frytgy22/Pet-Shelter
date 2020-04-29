@@ -88,11 +88,11 @@
             <div class="col-lg-4">
                 <img class="rounded-circle image-middle box" src="" th:src="@{/images/middle/2.jpg}" alt="pet">
 
-                <h2>Veterinary clinic</h2>
-                <p>In this section, you can familiarize yourself with the services of a veterinarian and see health
-                    tips for your pet..
+                <h2>Pet posts</h2>
+                <p>In this section you can watch various posts about pets, tips on pet care, nutrition and training,
+                    and fun stories.
                 </p>
-                <p><a class="btn btn-secondary" th:href="@{/post}" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" th:href="@{/posts}" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
@@ -159,12 +159,7 @@
 
     </div><!-- /.container -->
 
-    <footer class="container">
-        <hr class="featurette-divider">
-        <p class="float-right"><a th:href="@{/}">Back to top</a></p>
-        <p>&copy; 2020 Pet shelter Company &middot; <a th:href="@{/}">Privacy</a> &middot; <a th:href="@{/}">Terms</a>
-        </p>
-    </footer>
+    <footer th:replace="include/footer.html"></footer>
 </main>
 </body>
 </html>

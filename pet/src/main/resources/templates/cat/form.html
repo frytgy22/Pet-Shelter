@@ -28,7 +28,8 @@
 
         <div class="form-group">
             <label for="area">Description</label>
-            <textarea th:field="*{description}" class="form-control" id="area" rows="3" required></textarea>
+            <textarea th:field="*{description}" class="form-control" id="area" rows="3"
+                      maxlength="5000" required></textarea>
             <span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
         </div>
 
@@ -58,8 +59,8 @@
             <button type="submit" class="btn btn-success">Submit</button>
         </div>
     </form>
-</main>
 
-<!--<div th:include="include/footer.html" class="fixed-bottom"></div>-->
+    <footer th:replace="include/footer.html"></footer>
+</main>
 </body>
 </html>

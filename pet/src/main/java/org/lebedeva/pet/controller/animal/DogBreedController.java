@@ -1,4 +1,4 @@
-package org.lebedeva.pet.controller;
+package org.lebedeva.pet.controller.animal;
 
 import lombok.extern.slf4j.Slf4j;
 import org.lebedeva.pet.dto.dog.DogBreedDto;

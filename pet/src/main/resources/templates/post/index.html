@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="post/include/head.html"></head>
+
+<body>
+<header th:replace="include/header.html"></header>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+
+        <div class="col-md-8 top">
+            <h1 class="my-4">My posts
+                <small>today</small>
+            </h1>
+            <!-- Blog Post -->
+            <div class="card mb-4" th:each="post : ${posts}">
+                <img class="card-img-top" src="" th:src="@{/images/post/4.jpg}" alt="post">
+                <div class="card-body">
+                    <h2 class="card-title" th:text="${post.title}"></h2>
+                    <p class="card-text" th:text="${post.subtitle}"></p>
+
+                    <form style="display: inline-block" method="post"
+                          action="/info">
+                        <button type="submit" name="id" class="btn btn-primary" value="">Read More
+                        </button>
+                    </form>
+
+                </div>
+                <div class="card-footer text-muted">
+                    <p th:text="${post.category.toString()}"> category:</p>
+                    <span th:text="${post.publicationDate}"> by</span>
+                </div>
+            </div>
+
+            <div th:replace="include/pagination.html"></div>
+
+        </div>
+        <div th:replace="post/include/sidebar.html"></div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="include/footer.html"></footer>
+</body>
+
+</html>

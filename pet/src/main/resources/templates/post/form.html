@@ -1,0 +1,79 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="post/include/head.html"></head>
+
+<body>
+<header th:replace="include/header.html"></header>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+
+        <div class="col-md-8 top">
+            <h3>Post</h3>
+            <form method="post" th:object="${postDto}" enctype="multipart/form-data" class="form">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <label for="area"></label>
+                    <textarea th:field="*{title}" class="form-control" id="area" rows="3" maxlength="255"
+                              required autofocus placeholder="Title"></textarea>
+                    <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="area1"></label>
+                    <textarea th:field="*{subtitle}" class="form-control" id="area1" rows="3"
+                              placeholder="Subtitle" maxlength="1000" required></textarea>
+                    <span class="text-danger" th:if="${#fields.hasErrors('subtitle')}" th:errors="*{subtitle}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="area2"></label>
+                    <textarea th:field="*{contents}" class="form-control" id="area2" rows="10"
+                              placeholder="Contents" maxlength="65535" required></textarea>
+                    <span class="text-danger" th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Publication date</label>
+                    <input type="date" class="form-control" id="date" th:field="*{publicationDate}" required>
+                    <span class="text-danger" th:if="${#fields.hasErrors('publicationDate')}"
+                          th:errors="*{publicationDate}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="breed">Category</label>
+                    <select class="form-control" id="breed" th:field="*{category}" required>
+                        <th:block th:each="category : ${categories}">
+                            <option th:value="${category}" th:text="${category}"></option>
+                        </th:block>
+                    </select>
+                    <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="photo">Photo</label>
+                    <input type="hidden" th:field="*{photo}">
+                    <input type="file" multiple class="form-control-file" name="img" accept=".jpg, .jpeg, .png"
+                           id="photo"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}"></span>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+
+        </div>
+        <div th:replace="post/include/sidebar.html"></div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="include/footer.html"></footer>
+</body>
+
+</html>

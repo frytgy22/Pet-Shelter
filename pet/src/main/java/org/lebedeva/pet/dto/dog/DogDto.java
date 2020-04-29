@@ -24,7 +24,7 @@ public class DogDto {
 
     private String breedName;
 
-    @PastOrPresent
+    @PastOrPresent(message = "must be past or present")
     @NonNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
@@ -38,6 +38,6 @@ public class DogDto {
 
     @NonNull
     @NotBlank
-    @Length(max = 5000)
+    @Length(max = 5000, message = "length must be < 5000 symbols")
     private String description;
 }

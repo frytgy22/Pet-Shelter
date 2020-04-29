@@ -26,10 +26,6 @@
     rgba(0, 0, 0, .3) 0 .2em 6px;
 }
 
-.h3-top {
-    margin-top: 100px;
-}
-
 .avatar {
     width: 70px;
     height: 70px;
@@ -61,3 +57,4 @@
     padding-right: 50px;
     padding-top: 100px;
 }
+

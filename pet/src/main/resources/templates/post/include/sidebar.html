@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4">
+
+    <!-- Search Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+            <form method="post" action="/search">
+                <div class="input-group">
+                    <input type="text" name="search" required class="form-control"
+                           placeholder="Search by title...">
+                    <span class="input-group-btn">
+                <button class="btn btn-secondary" type="submit">Go!</button>
+              </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Categories Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+            <div class="row">
+                <form method="post" action="/category">
+
+                    <ul class="list-unstyled mb-0">
+                        <th:block th:each="category : ${categories}">
+                            <li class="li">
+                                <button class="but" type="submit" name="categories"
+                                        th:text="${category.toString()}">
+                                </button>
+                            </li>
+                        </th:block>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">They are looking forward to their family.</h5>
+        <div class="card-body">
+            <img src="" class="card-img-top" width="100" th:src="@{/images/post/2.jpg}" alt="pets">
+        </div>
+    </div>
+</div>

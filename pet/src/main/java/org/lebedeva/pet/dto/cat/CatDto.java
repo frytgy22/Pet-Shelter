@@ -24,7 +24,7 @@ public class CatDto {
 
     private String breedName;
 
-    @PastOrPresent
+    @PastOrPresent(message = "must be past or present")
     @NonNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
@@ -37,7 +37,7 @@ public class CatDto {
     private String gender;
 
     @NonNull
-    @NotBlank
-    @Length(max = 5000)
+    @NotBlank(message = "must not be blank")
+    @Length(max = 5000, message = "length must be < 5000 symbols")
     private String description;
 }

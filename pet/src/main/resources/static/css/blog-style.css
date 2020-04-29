@@ -1,0 +1,53 @@
+/*!
+ * Start Bootstrap - Blog Home (https://startbootstrap.com/template-overviews/blog-home)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/LICENSE)
+ */
+body {
+    padding-top: 56px;
+    padding-bottom: 56px;
+}
+
+.featurette-divider {
+    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+#button {
+    margin-bottom: 100px;
+}
+
+.li {
+    float: right;
+}
+
+.but {
+    background: white;
+    border-left: none;
+    border-top: none;
+}
+
+.but:hover {
+    background: #007bff;
+    color: white;
+}
+
+.float {
+    border: 1px outset #fffff9;
+    border-radius: 50px;
+    cursor: pointer;
+    float: right;
+    width: 40px;
+    height: 40px;
+    box-shadow: inset rgba(255, 255, 255, .6) 0 .3em .3em,
+    inset rgba(0, 0, 0, .2) 0 -.1em .3em,
+    rgba(0, 0, 0, .4) 0 .1em 1px,
+    rgba(0, 0, 0, .3) 0 .2em 6px;
+}
+
+.float:active {
+    border: 1px inset #fffff9;
+}
+
+.top {
+    margin-top: 50px;
+}
