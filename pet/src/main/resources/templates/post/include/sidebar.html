@@ -3,13 +3,29 @@
 <!-- Sidebar Widgets Column -->
 <div class="col-md-4">
 
+
+    <!-- Weather -->
+    <div class="card my-4">
+        <h5 class="card-header">Weather</h5>
+        <div class="card-body">
+
+            <img class="float-right" src="" th:src="${icon}" alt="temp">
+            <h3 class="d-inline" th:text="${weather.name}"></h3>
+            <p class="d-inline"><span th:text="${temp}"></span> &#8451;</p>
+
+            <p>Sky: <span th:text="${weather.weather.get(0).description}"></span></p>
+            <p>Clouds: <span th:text="${weather.getClouds().all}"></span>%</p>
+        </div>
+    </div>
+
     <!-- Search Widget -->
     <div class="card my-4">
         <h5 class="card-header">Search</h5>
         <div class="card-body">
-            <form method="post" action="/search">
+            <form method="get" action="" th:action="@{/posts}">
                 <div class="input-group">
-                    <input type="text" name="search" required class="form-control"
+                    <label for="search"></label>
+                    <input type="text" name="search" required class="form-control" id="search"
                            placeholder="Search by title...">
                     <span class="input-group-btn">
                 <button class="btn btn-secondary" type="submit">Go!</button>
@@ -24,7 +40,7 @@
         <h5 class="card-header">Categories</h5>
         <div class="card-body">
             <div class="row">
-                <form method="post" action="/category">
+                <form method="post" action="">
 
                     <ul class="list-unstyled mb-0">
                         <th:block th:each="category : ${categories}">
@@ -42,9 +58,10 @@
 
     <!-- Side Widget -->
     <div class="card my-4">
-        <h5 class="card-header">They are looking forward to their family.</h5>
+        <p class="card-header font-italic">They are looking forward to their family.</p>
         <div class="card-body">
             <img src="" class="card-img-top" width="100" th:src="@{/images/post/2.jpg}" alt="pets">
+            <p class="font-italic">Phone: 123-456-789</p>
         </div>
     </div>
 </div>

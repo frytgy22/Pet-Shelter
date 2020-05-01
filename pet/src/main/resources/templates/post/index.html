@@ -6,26 +6,23 @@
 
 <!-- Page Content -->
 <div class="container">
+
     <div class="row">
         <!-- Blog Entries Column -->
 
         <div class="col-md-8 top">
-            <h1 class="my-4">My posts
-                <small>today</small>
+            <h1 class="my-4">Everything you need for pets
+                <small>is here</small>
             </h1>
             <!-- Blog Post -->
             <div class="card mb-4" th:each="post : ${posts}">
                 <img class="card-img-top" src="" th:src="@{/images/post/4.jpg}" alt="post">
                 <div class="card-body">
-                    <h2 class="card-title" th:text="${post.title}"></h2>
+                    <h2 class="card-title font-italic" th:text="${post.title}"></h2>
                     <p class="card-text" th:text="${post.subtitle}"></p>
 
-                    <form style="display: inline-block" method="post"
-                          action="/info">
-                        <button type="submit" name="id" class="btn btn-primary" value="">Read More
-                        </button>
-                    </form>
-
+                        <a   class="btn btn-primary" >Read More
+                        </a>
                 </div>
                 <div class="card-footer text-muted">
                     <p th:text="${post.category.toString()}"> category:</p>
@@ -47,3 +44,4 @@
 </body>
 
 </html>
+

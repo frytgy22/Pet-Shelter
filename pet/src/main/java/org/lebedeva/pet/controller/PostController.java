@@ -3,6 +3,7 @@ package org.lebedeva.pet.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.lebedeva.pet.dto.post.PostDto;
 import org.lebedeva.pet.model.post.Category;
+import org.lebedeva.pet.model.weather.Weather;
 import org.lebedeva.pet.service.PostService;
 import org.lebedeva.pet.service.UploadFileService;
 import org.lebedeva.pet.validator.MultipartFileValidator;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,15 +37,20 @@ public class PostController {
     public static final String INFO_PATH = VIEW_PATH + "/info";
     public static final String INDEX_PATH = VIEW_PATH + "/index";
     public static final String REDIRECT_INDEX = "redirect:" + BASE_URL;
+    public static final String URL_WEATHER =
+            "http://api.openweathermap.org/data/2.5/weather?q=Dnipro&appid=bc5422a1c3cfc20a7193c6d338279896";
 
     private final PostService postService;
+    private final RestTemplate restTemplate;
     private final UploadFileService uploadFileService;
     private final MultipartFileValidator fileValidator;
 
     public PostController(PostService postService,
+                          RestTemplate restTemplate,
                           UploadFileService uploadFileService,
                           MultipartFileValidator fileValidator) {
         this.postService = postService;
+        this.restTemplate = restTemplate;
         this.fileValidator = fileValidator;
         this.uploadFileService = uploadFileService;
     }
@@ -64,15 +71,33 @@ public class PostController {
         return new ArrayList<>();
     }
 
+    @ModelAttribute("weather")
+    public Weather weather(Model model) {
+        Weather weather = restTemplate.getForObject(URL_WEATHER, Weather.class);
+
+        if (weather != null) {
+            model.addAttribute("temp", Math.round(weather.getMain().getTemp() - 273.15));
+            model.addAttribute("icon", "https://openweathermap.org/img/wn/" +
+                    weather.getWeather().get(0).getIcon() + "@2x.png");
+            return weather;
+        }
+        return new Weather();
+    }
+
     @GetMapping()
-    public String index(Model model, Integer page, Integer size) {
+    public String index(Model model, Integer page, Integer size, String search) {
         Pageable pageable = PageRequest.of(
                 page == null ? 0 : page,
                 size == null ? 5 : size,
                 Sort.by("id"));
 
-        Page<PostDto> postDtoPage = postService.findAll(pageable);
+        Page<PostDto> postDtoPage;
 
+        if (search != null) {
+            postDtoPage = postService.findAllByTitle(search, pageable);
+        } else {
+            postDtoPage = postService.findAll(pageable);
+        }
         model.addAttribute("url", BASE_URL);
         model.addAttribute("page", postDtoPage);
         model.addAttribute("posts", postDtoPage.getContent());
