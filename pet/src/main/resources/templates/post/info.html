@@ -1,10 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="post/include/head.html"></head>
 
+<body>
+<header th:replace="include/header.html"></header>
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+        <!-- Blog Entries Column -->
+
+        <!-- Post Content Column -->
+        <div class="col-md-8 top">
+
+            <!-- Title -->
+            <h3 class="mt-4" th:text="${post.title}">
+            </h3>
+            <a class="float-right" th:href="@{/posts/edit/{id}(id=${post.id})}">
+                <svg class="icon-float" th:replace="include/icon/edit.html"></svg>
+            </a>
+            <a class="float-right" th:href="@{/posts/delete/{id}(id=${post.id})}">
+                <svg class="icon-float" th:replace="include/icon/delete.html"></svg>
+            </a>
+            <hr>
+
+            <!-- Date/Time -->
+            <p th:text="${post.publicationDate}"></p>
+            <hr>
+
+            <!-- Preview Image -->
+            <img class="img-fluid rounded" src="" th:src="@{/images/post/4.jpg}" alt="post">
+            <hr>
+
+            <div class="card mb-4">
+                <!-- Post Content -->
+                <h5 class="card-title font-italic" th:text="${post.subtitle}"></h5>
+
+                <p class="card-text" th:text="${post.contents}"></p>
+
+            </div>
+        </div>
+        <div th:replace="post/include/sidebar.html"></div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="include/footer.html"></footer>
 </body>
+
 </html>
+

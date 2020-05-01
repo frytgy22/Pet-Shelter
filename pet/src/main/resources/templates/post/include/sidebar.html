@@ -26,7 +26,7 @@
                 <div class="input-group">
                     <label for="search"></label>
                     <input type="text" name="search" required class="form-control" id="search"
-                           placeholder="Search by title...">
+                           placeholder="Search by post title...">
                     <span class="input-group-btn">
                 <button class="btn btn-secondary" type="submit">Go!</button>
               </span>
@@ -40,15 +40,18 @@
         <h5 class="card-header">Categories</h5>
         <div class="card-body">
             <div class="row">
-                <form method="post" action="">
+                <form method="get" action="" th:action="@{/posts}">
 
                     <ul class="list-unstyled mb-0">
                         <th:block th:each="category : ${categories}">
+
                             <li class="li">
-                                <button class="but" type="submit" name="categories"
-                                        th:text="${category.toString()}">
-                                </button>
+                                <a role="button" class="btn btn-outline-primary btn-sm but"
+                                   th:href="@{/posts(category=${category})}">
+                                    <span th:text="${category.toString()}"></span>
+                                </a>
                             </li>
+
                         </th:block>
                     </ul>
                 </form>

@@ -55,7 +55,7 @@ public class PostServiceImpl implements PostService {
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     @Override
-    public Page<PostDto> findAllByTitle(@NonNull @NotNull String title, Pageable pageable) {
+    public Page<PostDto> findAllByContainsTitle(@NonNull @NotNull String title, Pageable pageable) {
         return postRepository.findAllByTitleContainsIgnoreCase(title, pageable)
                 .map(postMapper::toDto);
     }
@@ -63,7 +63,7 @@ public class PostServiceImpl implements PostService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     @Override
     public Page<PostDto> findAllByCategory(@NonNull @NotNull Category category, Pageable pageable) {
-        return postRepository.findAllByCategoryContainsIgnoreCase(category, pageable)
+        return postRepository.findAllByCategory(category, pageable)
                 .map(postMapper::toDto);
     }
 }

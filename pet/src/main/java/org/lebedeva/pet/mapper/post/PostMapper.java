@@ -10,7 +10,7 @@ public interface PostMapper {
 
     default Post toEntity(PostDto dto) throws EnumConstantNotPresentException {
         return new Post(dto.getId(), dto.getTitle(), dto.getSubtitle(), dto.getContents(),
-                dto.getPublicationDate(), Category.valueOf(dto.getCategory()), dto.getPhoto());
+                dto.getPublicationDate(), Category.valueOf(dto.getCategory().toUpperCase()), dto.getPhoto());
     }
 
     default PostDto toDto(Post entity) {

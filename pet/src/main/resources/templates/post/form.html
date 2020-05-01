@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label for="photo">Photo</label>
                     <input type="hidden" th:field="*{photo}">
-                    <input type="file" multiple class="form-control-file" name="img" accept=".jpg, .jpeg, .png"
+                    <input type="file" multiple class="form-control-file" name="img"
                            id="photo"/>
                     <span class="text-danger" th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}"></span>
                 </div>

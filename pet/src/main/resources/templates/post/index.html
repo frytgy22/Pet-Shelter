@@ -20,9 +20,7 @@
                 <div class="card-body">
                     <h2 class="card-title font-italic" th:text="${post.title}"></h2>
                     <p class="card-text" th:text="${post.subtitle}"></p>
-
-                        <a   class="btn btn-primary" >Read More
-                        </a>
+                    <a class="btn btn-primary" th:href="@{/posts/info/{id}(id=${post.id})}">Read More</a>
                 </div>
                 <div class="card-footer text-muted">
                     <p th:text="${post.category.toString()}"> category:</p>
@@ -30,7 +28,7 @@
                 </div>
             </div>
 
-            <div th:replace="include/pagination.html"></div>
+            <div th:replace="post/include/pagination.html"></div>
 
         </div>
         <div th:replace="post/include/sidebar.html"></div>

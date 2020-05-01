@@ -2,6 +2,7 @@ package org.lebedeva.pet.dto.post;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.lebedeva.pet.model.post.Category;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
@@ -44,9 +45,6 @@ public class PostDto {
 
     @NonNull
     @NotNull(message = "must be set")
-    @Enumerated(EnumType.STRING)
-    @Pattern(regexp = "HEALTH|MEDICINE|NUTRITION|GAMES|TRAINING|CARE|CATS|DOGS|FUN",
-            message = "The value must match the value from the list")
     private String category;
 
     private String photo;

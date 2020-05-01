@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import javax.validation.constraints.NotNull;
 
 public interface PostService extends GenericService<PostDto, Post> {
-    Page<PostDto> findAllByTitle(@NonNull @NotNull String title, Pageable pageable);
+    Page<PostDto> findAllByContainsTitle(@NonNull @NotNull String title, Pageable pageable);
 
     Page<PostDto> findAllByCategory(@NonNull @NotNull Category category, Pageable pageable);
 }

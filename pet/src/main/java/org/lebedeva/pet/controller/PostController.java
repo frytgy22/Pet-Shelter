@@ -85,22 +85,33 @@ public class PostController {
     }
 
     @GetMapping()
-    public String index(Model model, Integer page, Integer size, String search) {
+    public String index(Model model, Integer page, Integer size, String search, String category) {
         Pageable pageable = PageRequest.of(
                 page == null ? 0 : page,
-                size == null ? 5 : size,
-                Sort.by("id"));
+                size == null ? 3 : size,
+                Sort.by("publicationDate"));
 
         Page<PostDto> postDtoPage;
 
-        if (search != null) {
-            postDtoPage = postService.findAllByTitle(search, pageable);
+        if (search != null && !"".equals(search)) {
+            postDtoPage = postService.findAllByContainsTitle(search, pageable);
+        } else if (category != null) {
+
+            try {
+                postDtoPage = postService.findAllByCategory(Category.valueOf(category.toUpperCase()), pageable);
+            } catch (Exception e) {
+                log.error(e.getLocalizedMessage(), e);
+                postDtoPage = postService.findAll(pageable);
+            }
         } else {
             postDtoPage = postService.findAll(pageable);
         }
+
         model.addAttribute("url", BASE_URL);
         model.addAttribute("page", postDtoPage);
         model.addAttribute("posts", postDtoPage.getContent());
+        model.addAttribute("search", search);
+        model.addAttribute("category", category);
         return INDEX_PATH;
     }
 
@@ -117,7 +128,7 @@ public class PostController {
                          MultipartFile img) {
 
         if (img != null) {
-            fileValidator.validate(img, bindingResult);
+           // fileValidator.validate(img, bindingResult);
         }
         if (!bindingResult.hasErrors()) {
             try {
