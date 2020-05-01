@@ -29,9 +29,6 @@ public class CatBreedServiceImpl implements CatBreedService {
 
     @Override
     public CatBreed save(CatBreedDto dto) {
-//        CatBreed breed = catBreedRepository.findOneWithEagerRelationships(dto.getId()).orElse(new CatBreed());
-//        breed.setName(dto.getName());
-//        return catBreedRepository.save(breed);
         CatBreed catBreed = catBreedMapper.toEntity(dto);
         return catBreedRepository.save(catBreed);
     }
@@ -46,10 +43,6 @@ public class CatBreedServiceImpl implements CatBreedService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     @Override
     public Optional<CatBreedDto> findById(Integer id) {
-//        CatBreed breed = catBreedRepository.findById(id).orElse(null);
-//        return breed != null ?
-//                Optional.of(catBreedMapper.toDto(breed))
-//                : Optional.empty();
         return catBreedRepository.findById(id)
                 .map(catBreedMapper::toDto);
     }

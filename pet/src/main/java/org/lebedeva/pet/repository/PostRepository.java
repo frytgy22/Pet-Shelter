@@ -12,5 +12,5 @@ import javax.validation.constraints.NotNull;
 public interface PostRepository extends JpaRepository<Post, Integer> {
     Page<Post> findAllByTitleContainsIgnoreCase(@NonNull @NotNull String title, Pageable pageable);
 
-    Page<Post> findAllByCategory(@NonNull @NotNull Category category, Pageable pageable);
+    Page<Post> findAllByCategories(@NonNull @NotNull Category category, Pageable pageable);
 }

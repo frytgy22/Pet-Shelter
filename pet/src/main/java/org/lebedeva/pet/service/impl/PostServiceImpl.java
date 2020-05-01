@@ -5,6 +5,7 @@ import org.lebedeva.pet.dto.post.PostDto;
 import org.lebedeva.pet.mapper.post.PostMapper;
 import org.lebedeva.pet.model.post.Category;
 import org.lebedeva.pet.model.post.Post;
+import org.lebedeva.pet.repository.CategoryRepository;
 import org.lebedeva.pet.repository.PostRepository;
 import org.lebedeva.pet.service.PostService;
 import org.springframework.data.domain.Page;
@@ -15,22 +16,33 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
 public class PostServiceImpl implements PostService {
 
+    private final CategoryRepository categoryRepository;
     private final PostRepository postRepository;
     private final PostMapper postMapper;
 
-    public PostServiceImpl(PostRepository postRepository, PostMapper postMapper) {
+    public PostServiceImpl(CategoryRepository categoryRepository,
+                           PostRepository postRepository,
+                           PostMapper postMapper) {
+        this.categoryRepository = categoryRepository;
         this.postRepository = postRepository;
         this.postMapper = postMapper;
     }
 
     @Override
     public Post save(PostDto dto) {
+        Set<Category> categories = dto.getCategoryId().stream()
+                .map(id -> categoryRepository.findById(id).orElse(null))
+                .collect(Collectors.toSet());
+
         Post post = postMapper.toEntity(dto);
+        post.setCategories(categories);
         return postRepository.save(post);
     }
 
@@ -63,7 +75,7 @@ public class PostServiceImpl implements PostService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     @Override
     public Page<PostDto> findAllByCategory(@NonNull @NotNull Category category, Pageable pageable) {
-        return postRepository.findAllByCategory(category, pageable)
+        return postRepository.findAllByCategories(category, pageable)
                 .map(postMapper::toDto);
     }
 }

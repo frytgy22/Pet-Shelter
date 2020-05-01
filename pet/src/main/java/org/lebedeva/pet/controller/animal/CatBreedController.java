@@ -25,7 +25,6 @@ public class CatBreedController {
     public static final String INDEX_PATH = VIEW_PATH + "/index";
     public static final String REDIRECT_INDEX = "redirect:" + BASE_URL;
 
-    private Pageable pageable;
     private final CatBreedService catBreedService;
 
     public CatBreedController(CatBreedService catBreedService) {
@@ -38,7 +37,7 @@ public class CatBreedController {
 
     @GetMapping
     public String index(Model model, Integer page, Integer size) {
-        pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("name"));
+        Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("name"));
         Page<CatBreedDto> catBreedsPage = catBreedService.findAll(pageable);
 
         model.addAttribute("url", BASE_URL);

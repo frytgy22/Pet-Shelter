@@ -44,20 +44,21 @@
 
                 <div class="form-group">
                     <label for="breed">Category</label>
-                    <select class="form-control" id="breed" th:field="*{category}" required>
+                    <select class="form-control" id="breed" th:field="*{categoryId}" required>
                         <th:block th:each="category : ${categories}">
-                            <option th:value="${category}" th:text="${category}"></option>
+                            <option th:value="${category.id}" th:text="${category.name}"></option>
                         </th:block>
                     </select>
-                    <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+                    <span class="text-danger" th:if="${#fields.hasErrors('categoryId')}"
+                          th:errors="*{categoryId}"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="photo">Photo</label>
-                    <input type="hidden" th:field="*{photo}">
+                    <input type="hidden" th:field="*{file}">
                     <input type="file" multiple class="form-control-file" name="img"
                            id="photo"/>
-                    <span class="text-danger" th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}"></span>
+                    <span class="text-danger" th:if="${#fields.hasErrors('file')}" th:errors="*{file}"></span>
                 </div>
 
                 <div class="text-center">

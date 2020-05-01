@@ -6,9 +6,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -16,6 +17,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "posts")
 @RequiredArgsConstructor
+@ToString(exclude = "categories")
+@EqualsAndHashCode(exclude = "categories")
 public class Post {
 
     @Id
@@ -44,10 +47,11 @@ public class Post {
     @Column(name = "publication_date", nullable = false)
     private LocalDate publicationDate;
 
-    @NonNull
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Category category;
+    private String file;
 
-    private String photo;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "post_categories",
+            joinColumns = @JoinColumn(name = "posts_id"),
+            inverseJoinColumns = @JoinColumn(name = "categories_id"))
+    private Set<Category> categories = new HashSet<>();
 }

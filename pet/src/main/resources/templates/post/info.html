@@ -13,14 +13,16 @@
         <!-- Post Content Column -->
         <div class="col-md-8 top">
 
-            <!-- Title -->
-            <h3 class="mt-4" th:text="${post.title}">
-            </h3>
-            <a class="float-right" th:href="@{/posts/edit/{id}(id=${post.id})}">
-                <svg class="icon-float" th:replace="include/icon/edit.html"></svg>
-            </a>
+            <div class="card mb-4 border-0">
+                <!-- Title -->
+                <h3 class="mt-4" th:text="${post.title}"></h3>
+            </div>
+
             <a class="float-right" th:href="@{/posts/delete/{id}(id=${post.id})}">
-                <svg class="icon-float" th:replace="include/icon/delete.html"></svg>
+                <svg th:replace="include/icon/delete.html"></svg>
+            </a>
+            <a class="float-right mr-md-3" th:href="@{/posts/edit/{id}(id=${post.id})}">
+                <svg th:replace="include/icon/edit.html"></svg>
             </a>
             <hr>
 
@@ -37,8 +39,8 @@
                 <h5 class="card-title font-italic" th:text="${post.subtitle}"></h5>
 
                 <p class="card-text" th:text="${post.contents}"></p>
-
             </div>
+
         </div>
         <div th:replace="post/include/sidebar.html"></div>
     </div>

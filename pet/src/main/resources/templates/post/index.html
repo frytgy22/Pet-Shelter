@@ -11,19 +11,31 @@
         <!-- Blog Entries Column -->
 
         <div class="col-md-8 top">
+
+            <p class="text-danger" th:text="${message}"></p>
+            <a class="btn btn-primary" th:href="@{/posts/create}">
+                <svg th:replace="include/icon/add.html"></svg>
+                Add new post</a>
+
             <h1 class="my-4">Everything you need for pets
                 <small>is here</small>
             </h1>
             <!-- Blog Post -->
             <div class="card mb-4" th:each="post : ${posts}">
-                <img class="card-img-top" src="" th:src="@{/images/post/4.jpg}" alt="post">
+
+                <img th:if="${post.file == null or post.file == ''}" class="card-img-top" src=""
+                     th:src="@{/images/post/4.jpg}" alt="post">
+
+                <img th:unless="${post.file == null or post.file == ''}" class="card-img-top"
+                     src="" th:src="@{/uploads/posts/{photo}(photo=${post.id + '/' + post.file})}" alt="post">
+
                 <div class="card-body">
                     <h2 class="card-title font-italic" th:text="${post.title}"></h2>
                     <p class="card-text" th:text="${post.subtitle}"></p>
                     <a class="btn btn-primary" th:href="@{/posts/info/{id}(id=${post.id})}">Read More</a>
                 </div>
                 <div class="card-footer text-muted">
-                    <p th:text="${post.category.toString()}"> category:</p>
+                    <p th:text="${post.categoryName}"> category:</p>
                     <span th:text="${post.publicationDate}"> by</span>
                 </div>
             </div>

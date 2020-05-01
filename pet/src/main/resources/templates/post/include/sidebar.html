@@ -40,28 +40,25 @@
         <h5 class="card-header">Categories</h5>
         <div class="card-body">
             <div class="row">
-                <form method="get" action="" th:action="@{/posts}">
+                <ul class="list-unstyled mb-0">
+                    <th:block th:each="category : ${categories}">
 
-                    <ul class="list-unstyled mb-0">
-                        <th:block th:each="category : ${categories}">
+                        <li class="li">
+                            <a role="button" class="btn btn-outline-primary btn-sm but"
+                               th:href="@{/posts(category=${category.name})}">
+                                <span th:text="${category.name}"></span>
+                            </a>
+                        </li>
 
-                            <li class="li">
-                                <a role="button" class="btn btn-outline-primary btn-sm but"
-                                   th:href="@{/posts(category=${category})}">
-                                    <span th:text="${category.toString()}"></span>
-                                </a>
-                            </li>
-
-                        </th:block>
-                    </ul>
-                </form>
+                    </th:block>
+                </ul>
             </div>
         </div>
     </div>
 
     <!-- Side Widget -->
     <div class="card my-4">
-        <p class="card-header font-italic">They are looking forward to their family.</p>
+        <p class="card-header font-italic">They are looking forward to their family</p>
         <div class="card-body">
             <img src="" class="card-img-top" width="100" th:src="@{/images/post/2.jpg}" alt="pets">
             <p class="font-italic">Phone: 123-456-789</p>

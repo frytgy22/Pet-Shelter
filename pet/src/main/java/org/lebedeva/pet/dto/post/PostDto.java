@@ -13,6 +13,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -43,9 +47,11 @@ public class PostDto {
     @Column(name = "publication_date", nullable = false)
     private LocalDate publicationDate;
 
-    @NonNull
-    @NotNull(message = "must be set")
-    private String category;
+    private String file;
 
-    private String photo;
+    @NonNull//TODO
+    @NotNull(message = "must be set")
+    private Set<Integer> categoryId = new HashSet<>();
+
+    private Set<String> categoryName = new HashSet<>();
 }
