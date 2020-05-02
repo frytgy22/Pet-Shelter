@@ -17,9 +17,6 @@ import java.util.Set;
 @ToString(exclude = "posts")
 @EqualsAndHashCode(exclude = "posts")
 public class Category {
-//    HEALTH, MEDICINE, NUTRITION, GAMES,
-//    TRAINING, CARE, CATS, DOGS, FUN,
-//    ADVICE, INFO;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +28,6 @@ public class Category {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @JoinTable(name = "post_categories",
-            joinColumns = @JoinColumn(name = "categories_id"),
-            inverseJoinColumns = @JoinColumn(name = "posts_id"))
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "categories")
     private Set<Post> posts = new HashSet<>();
 }

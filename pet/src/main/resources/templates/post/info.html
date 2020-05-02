@@ -31,7 +31,11 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-fluid rounded" src="" th:src="@{/images/post/4.jpg}" alt="post">
+            <img th:if="${post.file == null or post.file == ''}" class="card-img-top" src=""
+                 th:src="@{/images/post/4.jpg}" alt="post">
+
+            <img th:unless="${post.file == null or post.file == ''}" class="card-img-top"
+                 src="" th:src="@{/uploads/posts/{photo}(photo=${post.id + '/' + post.file})}" alt="post">
             <hr>
 
             <div class="card mb-4">

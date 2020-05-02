@@ -123,7 +123,7 @@ public class PostController {
                          MultipartFile img) {
 
         if (img != null) {
-            // fileValidator.validate(img, bindingResult);//TODO fix video
+            fileValidator.validate(img, bindingResult);
         }
         if (!bindingResult.hasErrors()) {
             try {

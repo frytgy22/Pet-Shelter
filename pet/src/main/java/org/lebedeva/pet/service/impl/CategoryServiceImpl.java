@@ -45,7 +45,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category save(CategoryDto dto) {
         Category category = categoryRepository.findOneWithEagerRelationships(dto.getId()).orElse(new Category());
-        category.setName(dto.getName().toLowerCase());
+        category.setName(dto.getName().toUpperCase());
         return categoryRepository.save(category);
     }
 

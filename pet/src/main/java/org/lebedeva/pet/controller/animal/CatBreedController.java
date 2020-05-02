@@ -62,7 +62,7 @@ public class CatBreedController {
                 catBreedService.save(catBreedDto);
                 attributes.addFlashAttribute("message", "Saved successfully!");
             } catch (Exception e) {
-                attributes.addFlashAttribute("message", "Saving failed. The breed already exists!");
+                attributes.addFlashAttribute("message", "Saving failed. This breed already exists!");
                 log.error(e.getLocalizedMessage(), e);
             }
             return REDIRECT_INDEX;

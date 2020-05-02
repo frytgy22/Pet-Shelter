@@ -49,7 +49,7 @@ public class Post {
 
     private String file;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)//TODO
     @JoinTable(name = "post_categories",
             joinColumns = @JoinColumn(name = "posts_id"),
             inverseJoinColumns = @JoinColumn(name = "categories_id"))

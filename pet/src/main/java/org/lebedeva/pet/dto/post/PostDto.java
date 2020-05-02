@@ -2,20 +2,14 @@ package org.lebedeva.pet.dto.post;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
-import org.lebedeva.pet.model.post.Category;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -49,7 +43,7 @@ public class PostDto {
 
     private String file;
 
-    @NonNull//TODO
+    @NonNull
     @NotNull(message = "must be set")
     private Set<Integer> categoryId = new HashSet<>();
 

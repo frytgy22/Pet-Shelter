@@ -62,7 +62,7 @@ public class CategoryController {
                 categoryService.save(categoryDto);
                 attributes.addFlashAttribute("message", "Saved successfully!");
             } catch (Exception e) {
-                attributes.addFlashAttribute("message", "Saving failed. The category already exists!");
+                attributes.addFlashAttribute("message", "Saving failed. This category already exists!");
                 log.error(e.getLocalizedMessage(), e);
             }
             return REDIRECT_INDEX;
