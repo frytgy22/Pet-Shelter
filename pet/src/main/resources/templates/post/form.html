@@ -43,12 +43,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="category">Category</label>
+                    <label for="category">Categories</label>
                     <select multiple="multiple"
                             id="category" class="form-control" th:field="*{categoryId}" required>
+
                         <th:block th:each="category : ${categories}">
                             <option th:value="${category.id}" th:text="${category.name}"></option>
                         </th:block>
+
                     </select>
                     <span class="text-danger" th:if="${#fields.hasErrors('categoryId')}"
                           th:errors="*{categoryId}"></span>

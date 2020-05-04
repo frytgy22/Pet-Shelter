@@ -4,51 +4,52 @@
 <body>
 <header th:replace="include/header.html"></header>
 
-<main role="main" class="my-size">
-    <h3 class="text-center">Sign in</h3>
-    <br>
-    <form th:action="@{/login}" action="" method="post">
-        <div class="form-row align-items-center">
-            <div class="col-auto">
-                <label class="sr-only" for="inlineFormInput"></label>
-                <input type="email" class="form-control mb-2" id="inlineFormInput" name="custom_username"
-                       placeholder="Email">
-            </div>
-            <div class="col-auto">
-                <label class="sr-only" for="inlineFormInputGroup"></label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">@</div>
+<div class="container">
+    <main role="main" class="my-size">
+        <h3 class="text-center">Sign in</h3>
+        <br>
+        <form th:action="@{/login}" action="" method="post">
+            <div class="form-row align-items-center">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInput"></label>
+                    <input type="email" class="form-control mb-2" id="inlineFormInput" name="custom_username"
+                           placeholder="Email">
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup"></label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"> 👉</div>
+                        </div>
+                        <input type="password" class="form-control" id="inlineFormInputGroup" name="custom_password"
+                               placeholder="Password">
                     </div>
-                    <input type="password" class="form-control" id="inlineFormInputGroup" name="custom_password"
-                           placeholder="Password">
                 </div>
-            </div>
-            <div class="col-auto">
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" name="remember-me" id="remember-me">
-                    <label class="form-check-label" for="remember-me">
-                        Remember me
-                    </label>
+                <div class="col-auto">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" name="remember-me" id="remember-me">
+                        <label class="form-check-label" for="remember-me">
+                            Remember me
+                        </label>
+                    </div>
                 </div>
+                <input
+                        type="hidden"
+                        th:name="${_csrf.parameterName}"
+                        th:value="${_csrf.token}"/>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-2">Sign in</button>
+                </div>
+
             </div>
-            <input
-                    type="hidden"
-                    th:name="${_csrf.parameterName}"
-                    th:value="${_csrf.token}"/>
+            <p th:if="${#request.getParameter('error') == 'credentials'}"
+               class="text-danger">Invalid email or password</p>
 
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-2">Sign in</button>
-            </div>
+        </form>
+    </main>
+</div>
 
-        </div>
-        <p th:if="${#request.getParameter('error') == 'credentials'}"
-           class="text-danger">Invalid email or password</p>
-
-    </form>
-
-    <footer th:replace="include/footer.html"></footer>
-</main>
-
+<footer th:replace="include/footer.html"></footer>
 </body>
 </html>

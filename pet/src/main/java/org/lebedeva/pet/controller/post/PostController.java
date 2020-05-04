@@ -3,7 +3,7 @@ package org.lebedeva.pet.controller.post;
 import lombok.extern.slf4j.Slf4j;
 import org.lebedeva.pet.dto.post.CategoryDto;
 import org.lebedeva.pet.dto.post.PostDto;
-import org.lebedeva.pet.model.weather.Weather;
+import org.lebedeva.pet.model.rate.Rate;
 import org.lebedeva.pet.service.CategoryService;
 import org.lebedeva.pet.service.PostService;
 import org.lebedeva.pet.service.UploadFileService;
@@ -26,6 +26,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@SessionAttributes("rares")
 @RequestMapping(PostController.BASE_URL)
 public class PostController {
 
@@ -36,8 +37,7 @@ public class PostController {
     public static final String INFO_PATH = VIEW_PATH + "/info";
     public static final String INDEX_PATH = VIEW_PATH + "/index";
     public static final String REDIRECT_INDEX = "redirect:" + BASE_URL;
-    public static final String URL_WEATHER =
-            "http://api.openweathermap.org/data/2.5/weather?q=Dnipro&appid=bc5422a1c3cfc20a7193c6d338279896";
+    public static final String URL_RATES = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
 
     private final PostService postService;
     private final RestTemplate restTemplate;
@@ -66,17 +66,14 @@ public class PostController {
         return categoryService.findCategoriesDto();
     }
 
-    @ModelAttribute("weather")
-    public Weather weather(Model model) {
-        Weather weather = restTemplate.getForObject(URL_WEATHER, Weather.class);
+    @ModelAttribute("rares")
+    public Rate[] getRate() {
+        Rate[] rate = restTemplate.getForObject(URL_RATES, Rate[].class);
 
-        if (weather != null) {
-            model.addAttribute("temp", Math.round(weather.getMain().getTemp()));
-            model.addAttribute("icon", "https://openweathermap.org/img/wn/" +
-                    weather.getWeather().get(0).getIcon() + "@2x.png");
-            return weather;
+        if (rate != null) {
+            return rate;
         }
-        return new Weather();
+        return new Rate[0];
     }
 
     @GetMapping()

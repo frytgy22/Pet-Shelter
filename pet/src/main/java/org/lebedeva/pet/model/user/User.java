@@ -3,7 +3,6 @@ package org.lebedeva.pet.model.user;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -47,20 +46,13 @@ public class User implements UserDetails {
     @NonNull
     @NotNull
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", nullable = false))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        Role[] objects = roles.toArray(new Role[0]);
-        String[] d=new String[objects.length];
-
-        for (int i = 0; i <objects.length ; i++) {
-            d[i]=objects[i].toString();
-        }
-        return AuthorityUtils.createAuthorityList(d);
+        return getRoles();
     }
 
     @Override

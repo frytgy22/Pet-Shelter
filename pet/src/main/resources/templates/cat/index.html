@@ -4,70 +4,72 @@
 <body>
 <header th:replace="include/header.html"></header>
 
-<main class="my-size" role="main">
-    <h3 class="text-center">Cats</h3>
-    <p class="text-danger" th:text="${message}"></p>
+<div class="container">
+    <main class="my-size" role="main">
+        <h3 class="text-center">Cats</h3>
+        <p class="text-danger" th:text="${message}"></p>
 
-    <div class="grey-color">
-        <div class="btn-group " role="group" aria-label="sort">
-            <a th:href="@{/cats(sort='breed')}" class="btn btn-secondary sort-color">Sorting by breed</a>
-            <a th:href="@{/cats(sort='birthDate')}" class="btn btn-secondary sort-color">Sorting by age</a>
-            <a th:href="@{/cats(sort='gender')}" class="btn btn-secondary sort-color">Sorting by gender</a>
+        <div class="grey-color">
+            <div class="btn-group " role="group" aria-label="sort">
+                <a th:href="@{/cats(sort='breed')}" class="btn btn-secondary sort-color">Sorting by breed</a>
+                <a th:href="@{/cats(sort='birthDate')}" class="btn btn-secondary sort-color">Sorting by age</a>
+                <a th:href="@{/cats(sort='gender')}" class="btn btn-secondary sort-color">Sorting by gender</a>
+            </div>
+
+            <a class="btn btn-primary float-right" th:href="@{/cats/create}">
+                <svg th:replace="include/icon/add.html"></svg>
+                Add new cat</a>
         </div>
 
-        <a class="btn btn-primary float-right" th:href="@{/cats/create}">
-            <svg th:replace="include/icon/add.html"></svg>
-            Add new cat</a>
-    </div>
+        <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Breed</th>
+                <th scope="col">Birth date</th>
+                <th scope="col">Info</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cat: ${cats}">
+                <th th:text="${cat.id}" scope="row"></th>
+                <td>
+                    <img th:if="${cat.photo == null or cat.photo == ''}" class="avatar box" src=""
+                         th:src="@{/uploads/avatar.png}" alt="pet">
 
-    <table class="table table-hover">
-        <thead class="thead-light">
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Photo</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Breed</th>
-            <th scope="col">Birth date</th>
-            <th scope="col">Info</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="cat: ${cats}">
-            <th th:text="${cat.id}" scope="row"></th>
-            <td>
-                <img th:if="${cat.photo == null or cat.photo == ''}" class="avatar box" src=""
-                     th:src="@{/uploads/avatar.png}" alt="pet">
+                    <img th:unless="${cat.photo == null or cat.photo == ''}" class="avatar box" src=""
+                         th:src="@{/uploads/cats/{photo}(photo=${cat.id + '/' + cat.photo})}" alt="pet">
+                </td>
+                <td th:text="${cat.gender}"></td>
+                <td th:text="${cat.breedName}"></td>
+                <td th:text="${cat.birthDate}"></td>
+                <td>
+                    <a th:href="@{/cats/info/{id}(id=${cat.id})}">
+                        <svg th:replace="include/icon/info.html"></svg>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/cats/edit/{id}(id=${cat.id})}">
+                        <svg th:replace="include/icon/edit.html"></svg>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/cats/delete/{id}(id=${cat.id})}">
+                        <svg th:replace="include/icon/delete.html"></svg>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-                <img th:unless="${cat.photo == null or cat.photo == ''}" class="avatar box" src=""
-                     th:src="@{/uploads/cats/{photo}(photo=${cat.id + '/' + cat.photo})}" alt="pet">
-            </td>
-            <td th:text="${cat.gender}"></td>
-            <td th:text="${cat.breedName}"></td>
-            <td th:text="${cat.birthDate}"></td>
-            <td>
-                <a th:href="@{/cats/info/{id}(id=${cat.id})}">
-                    <svg th:replace="include/icon/info.html"></svg>
-                </a>
-            </td>
-            <td>
-                <a th:href="@{/cats/edit/{id}(id=${cat.id})}">
-                    <svg th:replace="include/icon/edit.html"></svg>
-                </a>
-            </td>
-            <td>
-                <a th:href="@{/cats/delete/{id}(id=${cat.id})}">
-                    <svg th:replace="include/icon/delete.html"></svg>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <div th:replace="include/pagination.html"></div>
+    </main>
+</div>
 
-    <div th:replace="include/pagination.html"></div>
-    <footer th:replace="include/footer.html"></footer>
-</main>
-
+<footer th:replace="include/footer.html"></footer>
 </body>
 </html>

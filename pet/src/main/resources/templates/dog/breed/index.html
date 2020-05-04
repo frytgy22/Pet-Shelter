@@ -4,47 +4,48 @@
 <body>
 <header th:replace="include/header.html"></header>
 
-<main class="my-size" role="main">
-    <h3 class="text-center">Dog breeds</h3>
+<div class="container">
+    <main class="my-size" role="main">
+        <h3 class="text-center">Dog breeds</h3>
 
-    <span class="float-left text-danger" th:text="${message}"></span>
+        <span class="float-left text-danger" th:text="${message}"></span>
 
-    <a class="btn btn-primary float-right" th:href="@{/dogs/breeds/create}">
-        <svg th:replace="include/icon/add.html"></svg>
-        Add new breed</a>
+        <a class="btn btn-primary float-right" th:href="@{/dogs/breeds/create}">
+            <svg th:replace="include/icon/add.html"></svg>
+            Add new breed</a>
 
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="breed : ${dogBreeds}">
-            <th th:text="${breed.id}" scope="row"></th>
-            <td th:text="${breed.name}"></td>
-            <td>
-                <a th:href="@{/dogs/breeds/edit/{id}(id=${breed.id})}">
-                    <svg th:replace="include/icon/edit.html"></svg>
-                </a>
-            </td>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="breed : ${dogBreeds}">
+                <th th:text="${breed.id}" scope="row"></th>
+                <td th:text="${breed.name}"></td>
+                <td>
+                    <a th:href="@{/dogs/breeds/edit/{id}(id=${breed.id})}">
+                        <svg th:replace="include/icon/edit.html"></svg>
+                    </a>
+                </td>
 
-            <td>
-                <a th:href="@{/dogs/breeds/delete/{id}(id=${breed.id})}">
-                    <svg th:replace="include/icon/delete.html"></svg>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                <td>
+                    <a th:href="@{/dogs/breeds/delete/{id}(id=${breed.id})}">
+                        <svg th:replace="include/icon/delete.html"></svg>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-    <div th:replace="include/pagination.html"></div>
+        <div th:replace="include/pagination.html"></div>
+    </main>
+</div>
 
-    <footer th:replace="include/footer.html"></footer>
-</main>
-
+<footer th:replace="include/footer.html"></footer>
 </body>
 </html>

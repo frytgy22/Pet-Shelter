@@ -32,6 +32,7 @@ public class UserController {
     public static final String FORM_PATH = VIEW_PATH + "/form";
     public static final String INDEX_PATH = VIEW_PATH + "/index";
     public static final String REDIRECT_INDEX = "redirect:" + BASE_URL;
+    public static final String REGISTRATION_PATH = VIEW_PATH + "/registration";
 
     private final UserService userService;
     private final UserValidator userValidator;
@@ -49,6 +50,16 @@ public class UserController {
     public void setMessage() {
     }
 
+    @ModelAttribute("userRoles")
+    public Role[] getRoles() {
+        try {
+            return Role.values();
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage(), e);
+        }
+        return new Role[0];
+    }
+
     @GetMapping
     public String index(Model model, Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("id"));
@@ -60,16 +71,16 @@ public class UserController {
         return INDEX_PATH;
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
+    @GetMapping("/registration")
+    public String registration(Model model) {
         model.addAttribute("userDto", new UserDto());
-        return FORM_PATH;
+        return REGISTRATION_PATH;
     }
 
-    @PostMapping("/create")
-    public String create(@Validated @ModelAttribute UserDto userDto,
-                         BindingResult bindingResult,
-                         RedirectAttributes attributes) {
+    @PostMapping("/registration")
+    public String registration(@Validated @ModelAttribute UserDto userDto,
+                               BindingResult bindingResult,
+                               RedirectAttributes attributes) {
         userValidator.validate(userDto, bindingResult);
 
         if (!bindingResult.hasErrors()) {
@@ -87,13 +98,13 @@ public class UserController {
 
                 attributes.addFlashAttribute("message", "Registered successfully!");
             } catch (Exception e) {
-                attributes.addFlashAttribute("message", "Register failed!");
+                attributes.addFlashAttribute("message", "Register failed! This email already exists!");
                 log.error(e.getLocalizedMessage(), e);
             }
             return "redirect:/posts";
         }
         log.error(bindingResult.toString());
-        return FORM_PATH;
+        return REGISTRATION_PATH;
     }
 
     @GetMapping("/delete/{id}")
@@ -106,5 +117,33 @@ public class UserController {
             log.error(e.getLocalizedMessage(), e);
         }
         return REDIRECT_INDEX;
+    }
+
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("userDto", new UserDto());
+        return FORM_PATH;
+    }
+
+    @PostMapping("/create")
+    public String create(@Validated @ModelAttribute UserDto userDto,
+                         BindingResult bindingResult,
+                         RedirectAttributes attributes) {
+        userValidator.validate(userDto, bindingResult);
+
+        if (!bindingResult.hasErrors()) {
+            try {
+                userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+                userService.save(userDto);
+
+                attributes.addFlashAttribute("message", "Saved successfully!");
+            } catch (Exception e) {
+                attributes.addFlashAttribute("message", "Saving failed. This email already exists!");
+                log.error(e.getLocalizedMessage(), e);
+            }
+            return REDIRECT_INDEX;
+        }
+        log.error(bindingResult.toString());
+        return FORM_PATH;
     }
 }

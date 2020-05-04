@@ -4,42 +4,44 @@
 <body>
 <header th:replace="include/header.html"></header>
 
-<main class="my-size" role="main">
-    <h3 class="text-center">Cat</h3>
-    <span class="float-left text-danger" th:text="${message}"></span>
+<div class="container">
+    <main class="my-size" role="main">
+        <h3 class="text-center">Cat</h3>
+        <span class="float-left text-danger" th:text="${message}"></span>
 
-    <a class="btn btn-primary float-right" th:href="@{/cats/breeds/create}">
-        <svg th:replace="include/icon/add.html"></svg>
-        Add new cat</a>
+        <a class="btn btn-primary float-right" th:href="@{/cats/breeds/create}">
+            <svg th:replace="include/icon/add.html"></svg>
+            Add new cat</a>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Photo</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Breed</th>
-            <th scope="col">Birth date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <img th:if="${cat.photo == null or cat.photo == ''}" class="photo shadow p-3 mb-5 bg-white rounded"
-                     src="" th:src="@{/uploads/avatar.png}" alt="pet">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Photo</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Breed</th>
+                <th scope="col">Birth date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <img th:if="${cat.photo == null or cat.photo == ''}" class="photo shadow p-3 mb-5 bg-white rounded"
+                         src="" th:src="@{/uploads/avatar.png}" alt="pet">
 
-                <img th:unless="${cat.photo == null or cat.photo == ''}" class="photo shadow p-3 mb-5 bg-white rounded"
-                     src="" th:src="@{/uploads/cats/{photo}(photo=${cat.id + '/' + cat.photo})}" alt="pet">
-            </td>
-            <td th:text="${cat.gender}"></td>
-            <td th:text="${cat.breedName}"></td>
-            <td th:text="${cat.birthDate}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <p th:text="${cat.description}"></p>
+                    <img th:unless="${cat.photo == null or cat.photo == ''}"
+                         class="photo shadow p-3 mb-5 bg-white rounded"
+                         src="" th:src="@{/uploads/cats/{photo}(photo=${cat.id + '/' + cat.photo})}" alt="pet">
+                </td>
+                <td th:text="${cat.gender}"></td>
+                <td th:text="${cat.breedName}"></td>
+                <td th:text="${cat.birthDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <p th:text="${cat.description}"></p>
+    </main>
+</div>
 
-    <footer th:replace="include/footer.html"></footer>
-</main>
-
+<footer th:replace="include/footer.html"></footer>
 </body>
 </html>
