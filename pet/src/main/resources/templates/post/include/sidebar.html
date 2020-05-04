@@ -3,18 +3,16 @@
 <!-- Sidebar Widgets Column -->
 <div class="col-md-4">
 
-
     <!-- Weather -->
     <div class="card my-4">
         <h5 class="card-header">Weather</h5>
         <div class="card-body">
-
-            <img class="float-right" src="" th:src="${icon}" alt="temp">
-            <h3 class="d-inline" th:text="${weather.name}"></h3>
-            <p class="d-inline"><span th:text="${temp}"></span> &#8451;</p>
-
-            <p>Sky: <span th:text="${weather.weather.get(0).description}"></span></p>
-            <p>Clouds: <span th:text="${weather.getClouds().all}"></span>%</p>
+            <img class="float-right" src="" id="icon" alt="temp">
+            <h3 class="d-inline" id="city"></h3>
+            <p class="d-inline" id="temp"></p>
+            <p id="desc"></p>
+            <p id="clouds"></p>
+            <p class="text-success" id="location"></p>
         </div>
     </div>
 
@@ -69,3 +67,88 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    var info = document.getElementById("location");
+
+    function getLocation() {
+        // В ubuntu 18.04  Firefox, Chromium не поддерживают navigator.geolocation.getCurrentPosition,
+        // Opera при этом работает.
+        //     Читала, что это баг убунты. Поэтому получаю локаль через get и это работает даже при выключенной
+        //     геолокациии в браузере.
+        //         Данные погоды не храню, т.к погода обновляется каждые 30 мин и
+        // пользователь при переходе на другую страницу всегда будет видеть актуальную погоду
+
+        if (navigator.geolocation) {
+            // navigator.geolocation.getCurrentPosition(
+            //     function (position) {
+            //         getCityByCoordinates(position.coords.latitude, position.coords.longitude);
+            //     },
+            //     function (error) {
+            //         console.log(error);
+            //         info.innerHTML = "To display the weather in your city, enable geolocation in your browser.";
+            //         getWeatherByCity("Kiev");
+            //     }
+            // );
+            fetch('https://location.services.mozilla.com/v1/geolocate?key=test', {method: 'GET'})
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    getCityByCoordinates(data.location.lat, data.location.lng);
+
+                }).catch(error => {
+                console.error(error);
+                setErrorDataWeather();
+            });
+        }
+    }
+
+    function getCityByCoordinates(x, y) {
+
+        fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + x + '&lon=' + y, {method: 'GET'})
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                getWeatherByCity(data.address.city);
+
+            }).catch(error => {
+            console.error(error);
+            setErrorDataWeather();
+        });
+    }
+
+    function getWeatherByCity(city) {
+
+        fetch('http://api.openweathermap.org/data/2.5/weather?q=' + city +
+            '&appid=bc5422a1c3cfc20a7193c6d338279896', {method: 'GET'})
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                setDataWeather(data);
+
+            }).catch(error => {
+            console.error(error);
+            setErrorDataWeather();
+        });
+    }
+
+    function setDataWeather(data) {
+        document.getElementById("icon").src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+        document.getElementById("city").innerHTML = data.name;
+        document.getElementById("temp").innerHTML = Math.round(data.main.temp - 273.15) + ' &#8451;';
+        document.getElementById("desc").innerHTML = "Sky: " + data.weather[0].description;
+        document.getElementById("clouds").innerHTML = "Clouds: " + data.clouds.all + " %";
+    }
+
+    function setErrorDataWeather() {
+        info.innerHTML = "To display the weather in your city, enable geolocation in your browser.";
+        getWeatherByCity("Kiev");
+    }
+
+    getLocation();
+
+</script>

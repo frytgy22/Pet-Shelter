@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @Slf4j
@@ -75,12 +76,14 @@ public class DogController {
         return INDEX_PATH;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("dogDto", new DogDto());
         return FORM_PATH;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute DogDto dogDto,
                          BindingResult bindingResult,
@@ -109,7 +112,7 @@ public class DogController {
         return FORM_PATH;
     }
 
-
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id, RedirectAttributes attributes) {
         try {
@@ -122,6 +125,7 @@ public class DogController {
         return REDIRECT_INDEX;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
         try {
@@ -133,6 +137,7 @@ public class DogController {
         return REDIRECT_INDEX;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @PostMapping("/edit/{id}")
     public String edit(@Validated @ModelAttribute DogDto dogDto,
                        BindingResult bindingResult,

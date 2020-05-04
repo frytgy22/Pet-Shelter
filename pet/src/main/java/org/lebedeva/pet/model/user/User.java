@@ -3,6 +3,7 @@ package org.lebedeva.pet.model.user;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class User implements UserDetails {
     private Integer id;
 
     @NonNull
+    @NotNull
     @NotBlank
     @Length(max = 30)
     private String name;
@@ -37,6 +39,7 @@ public class User implements UserDetails {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotNull
     @NonNull
     @NotBlank
     private String password;
@@ -50,7 +53,14 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+
+        Role[] objects = roles.toArray(new Role[0]);
+        String[] d=new String[objects.length];
+
+        for (int i = 0; i <objects.length ; i++) {
+            d[i]=objects[i].toString();
+        }
+        return AuthorityUtils.createAuthorityList(d);
     }
 
     @Override

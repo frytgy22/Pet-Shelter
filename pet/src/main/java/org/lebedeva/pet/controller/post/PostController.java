@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @Slf4j
@@ -70,7 +71,7 @@ public class PostController {
         Weather weather = restTemplate.getForObject(URL_WEATHER, Weather.class);
 
         if (weather != null) {
-            model.addAttribute("temp", Math.round(weather.getMain().getTemp() - 273.15));
+            model.addAttribute("temp", Math.round(weather.getMain().getTemp()));
             model.addAttribute("icon", "https://openweathermap.org/img/wn/" +
                     weather.getWeather().get(0).getIcon() + "@2x.png");
             return weather;
@@ -110,12 +111,14 @@ public class PostController {
         return INDEX_PATH;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("postDto", new PostDto());
         return FORM_PATH;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute PostDto postDto,
                          BindingResult bindingResult,
@@ -144,6 +147,7 @@ public class PostController {
         return FORM_PATH;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id, RedirectAttributes attributes) {
         try {
@@ -156,6 +160,7 @@ public class PostController {
         return REDIRECT_INDEX;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
         try {
@@ -167,6 +172,7 @@ public class PostController {
         return REDIRECT_INDEX;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @PostMapping("/edit/{id}")
     public String edit(@Validated @ModelAttribute PostDto postDto,
                        BindingResult bindingResult,

@@ -18,6 +18,6 @@ public class HomeController {
 
     @GetMapping("/403")
     public String error() {
-        return "user/access_denied";
+        return "access_denied";
     }
 }

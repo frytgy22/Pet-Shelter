@@ -14,8 +14,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.security.RolesAllowed;
+
 @Slf4j
 @Controller
+@RolesAllowed("ROLE_ADMIN")
 @RequestMapping(DogBreedController.BASE_URL)
 public class DogBreedController {
 

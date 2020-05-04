@@ -18,10 +18,12 @@
 
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>Example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                        <h1>Dogs</h1>
+                        <p>
+                            In our shelter well-groomed dogs, there are different breeds. You can see detailed
+                            information about each dog and choose the one that suits you.</p>
+                        <p><a th:href="@{/dogs}" class="btn btn-lg btn-primary" href="#" role="button">Learn more</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -30,10 +32,11 @@
                 <img class="image-header" src="" th:src="@{/images/header/15.jpg}" alt="pet">
                 <div class="container">
                     <div class="carousel-caption text-right">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                        <h1>Cats</h1>
+                        <p>In our shelter, well-groomed cats, there are different breeds. You can see detailed
+                            information about each cat and choose the most furry.</p>
+                        <p><a th:href="@{/cats}" class="btn btn-lg btn-primary" href="#" role="button">Learn more</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -42,10 +45,11 @@
                 <img class="image-header" src="" th:src="@{/images/header/9.jpg}" alt="pet">
                 <div class="container">
                     <div class="carousel-caption text-right">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                        <h1>Posts</h1>
+                        <p>All the necessary information on the care, training and nutrition of your pet in the new
+                            section "Posts". The most interesting and new articles, tips and a lot of humor.</p>
+                        <p><a class="btn btn-lg btn-primary"
+                              th:href="@{/users/create}" role="button">Sign up today</a></p>
                     </div>
                 </div>
             </div>
@@ -159,7 +163,13 @@
 
     </div><!-- /.container -->
 
-    <footer th:replace="include/footer.html"></footer>
+    <footer class="container">
+        <hr class="featurette-divider">
+        <p class="float-right"><a th:href="@{/}">Back to home</a></p>
+        <p>&copy; 2020 Pet shelter Company &middot; <a th:href="@{/}">About us</a> &middot; <a
+                th:href="@{/}">Contacts</a>
+        </p>
+    </footer>
 </main>
 </body>
 </html>

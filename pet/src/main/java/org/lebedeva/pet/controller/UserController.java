@@ -75,11 +75,9 @@ public class UserController {
         if (!bindingResult.hasErrors()) {
             try {
                 userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-                userDto.getRoles().add(Role.USER);
+                userDto.getRoles().add(Role.ROLE_USER);
 
                 User user = userService.save(userDto);
-                System.out.println(user);
-                System.out.println(user.getRoles());
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                         user, userDto.getPassword(), user.getAuthorities());
@@ -92,7 +90,7 @@ public class UserController {
                 attributes.addFlashAttribute("message", "Register failed!");
                 log.error(e.getLocalizedMessage(), e);
             }
-            return REDIRECT_INDEX;
+            return "redirect:/posts";
         }
         log.error(bindingResult.toString());
         return FORM_PATH;

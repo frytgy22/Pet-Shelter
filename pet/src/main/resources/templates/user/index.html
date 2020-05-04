@@ -9,16 +9,13 @@
 
     <span class="float-left text-danger" th:text="${message}"></span>
 
-    <a class="btn btn-primary float-right" th:href="@{/cats/breeds/create}">
-        <svg th:replace="include/icon/add.html"></svg>
-        Add new breed</a>
-
     <table class="table table-hover">
         <thead>
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Role</th>
             <th scope="col">Delete</th>
         </tr>
         </thead>
@@ -27,6 +24,7 @@
             <th th:text="${user.id}" scope="row"></th>
             <td th:text="${user.name}"></td>
             <td th:text="${user.email}"></td>
+            <td th:text="${user.roles}"></td>
             <td>
                 <a th:href="@{/users/delete/{id}(id=${user.id})}">
                     <svg th:replace="include/icon/delete.html"></svg>

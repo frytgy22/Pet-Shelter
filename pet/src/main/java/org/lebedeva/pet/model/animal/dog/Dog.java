@@ -31,8 +31,8 @@ public class Dog {
     @JoinColumn(name = "breed_fk", nullable = false)
     private DogBreed breed;
 
-    @PastOrPresent
     @NonNull
+    @PastOrPresent
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
@@ -44,6 +44,7 @@ public class Dog {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @NotNull
     @NonNull
     @NotBlank
     @Length(max = 5000)

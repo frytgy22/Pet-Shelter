@@ -31,8 +31,8 @@ public class Cat {
     @JoinColumn(name = "breed_fk", nullable = false)
     private CatBreed breed;
 
-    @PastOrPresent
     @NonNull
+    @PastOrPresent
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
@@ -45,6 +45,7 @@ public class Cat {
     private Gender gender;
 
     @NonNull
+    @NotNull
     @NotBlank
     @Length(max = 5000)
     private String description;

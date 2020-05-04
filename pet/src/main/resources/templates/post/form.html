@@ -43,8 +43,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="breed">Category</label>
-                    <select multiple class="form-control" id="breed" th:field="*{categoryId}" required>
+                    <label for="category">Category</label>
+                    <select multiple="multiple"
+                            id="category" class="form-control" th:field="*{categoryId}" required>
                         <th:block th:each="category : ${categories}">
                             <option th:value="${category.id}" th:text="${category.name}"></option>
                         </th:block>
@@ -77,6 +78,13 @@
     <!-- /.row -->
 </div>
 <!-- /.container -->
+
+<script>
+    var select = document.getElementById("category");
+    multi(select, {
+        enable_search: true
+    });
+</script>
 
 <!-- Footer -->
 <footer th:replace="include/footer.html"></footer>
