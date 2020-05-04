@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head th:replace="post/include/head.html"></head>
 
 <body>
@@ -13,7 +13,7 @@
         <div class="col-md-8 top">
 
             <p class="text-danger" th:text="${message}"></p>
-            <a class="btn btn-primary" th:href="@{/posts/create}">
+            <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary" th:href="@{/posts/create}">
                 <svg th:replace="include/icon/add.html"></svg>
                 Add new post</a>
 

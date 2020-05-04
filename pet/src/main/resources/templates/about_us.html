@@ -1,10 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="include/head.html"></head>
 
+<body>
+<header th:replace="include/header.html"></header>
+
+<div class="container">
+    <main role="main" class="my-size">
+
+        <h3>About us</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/jc5XQSVeQ2c"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+
+        <br>
+        <p>Set up in 2000 by the charitable foundation Sirius, the animal shelter was initially located in the village
+            Yasnogorodka, Kyiv region. Since then, the shelter has been maintained by its creators and great many
+            volunteers coming from Kyiv, Dnipro, Mykolayiv, and Cherkasy.
+            Since 2000, we have been carrying out a spay-and-neuter program for homeless cats and dogs searching for
+            cozy housing and caring adopters for them. This way we promote a humane solution to the stray animals
+            problem. So far, more than 4500 animals have found homes. Sirius vaccinates and sterilizes them as well as
+            helps low-income families take care of the adopted pets absolutely for free. </p>
+
+        <p>Presently, the shelter hosts over 2400 homeless cats and dogs. All of them are timely vaccinated, fed, and
+            treated. The daily pet feed is provided by Mars, the Ukrainian animal feed supplier, as well as other Kyiv
+            food producers and stores. The medical care is delivered by the Kyiv municipal veterinary clinics.</p>
+
+        <p>
+            Since the early days of its foundation, Sirius has moved twice due to the sale of the rented land. And every
+            time it happened, we had to transport more and more animals. In 2014, the shelter finally settled on its own
+            site in the village Fedorivka.
+
+            By now, we have built a house for cats with an individual wing for dogs, indoor and outdoor animal cages,
+            and a veterinary hospital. Most of the dogs live in the temporary outdoor cages. With sponsors attracted, we
+            will be able to make them warm with walking areas for all pets in addition to the separate quarantine
+            building.
+
+            Unfortunately, our shelter cannot accommodate all the homeless animals, so we encourage everyone to take
+            care of their pets responsibly, timely sterilize dogs and cats not supposed to breed, and adopt animals from
+            shelters instead of buying.
+        </p>
+
+        <p>Presently, we are seeking financial support and assistance for our pets to keep on caring for them and
+            enhancing the shelter premises.</p>
+
+        <p>We are striving to make a real temporary home for the victims of human cruelty making it up to the European
+            standards. So any help from you would be much appreciated!
+            It will increase opportunities for our pets to survive!</p>
+    </main>
+</div>
+
+<footer th:replace="include/footer.html"></footer>
 </body>
 </html>

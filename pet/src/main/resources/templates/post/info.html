@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head th:replace="post/include/head.html"></head>
 
 <body>
@@ -18,10 +18,11 @@
                 <h3 class="mt-4" th:text="${post.title}"></h3>
             </div>
 
-            <a class="float-right" th:href="@{/posts/delete/{id}(id=${post.id})}">
+            <a sec:authorize="hasRole('ADMIN')" class="float-right" th:href="@{/posts/delete/{id}(id=${post.id})}">
                 <svg th:replace="include/icon/delete.html"></svg>
             </a>
-            <a class="float-right mr-md-3" th:href="@{/posts/edit/{id}(id=${post.id})}">
+            <a sec:authorize="hasRole('ADMIN')" class="float-right mr-md-3"
+               th:href="@{/posts/edit/{id}(id=${post.id})}">
                 <svg th:replace="include/icon/edit.html"></svg>
             </a>
             <hr>

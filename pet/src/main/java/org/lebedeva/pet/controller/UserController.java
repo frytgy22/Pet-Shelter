@@ -101,7 +101,7 @@ public class UserController {
                 attributes.addFlashAttribute("message", "Register failed! This email already exists!");
                 log.error(e.getLocalizedMessage(), e);
             }
-            return "redirect:/posts";
+            return "redirect:";
         }
         log.error(bindingResult.toString());
         return REGISTRATION_PATH;

@@ -1,16 +1,16 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 
 <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand">Pet shelter</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" style="height: 82px">
+        <a class="navbar-brand text-white">Pet shelter</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
                     <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
@@ -19,34 +19,51 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" th:href="@{/cats}">All cats</a>
-                        <a class="dropdown-item" th:href="@{/cats/create}">New cat</a>
-                        <a class="dropdown-item" th:href="@{/cats/breeds}">Cat breeds</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" th:href="@{/cats/create}">New cat</a>
+                    </div>
+                </li>
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink5" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cat breeds
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink5">
+                        <a class="dropdown-item" th:href="@{/cats/breeds}">All cat breeds</a>
                         <a class="dropdown-item" th:href="@{/cats/breeds/create}">New cat breed</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" role="button"
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink11" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dogs
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink11">
                         <a class="dropdown-item" th:href="@{/dogs}">All dogs</a>
-                        <a class="dropdown-item" th:href="@{/dogs/create}">New dog</a>
-                        <a class="dropdown-item" th:href="@{/dogs/breeds/create}">Dog breeds</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" th:href="@{/dogs/create}">New dog</a>
+                    </div>
+                </li>
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dog breeds
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                        <a class="dropdown-item" th:href="@{/dogs/breeds/create}">All dog breeds</a>
                         <a class="dropdown-item" th:href="@{/dogs/breeds/create}">New dog breed</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
                         <a class="dropdown-item" th:href="@{/posts}">All posts</a>
-                        <a class="dropdown-item" th:href="@{/posts/create}">New post</a>
-                        <a class="dropdown-item" th:href="@{/posts/categories}">Post categories</a>
-                        <a class="dropdown-item" th:href="@{/posts/categories/create}">New post category</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" th:href="@{/posts/create}">New
+                            post</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" th:href="@{/posts/categories}">Post
+                            categories</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" th:href="@{/posts/categories/create}">
+                            New post category</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Users
                     </a>
@@ -56,8 +73,23 @@
                     </div>
                 </li>
             </ul>
-            <a role="button" class="btn btn-outline-primary .mr-2" th:action="@{/login}">Sign in</a>
-            <button type="button" class="btn btn-outline-primary .mr-2" id="logout">Sing Out</button>
+            <a sec:authorize="isAuthenticated()" class="mr-2 text-white">
+                <svg th:replace="include/icon/user.html"></svg>
+                <span sec:authentication="principal.name"></span>
+            </a>
+
+            <button sec:authorize="isAuthenticated()" type="button" class="btn btn-outline-primary"
+                    id="logout">Sing Out
+            </button>
+
+            <a sec:authorize="isAnonymous()" role="button" class="btn btn-outline-primary mr-2" th:href="@{/login}">
+                <svg th:replace="include/icon/info.html"></svg>
+                Sign in</a>
+
+            <a sec:authorize="isAnonymous()" role="button" class="btn btn-outline-primary"
+               th:href="@{/users/registration}">
+                <svg th:replace="include/icon/user_add.html"></svg>
+                Sign up</a>
         </div>
     </nav>
 </header>

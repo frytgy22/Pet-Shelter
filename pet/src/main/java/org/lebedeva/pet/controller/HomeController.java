@@ -21,6 +21,11 @@ public class HomeController {
         return "/contacts";
     }
 
+    @GetMapping("/about")
+    public String about() {
+        return "/about_us";
+    }
+
     @GetMapping("/403")
     public String error() {
         return "access_denied";

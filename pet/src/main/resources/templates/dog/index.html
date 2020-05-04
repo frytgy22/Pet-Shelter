@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head th:replace="include/head.html"></head>
 
 <body>
@@ -15,7 +15,7 @@
                 <a th:href="@{/dogs(sort='birthDate')}" class="btn btn-secondary sort-color">Sorting by age</a>
                 <a th:href="@{/dogs(sort='gender')}" class="btn btn-secondary sort-color">Sorting by gender</a>
             </div>
-            <a class="btn btn-primary float-right" th:href="@{/dogs/create}">
+            <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary float-right" th:href="@{/dogs/create}">
                 <svg th:replace="include/icon/add.html"></svg>
                 Add new dog</a>
         </div>
@@ -29,8 +29,8 @@
                 <th scope="col">Breed</th>
                 <th scope="col">Birth date</th>
                 <th scope="col">Info</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th sec:authorize="hasRole('ADMIN')" scope="col">Edit</th>
+                <th sec:authorize="hasRole('ADMIN')" scope="col">Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -52,12 +52,12 @@
                     </a>
                 </td>
                 <td>
-                    <a th:href="@{/dogs/edit/{id}(id=${dog.id})}">
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/dogs/edit/{id}(id=${dog.id})}">
                         <svg th:replace="include/icon/edit.html"></svg>
                     </a>
                 </td>
                 <td>
-                    <a th:href="@{/dogs/delete/{id}(id=${dog.id})}">
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/dogs/delete/{id}(id=${dog.id})}">
                         <svg th:replace="include/icon/delete.html"></svg>
                     </a>
                 </td>

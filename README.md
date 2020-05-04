@@ -23,23 +23,23 @@
 1. Регистрация через соц сети
 2. Docker
 
-## Используемые технологии
+## Technologies used
 
-1. Spring Boot
-2. Spring Security
-3. Spring Data JPA
-4. Hibernate
-5. Mysql
-6. REST
-7. Ajax
-8. Thymeleaf
-9. Bootstrap
-10. Docker
+* Spring Boot
+* Spring Security
+* Spring Data JPA
+* Hibernate
+* Mysql
+* REST
+* Ajax
+* Thymeleaf
+* Bootstrap
+* Docker
 
 Testing:
 
-1. Mockito
-2. Rest Assured
+* Mockito
+* Rest Assured
 
 ## How to run
 

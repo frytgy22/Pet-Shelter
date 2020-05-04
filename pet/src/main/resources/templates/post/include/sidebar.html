@@ -7,17 +7,13 @@
     <div class="card my-4">
         <h5 class="card-header">Exchange Rates for UAH</h5>
         <div class="card-body">
-            <span class="font-weight-bolder d-block" th:text="${rares[0].ccy}"></span>
-            <span>buy: <span th:text="${rares[0].buy}"></span> </span>
-            <span> sale: <span th:text="${rares[0].sale}"></span> </span>
+            <span class="font-weight-bolder" th:text="${rares[0].ccy}"></span>
+            <span>: <span th:text="${rares[0].buy}"></span> / </span>
+            <span th:text="${rares[0].sale}"></span>
             <br>
-            <span class="font-weight-bolder d-block" th:text="${rares[1].ccy}"></span>
-            <span>buy: <span th:text="${rares[1].buy}"></span> </span>
-            <span> sale: <span th:text="${rares[1].sale}"></span> </span>
-            <br>
-            <span class="font-weight-bolder d-block" th:text="${rares[2].ccy}"></span>
-            <span>buy: <span th:text="${rares[2].buy}"></span> </span>
-            <span> sale: <span th:text="${rares[2].sale}"></span> </span>
+            <span class="font-weight-bolder" th:text="${rares[1].ccy}"></span>
+            <span>: <span th:text="${rares[1].buy}"></span> / </span>
+            <span th:text="${rares[1].sale}"></span>
         </div>
     </div>
 

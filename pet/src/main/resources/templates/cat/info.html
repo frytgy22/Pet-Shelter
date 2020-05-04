@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head th:replace="include/head.html"></head>
 
 <body>
@@ -9,7 +9,7 @@
         <h3 class="text-center">Cat</h3>
         <span class="float-left text-danger" th:text="${message}"></span>
 
-        <a class="btn btn-primary float-right" th:href="@{/cats/breeds/create}">
+        <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary float-right" th:href="@{/cats/breeds/create}">
             <svg th:replace="include/icon/add.html"></svg>
             Add new cat</a>
 
