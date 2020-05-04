@@ -16,6 +16,11 @@ public class HomeController {
         return "user/login";
     }
 
+    @GetMapping("/contacts")
+    public String contacts() {
+        return "/contacts";
+    }
+
     @GetMapping("/403")
     public String error() {
         return "access_denied";

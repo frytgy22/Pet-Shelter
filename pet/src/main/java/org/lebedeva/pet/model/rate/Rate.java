@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "ccy",
@@ -15,7 +17,7 @@ import lombok.Data;
 })
 
 @Data
-public class Rate {
+public class Rate implements Serializable {
 
     @JsonProperty("ccy")
     private String ccy;

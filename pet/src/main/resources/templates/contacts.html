@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="include/head.html"></head>
 
+<body>
+<header th:replace="include/header.html"></header>
+
+<div class="container">
+    <main role="main" class="my-size">
+        <h3 class="text-center">Contacts</h3>
+        <p>Address: Ukraine, Dnipro, Dmytra Yavornytskoho Avenue, 101</p>
+        <p>Phone: 123-456-789</p>
+        <p>Phone: 987-654-321</p>
+        <p>Viber: 123-456-789</p>
+        <p>Telegram: 123-456-789</p>
+
+        <div style="overflow:hidden;width: 700px;position: relative;">
+            <iframe width="700" height="440"
+                    src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;
+            q=%D0%BF%D1%80-%D1%82%2C%20Dmytra%20Yavornytskoho%20Avenue%2C%20101+(Pet%20shelter)&amp;
+            ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed"
+                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            <div style="position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right:
+             auto;color:  #000;text-align: center;">
+                <small style="line-height: 1.8;font-size: 2px;background: #fff;">Powered by <a
+                        href="https://embedgooglemaps.com/ru/">https://embedgooglemaps.com/ru/</a> & <a
+                        href="https://iamsterdamcard.it">www.iamsterdamcard.it</a></small></div>
+            <style>#gmap_canvas img {
+                max-width: none !important;
+                background: none !important
+            }</style>
+        </div>
+        <br/>
+
+    </main>
+</div>
+
+<footer th:include="include/footer.html"></footer>
 </body>
-</html>
+</html></html>
