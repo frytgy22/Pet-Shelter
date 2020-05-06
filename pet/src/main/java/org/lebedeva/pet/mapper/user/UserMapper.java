@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
+    @Mapping(target = "authorities", ignore = true)
     User toEntity(UserDto dto);
 
     @Mapping(source = "password", target = "confirmPassword")

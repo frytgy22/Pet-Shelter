@@ -1,13 +1,13 @@
 package org.lebedeva.pet.model.post;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -45,12 +45,6 @@ public class Post {
     @Column(length = 65535, columnDefinition = "Text")
     private String contents;
 
-    @NonNull
-    @PastOrPresent
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name = "publication_date", nullable = false)
-    private LocalDate publicationDate;
-
     @Embedded
     private PostFile postFile;
 
@@ -59,4 +53,8 @@ public class Post {
             joinColumns = @JoinColumn(name = "posts_id"),
             inverseJoinColumns = @JoinColumn(name = "categories_id"))
     private Set<Category> categories = new HashSet<>();
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "created", nullable = false)
+    private LocalDate created;
 }

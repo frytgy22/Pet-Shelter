@@ -67,7 +67,7 @@ public class UserController {
 
     @GetMapping
     public String index(Model model, Integer page, Integer size) {
-        Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("id"));
+        Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 10 : size, Sort.by("id"));
         Page<UserDto> usersDtoPage = userService.findAll(pageable);
 
         model.addAttribute("url", BASE_URL);

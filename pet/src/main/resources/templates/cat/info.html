@@ -9,7 +9,7 @@
         <h3 class="text-center">Cat</h3>
         <span class="float-left text-danger" th:text="${message}"></span>
 
-        <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary float-right" th:href="@{/cats/breeds/create}">
+        <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary float-right" th:href="@{/cats/create}">
             <svg th:replace="include/icon/add.html"></svg>
             Add new cat</a>
 
@@ -43,5 +43,6 @@
 </div>
 
 <footer th:replace="include/footer.html"></footer>
+
 </body>
 </html>

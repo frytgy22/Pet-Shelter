@@ -40,7 +40,7 @@ public class CatBreedController {
 
     @GetMapping
     public String index(Model model, Integer page, Integer size) {
-        Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("name"));
+        Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 10 : size, Sort.by("name"));
         Page<CatBreedDto> catBreedsPage = catBreedService.findAll(pageable);
 
         model.addAttribute("url", BASE_URL);
@@ -81,7 +81,7 @@ public class CatBreedController {
             catBreedService.delete(id);
             attributes.addFlashAttribute("message", "Deleted successfully!");
         } catch (Exception e) {
-            attributes.addFlashAttribute("message", "Deletion failed!");
+            attributes.addFlashAttribute("message", "Deletion failed. You have cats of this breed!");
             log.error(e.getLocalizedMessage(), e);
         }
         return REDIRECT_INDEX;

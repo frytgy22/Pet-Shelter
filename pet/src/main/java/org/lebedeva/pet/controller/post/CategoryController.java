@@ -40,7 +40,7 @@ public class CategoryController {
 
     @GetMapping
     public String index(Model model, Integer page, Integer size) {
-        Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size, Sort.by("name"));
+        Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 10 : size, Sort.by("name"));
         Page<CategoryDto> categoryDtoPage = categoryService.findAll(pageable);
 
         model.addAttribute("url", BASE_URL);

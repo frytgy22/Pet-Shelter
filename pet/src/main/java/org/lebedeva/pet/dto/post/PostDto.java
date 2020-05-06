@@ -4,10 +4,8 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,12 +33,6 @@ public class PostDto {
     @Length(max = 65535, message = "length must be < 165535 symbols")
     private String contents;
 
-    @PastOrPresent(message = "must be past or present")
-    @NonNull
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name = "publication_date", nullable = false)
-    private LocalDate publicationDate;
-
     private String file;
     private String fileType;
 
@@ -49,4 +41,7 @@ public class PostDto {
     private Set<Integer> categoryId = new HashSet<>();
 
     private Set<String> categoryName = new HashSet<>();
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate created;
 }

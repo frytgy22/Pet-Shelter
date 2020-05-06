@@ -23,7 +23,8 @@
 В процессе:
 
 1. Tests
-2. Init sql
+2. about project
+3. presentation
 
 ## Technologies used
 
@@ -49,3 +50,6 @@
 > mvn spring-boot:run
 * And open in browser: 
 > http://localhost:8080
+
+* Login: admin@1.ua
+* Password: password

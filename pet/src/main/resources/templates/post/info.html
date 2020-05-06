@@ -13,6 +13,10 @@
         <!-- Post Content Column -->
         <div class="col-md-8 top">
 
+            <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary float-right" th:href="@{/posts/create}">
+                <svg th:replace="include/icon/add.html"></svg>
+                Add new post</a>
+
             <div class="card mb-4 border-0">
                 <!-- Title -->
                 <h3 class="mt-4" th:text="${post.title}"></h3>
@@ -28,7 +32,7 @@
             <hr>
 
             <!-- Date/Time -->
-            <p th:text="${post.publicationDate}"></p>
+            <p th:text="${post.created}"></p>
             <hr>
 
             <!-- Preview File -->

@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.security.RolesAllowed;
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -83,7 +84,7 @@ public class PostController {
         Pageable pageable = PageRequest.of(
                 page == null ? 0 : page,
                 size == null ? 3 : size,
-                Sort.by("publicationDate").descending());
+                Sort.by("created").descending());
 
         Page<PostDto> postDtoPage;
 
@@ -129,9 +130,11 @@ public class PostController {
         }
         if (!bindingResult.hasErrors()) {
             try {
-                postDto.setFileType(FileType.getFileType(multipartFile));
+                postDto.setCreated(LocalDate.now());
 
                 if (multipartFile != null && !multipartFile.isEmpty()) {
+                    postDto.setFileType(FileType.getFileType(multipartFile));
+
                     postDto.setFile(multipartFile.getOriginalFilename());
                     uploadFileService.uploadFile(multipartFile, UPLOADS_DIR, postService.save(postDto).getId());
                 } else {
@@ -178,8 +181,8 @@ public class PostController {
     public String edit(@Validated @ModelAttribute PostDto postDto,
                        BindingResult bindingResult,
                        RedirectAttributes attributes,
-                       MultipartFile img) {
-        return create(postDto, bindingResult, attributes, img);
+                       MultipartFile multipartFile) {
+        return create(postDto, bindingResult, attributes, multipartFile);
     }
 
     @GetMapping("/info/{id}")
