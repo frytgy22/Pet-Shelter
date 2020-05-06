@@ -62,6 +62,7 @@ public class DogBreedController {
 
         if (!bindingResult.hasErrors()) {
             try {
+                dogBreedDto.setName(dogBreedDto.getName().toUpperCase());
                 dogBreedService.save(dogBreedDto);
                 attributes.addFlashAttribute("message", "Saved successfully!");
             } catch (Exception e) {

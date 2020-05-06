@@ -15,12 +15,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Collections;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -89,19 +94,14 @@ public class UserController {
                 userDto.getRoles().add(Role.ROLE_USER);
 
                 User user = userService.save(userDto);
-                SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-                Authentication authentication = new UsernamePasswordAuthenticationToken(
-                        user, userDto.getPassword(), user.getAuthorities());
-
-                securityContext.setAuthentication(authentication);
-                SecurityContextHolder.setContext(securityContext);
+                setUserContext(userDto.getPassword(), user);
 
                 attributes.addFlashAttribute("message", "Registered successfully!");
             } catch (Exception e) {
                 attributes.addFlashAttribute("message", "Register failed! This email already exists!");
                 log.error(e.getLocalizedMessage(), e);
             }
-            return "redirect:";
+            return "redirect:/";
         }
         log.error(bindingResult.toString());
         return REGISTRATION_PATH;
@@ -145,5 +145,31 @@ public class UserController {
         }
         log.error(bindingResult.toString());
         return FORM_PATH;
+    }
+
+    @GetMapping("/google")
+    public String google(Authentication authentication, Model model) {
+        if (authentication instanceof OAuth2AuthenticationToken) {
+
+            OAuth2User oAuth2User = ((OAuth2AuthenticationToken) authentication).getPrincipal();
+            String name = oAuth2User.getAttribute("name");
+            String email = oAuth2User.getAttribute("email");
+            String password = UUID.randomUUID().toString();
+
+            User user = new User(name, email, password);
+
+            SecurityContextHolder.clearContext();//logout
+            setUserContext(password, user);
+        }
+        return "redirect:/";
+    }
+
+    private void setUserContext(@ModelAttribute @Validated String password, User user) {
+        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                user, password, user.getAuthorities());
+
+        securityContext.setAuthentication(authentication);
+        SecurityContextHolder.setContext(securityContext);
     }
 }

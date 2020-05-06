@@ -11,11 +11,13 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring", uses = {CategoryMapper.class})
 public interface PostMapper {
 
+    @Mapping(source = "file", target = "postFile.file")
+    @Mapping(source = "fileType", target = "postFile.fileType")
     Post toEntity(PostDto dto);
 
     default PostDto toDto(Post entity) {
         return new PostDto(entity.getId(), entity.getTitle(), entity.getSubtitle(), entity.getContents(),
-                entity.getPublicationDate(), entity.getFile(),
+                entity.getPublicationDate(), entity.getPostFile().getFile(), entity.getPostFile().getFileType(),
                 entity.getCategories().stream()
                         .map(Category::getId)
                         .collect(Collectors.toSet()), entity.getCategories().stream()

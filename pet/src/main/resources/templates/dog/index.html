@@ -29,8 +29,8 @@
                 <th scope="col">Breed</th>
                 <th scope="col">Birth date</th>
                 <th scope="col">Info</th>
-                <th sec:authorize="hasRole('ADMIN')" scope="col">Edit</th>
-                <th sec:authorize="hasRole('ADMIN')" scope="col">Delete</th>
+                <th scope="col"><span sec:authorize="hasRole('ADMIN')">Edit</span></th>
+                <th scope="col"><span sec:authorize="hasRole('ADMIN')">Delete</span></th>
             </tr>
             </thead>
             <tbody>

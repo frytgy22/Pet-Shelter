@@ -62,6 +62,7 @@ public class CatBreedController {
 
         if (!bindingResult.hasErrors()) {
             try {
+                catBreedDto.setName(catBreedDto.getName().toUpperCase());
                 catBreedService.save(catBreedDto);
                 attributes.addFlashAttribute("message", "Saved successfully!");
             } catch (Exception e) {

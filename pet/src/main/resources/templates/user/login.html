@@ -42,6 +42,11 @@
                     <button type="submit" class="btn btn-primary mb-2">Sign in</button>
                 </div>
 
+                <div class="col-auto">
+                    <a role="button" href="http://localhost:8080/oauth2/authorization/google"
+                       class="btn btn-warning mb-2">Google</a>
+                </div>
+
             </div>
             <p th:if="${#request.getParameter('error') == 'credentials'}"
                class="text-danger">Invalid email or password</p>
@@ -50,6 +55,8 @@
     </main>
 </div>
 
-<footer th:replace="include/footer.html"></footer>
+<div class="fixed-bottom">
+    <footer th:replace="include/footer.html"></footer>
+</div>
 </body>
 </html>

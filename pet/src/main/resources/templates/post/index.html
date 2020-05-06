@@ -23,11 +23,23 @@
             <!-- Blog Post -->
             <div class="card mb-4" th:each="post : ${posts}">
 
-                <img th:if="${post.file == null or post.file == ''}" class="card-img-top" src=""
-                     th:src="@{/images/post/4.jpg}" alt="post">
+                <div th:switch="${post.fileType}">
 
-                <img th:unless="${post.file == null or post.file == ''}" class="card-img-top"
-                     src="" th:src="@{/uploads/posts/{photo}(photo=${post.id + '/' + post.file})}" alt="post">
+                    <video th:case="'video'" width="100%" controls="controls">
+                        <source src="" th:src="@{/uploads/posts/{photo}(photo=${post.id + '/' + post.file})}"
+                                type='video/ogg; codecs="theora, vorbis"'>
+                        <source src="" th:src="@{/uploads/posts/{photo}(photo=${post.id + '/' + post.file})}"
+                                type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                        <source src="" th:src="@{/uploads/posts/{photo}(photo=${post.id + '/' + post.file})}"
+                                type='video/webm; codecs="vp8, vorbis"'>
+                        This browser not supported tag video.
+                    </video>
+
+                    <img th:case="'image'" class="card-img-top"
+                         src="" th:src="@{/uploads/posts/{photo}(photo=${post.id + '/' + post.file})}" alt="post">
+
+                    <img th:case="*" class="card-img-top" src="" th:src="@{/images/post/4.jpg}" alt="post">
+                </div>
 
                 <div class="card-body">
                     <h2 class="card-title font-italic" th:text="${post.title}"></h2>

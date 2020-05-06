@@ -51,9 +51,10 @@ public class Post {
     @Column(name = "publication_date", nullable = false)
     private LocalDate publicationDate;
 
-    private String file;
+    @Embedded
+    private PostFile postFile;
 
-    @ManyToMany(fetch = FetchType.EAGER)//TODO
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "post_categories",
             joinColumns = @JoinColumn(name = "posts_id"),
             inverseJoinColumns = @JoinColumn(name = "categories_id"))

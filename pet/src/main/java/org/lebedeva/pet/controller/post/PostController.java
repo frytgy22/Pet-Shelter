@@ -3,11 +3,12 @@ package org.lebedeva.pet.controller.post;
 import lombok.extern.slf4j.Slf4j;
 import org.lebedeva.pet.dto.post.CategoryDto;
 import org.lebedeva.pet.dto.post.PostDto;
+import org.lebedeva.pet.model.post.FileType;
 import org.lebedeva.pet.model.rate.Rate;
 import org.lebedeva.pet.service.CategoryService;
 import org.lebedeva.pet.service.PostService;
 import org.lebedeva.pet.service.UploadFileService;
-import org.lebedeva.pet.validator.MultipartFileValidator;
+import org.lebedeva.pet.validator.PostFileValidator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -43,13 +44,14 @@ public class PostController {
     private final RestTemplate restTemplate;
     private final CategoryService categoryService;
     private final UploadFileService uploadFileService;
-    private final MultipartFileValidator fileValidator;
+    private final PostFileValidator fileValidator;
 
     public PostController(PostService postService,
                           RestTemplate restTemplate,
+                          PostFileValidator fileValidator,
                           CategoryService categoryService,
-                          UploadFileService uploadFileService,
-                          MultipartFileValidator fileValidator) {
+                          UploadFileService uploadFileService
+    ) {
         this.postService = postService;
         this.restTemplate = restTemplate;
         this.fileValidator = fileValidator;
@@ -120,16 +122,18 @@ public class PostController {
     public String create(@Validated @ModelAttribute PostDto postDto,
                          BindingResult bindingResult,
                          RedirectAttributes attributes,
-                         MultipartFile img) {
+                         MultipartFile multipartFile) {
 
-        if (img != null) {
-            fileValidator.validate(img, bindingResult);
+        if (multipartFile != null) {
+            fileValidator.validate(multipartFile, bindingResult);
         }
         if (!bindingResult.hasErrors()) {
             try {
-                if (img != null && !img.isEmpty()) {
-                    postDto.setFile(img.getOriginalFilename());
-                    uploadFileService.uploadFile(img, UPLOADS_DIR, postService.save(postDto).getId());
+                postDto.setFileType(FileType.getFileType(multipartFile));
+
+                if (multipartFile != null && !multipartFile.isEmpty()) {
+                    postDto.setFile(multipartFile.getOriginalFilename());
+                    uploadFileService.uploadFile(multipartFile, UPLOADS_DIR, postService.save(postDto).getId());
                 } else {
                     postService.save(postDto);
                 }

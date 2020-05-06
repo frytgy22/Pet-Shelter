@@ -42,6 +42,7 @@ public class PostDto {
     private LocalDate publicationDate;
 
     private String file;
+    private String fileType;
 
     @NonNull
     @NotNull(message = "must be set")

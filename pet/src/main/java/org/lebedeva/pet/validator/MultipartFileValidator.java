@@ -11,6 +11,7 @@ import java.util.List;
 
 @Component
 public class MultipartFileValidator implements Validator {
+
     @Override
     public boolean supports(Class<?> aClass) {
         return aClass == MultipartFile.class;
@@ -24,6 +25,10 @@ public class MultipartFileValidator implements Validator {
 
             if (fileUploadModel.getSize() > 5_000_000) {
                 errors.rejectValue("photo", "file.size");
+            }
+
+            if (fileUploadModel.getSize() == 0) {
+                errors.rejectValue("empty", "file.empty");
             }
 
             List<String> validContentTypes = Arrays.asList("image/png", "image/jpg", "image/jpeg");

@@ -48,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/users/registration").anonymous()
+                .antMatchers("/users/google").permitAll()
                 .antMatchers("/users/**").hasRole("ADMIN")
                 .antMatchers("/posts/**").fullyAuthenticated()
                 .antMatchers("/**").permitAll()
@@ -76,7 +77,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(86400)
                 .tokenRepository(tokenRepository())
 
-                .and().exceptionHandling().accessDeniedPage("/403");
+                .and()
+                .oauth2Login()
+
+                .and().exceptionHandling().accessDeniedPage("/403")
+
+                .and()
+                .oauth2Login()
+                .defaultSuccessUrl("/users/google")
+                .loginPage("/login");
     }
 
     @Bean
