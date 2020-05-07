@@ -21,6 +21,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Role</th>
+                <th scope="col">Subscribe</th>
                 <th scope="col">Delete</th>
             </tr>
             </thead>
@@ -30,6 +31,7 @@
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.roles}"></td>
+                <td th:text="${user.subscribe}"></td>
                 <td>
                     <a th:href="@{/users/delete/{id}(id=${user.id})}">
                         <svg th:replace="include/icon/delete.html"></svg>

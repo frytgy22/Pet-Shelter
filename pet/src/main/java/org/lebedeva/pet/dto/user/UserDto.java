@@ -38,4 +38,6 @@ public class UserDto {
     @NonNull
     @NotNull(message = "must be set")
     private Set<Role> roles = new HashSet<>();
+
+    private boolean subscribe;
 }

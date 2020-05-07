@@ -1,10 +1,14 @@
 package org.lebedeva.pet.controller.post;
 
 import lombok.extern.slf4j.Slf4j;
+import org.lebedeva.pet.SmtpMailSender;
 import org.lebedeva.pet.dto.post.CategoryDto;
 import org.lebedeva.pet.dto.post.PostDto;
 import org.lebedeva.pet.model.post.FileType;
+import org.lebedeva.pet.model.post.Post;
 import org.lebedeva.pet.model.rate.Rate;
+import org.lebedeva.pet.model.user.User;
+import org.lebedeva.pet.repository.UserRepository;
 import org.lebedeva.pet.service.CategoryService;
 import org.lebedeva.pet.service.PostService;
 import org.lebedeva.pet.service.UploadFileService;
@@ -43,12 +47,16 @@ public class PostController {
 
     private final PostService postService;
     private final RestTemplate restTemplate;
+    private final UserRepository userRepository;
+    private final SmtpMailSender smtpMailSender;
     private final CategoryService categoryService;
     private final UploadFileService uploadFileService;
     private final PostFileValidator fileValidator;
 
     public PostController(PostService postService,
                           RestTemplate restTemplate,
+                          SmtpMailSender smtpMailSender,
+                          UserRepository userRepository,
                           PostFileValidator fileValidator,
                           CategoryService categoryService,
                           UploadFileService uploadFileService
@@ -56,6 +64,8 @@ public class PostController {
         this.postService = postService;
         this.restTemplate = restTemplate;
         this.fileValidator = fileValidator;
+        this.smtpMailSender = smtpMailSender;
+        this.userRepository = userRepository;
         this.categoryService = categoryService;
         this.uploadFileService = uploadFileService;
     }
@@ -131,15 +141,19 @@ public class PostController {
         if (!bindingResult.hasErrors()) {
             try {
                 postDto.setCreated(LocalDate.now());
-
+                Post post;
                 if (multipartFile != null && !multipartFile.isEmpty()) {
                     postDto.setFileType(FileType.getFileType(multipartFile));
 
                     postDto.setFile(multipartFile.getOriginalFilename());
-                    uploadFileService.uploadFile(multipartFile, UPLOADS_DIR, postService.save(postDto).getId());
+                    post = postService.save(postDto);
+
+                    uploadFileService.uploadFile(multipartFile, UPLOADS_DIR, post.getId());
                 } else {
-                    postService.save(postDto);
+                    post = postService.save(postDto);
                 }
+
+                notifySubscriber(post);
                 attributes.addFlashAttribute("message", "Saved successfully!");
             } catch (Exception e) {
                 attributes.addFlashAttribute("message", "Saving failed!");
@@ -194,5 +208,15 @@ public class PostController {
             log.error(ex.getLocalizedMessage(), ex);
         }
         return REDIRECT_INDEX;
+    }
+
+    private void notifySubscriber(Post post) {
+        userRepository.findAll().stream()
+                .filter(User::isSubscribe)
+                .forEach(user -> smtpMailSender.send(user.getEmail(),
+                        "New post in Pet Shelter",
+                        "<p>Hi, " + user.getName() + ".</p> " +
+                                "Posted a new post, you can see at the " +
+                                "<a href='http://localhost:8080/posts/info/" + post.getId() + "'>link</a>"));
     }
 }

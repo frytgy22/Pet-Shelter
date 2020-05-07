@@ -24,7 +24,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Collections;
 import java.util.UUID;
 
 @Slf4j
@@ -90,6 +89,7 @@ public class UserController {
 
         if (!bindingResult.hasErrors()) {
             try {
+
                 userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
                 userDto.getRoles().add(Role.ROLE_USER);
 
@@ -118,6 +118,7 @@ public class UserController {
         }
         return REDIRECT_INDEX;
     }
+
 
     @GetMapping("/create")
     public String create(Model model) {

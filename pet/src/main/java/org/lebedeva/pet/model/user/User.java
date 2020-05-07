@@ -50,6 +50,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
+    private boolean subscribe;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
