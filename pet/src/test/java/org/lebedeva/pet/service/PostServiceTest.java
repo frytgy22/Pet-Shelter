@@ -1,18 +1,11 @@
 package org.lebedeva.pet.service;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.lebedeva.pet.dto.post.CategoryDto;
 import org.lebedeva.pet.dto.post.PostDto;
-import org.lebedeva.pet.dto.user.UserDto;
 import org.lebedeva.pet.model.post.Category;
 import org.lebedeva.pet.model.post.Post;
-import org.lebedeva.pet.model.user.User;
-import org.lebedeva.pet.repository.CategoryRepository;
-import org.lebedeva.pet.repository.PostRepository;
-import org.lebedeva.pet.repository.UserRepository;
-import org.lebedeva.pet.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,10 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @AutoConfigureMockMvc
@@ -40,8 +31,8 @@ public class PostServiceTest {
     private CategoryService categoryService;
 
     @Test
-    public void save() {
-        CategoryDto categoryDto = new CategoryDto("test");
+    public void test() {
+        CategoryDto categoryDto = new CategoryDto("TEST");
         Category category = categoryService.save(categoryDto);
 
         assertNotNull(category);
@@ -58,21 +49,38 @@ public class PostServiceTest {
 
         Post post = postService.save(postDto);
 
-        assertEquals(post.getTitle(),postDto.getTitle());
-        assertEquals(post.getSubtitle(),postDto.getSubtitle());
-        assertEquals(post.getContents(),postDto.getContents());
-        assertEquals(post.getCategories().size(),postDto.getCategoryId().size());
+        assertNotNull(post);
+        assertFalse(post.getCategories().add(category));
+        assertEquals(post.getTitle(), postDto.getTitle());
+        assertEquals(post.getSubtitle(), postDto.getSubtitle());
+        assertEquals(post.getContents(), postDto.getContents());
+        assertEquals(post.getCategories().size(), postDto.getCategoryId().size());
 
-        postService.findById()
+
+        Integer postId = post.getId();
+        assertNotNull(postId);
+
+        PostDto byId = postService.findById(postId).orElse(null);
+
+        assertNotNull(byId);
+        assertEquals(byId.getTitle(), postDto.getTitle());
+        assertEquals(byId.getSubtitle(), postDto.getSubtitle());
+        assertEquals(byId.getContents(), postDto.getContents());
+        assertEquals(byId.getCategoryId(), postDto.getCategoryId());
 
 
+        Page<PostDto> all = postService.findAll(PageRequest.of(0, post.getId()));
+
+        assertNotNull(all);
         assertTrue(all.stream()
-                .anyMatch(userDto1 -> userDto1.getId().equals(user.getId())));
+                .anyMatch(p -> p.getId().equals(post.getId())));
 
-        userService.delete(user.getId());
+        postService.delete(post.getId());
 
-        Page<UserDto> withoutUser = userService.findAll(PageRequest.of(0, 5));
-        assertTrue(withoutUser.stream()
-                .noneMatch(userDto1 -> userDto1.getId().equals(user.getId())));
+        Page<PostDto> withoutPost = postService.findAll(PageRequest.of(0, post.getId()));
+        assertTrue(withoutPost.stream()
+                .noneMatch(p -> p.getId().equals(post.getId())));
+
+        categoryService.delete(categoryId);
     }
 }

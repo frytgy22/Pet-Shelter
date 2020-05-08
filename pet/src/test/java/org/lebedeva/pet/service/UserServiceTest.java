@@ -35,9 +35,8 @@ public class UserServiceTest {
     }
 
     @Test
-    public void save() {
+    public void test() {
         User user = userService.save(userDto);
-        System.out.println(user);
         assertNotNull(userService);
 
         assertNotNull(user);
@@ -54,13 +53,15 @@ public class UserServiceTest {
         assertEquals(newUser.getPassword(), user.getPassword());
         assertEquals(newUser.isSubscribe(), user.isSubscribe());
 
-        Page<UserDto> all = userService.findAll(PageRequest.of(0, 5));
+        Page<UserDto> all = userService.findAll(PageRequest.of(0, user.getId()));
+
+        assertNotNull(all);
         assertTrue(all.stream()
                 .anyMatch(userDto1 -> userDto1.getId().equals(user.getId())));
 
         userService.delete(user.getId());
 
-        Page<UserDto> withoutUser = userService.findAll(PageRequest.of(0, 5));
+        Page<UserDto> withoutUser = userService.findAll(PageRequest.of(0, user.getId()));
         assertTrue(withoutUser.stream()
                 .noneMatch(userDto1 -> userDto1.getId().equals(user.getId())));
     }
