@@ -40,7 +40,6 @@
 * Bootstrap
 * HTML, CSS, js
 * JUnit
-* Mockito
 * Rest Assured
 
 ## How to run

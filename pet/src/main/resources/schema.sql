@@ -312,7 +312,7 @@ CREATE TABLE `users`
 
 INSERT INTO `users` (`id`, `email`, `name`, `password`, `subscribe`)
 VALUES (1, 'admin@1.ua', 'admin', '$2a$10$GVdyIMr61bhkul6eW1ZzPu2zRhFnpYqpp.oq5OFB4JH.sW.49X/Zi', b'0'),
-       (2, 'user1@ru.ru', 'name1', '$2a$10$eC7ROh.x8WQwD5mLHhnBAuv.OhKW75maSEkJEnhFoKWpCoNNiUr52', b'0');
+       (2, 'user1@ru.ru', 'name1', '$2a$10$GVdyIMr61bhkul6eW1ZzPu2zRhFnpYqpp.oq5OFB4JH.sW.49X/Zi', b'0');
 
 -- --------------------------------------------------------
 
