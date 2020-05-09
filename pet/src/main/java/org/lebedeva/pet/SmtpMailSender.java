@@ -21,7 +21,7 @@ public class SmtpMailSender {
     public void send(String to, String subject, String body) {
 
         MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = null;
+        MimeMessageHelper helper;
         try {
             helper = new MimeMessageHelper(message, true);
             helper.setSubject(subject);

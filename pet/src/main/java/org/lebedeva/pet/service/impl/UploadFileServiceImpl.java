@@ -1,9 +1,7 @@
 package org.lebedeva.pet.service.impl;
 
 import org.lebedeva.pet.service.UploadFileService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,15 +16,8 @@ import java.util.Objects;
 @Service
 public class UploadFileServiceImpl implements UploadFileService {
 
-    private final ResourceLoader resourceLoader;
-
     @Value("${app.upload.dir}")
     private String uploadDir;
-
-    @Autowired
-    public UploadFileServiceImpl(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
-    }
 
     @Override
     public void uploadFile(MultipartFile file, String dir, Integer folderName) {
