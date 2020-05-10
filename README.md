@@ -6,19 +6,17 @@ Application for:
 - adding information about a new animal (sections for cats and dogs)
 - display detailed information about a particular animal
 - adding and editing breeds for cats and dogs
-- view useful information on the care, nutrition and training of animals in the "Posts" section
-- adding new posts with the ability to download videos and photos
-- view full post information with the ability to edit
+- adding, editing, display useful information (articles, photos, videos) on the care, nutrition and training of animals in the "Posts" section
 - sending notifications by email about a new post to all subscribers
 - view current weather with automatic geolocation of your city and exchange rates for UAH (REST service)
 - Google authentication
 - registration of a new user with the ability to subscribe
 - display of necessary information and allowed features depending on user roles
 
-### Entry points
+## Entry points
 Note: some entry points have restriction by roles.
 
-* Main
+## Main
 
 - /
     - **GET** - return main page with sections of the site
@@ -44,8 +42,8 @@ Note:access only to unauthenticated user
 - /about
     - **GET** - return info about us, motivational video
 
-----------------------------------------------------------------------------------------------------------
-* Dogs
+
+## Dogs
 
 - /dogs/
       - **GET** - return all dogs to the shelter with default sort by id
@@ -77,7 +75,7 @@ Note:access only to the administrator
 Note:access only to the administrator
       - **POST** - edit particular dog 
 
-* Dog breeds
+## Dog breeds
 Note:access to all entry points only to the administrator
 
 - /dogs/breeds
@@ -95,9 +93,8 @@ Note:access to all entry points only to the administrator
 - /dogs/breeds/edit{id}
       - **POST** - edit particular dog breed
 
---------------------------------------------------------------------------------------------------------------
 
-* Cats
+## Cats
 
 - /cats/
       - **GET** - return all cats to the shelter with default sort by id
@@ -147,9 +144,8 @@ Note:access to all entry points only to the administrator
 - /cats/breeds/edit{id}
       - **POST** - edit particular cat breed 
 
--------------------------------------------------------------------------------------------------------------
 
-* Post
+## Post
 Note:access only to authenticated user
 
 - /posts/
@@ -179,7 +175,7 @@ Note:access only to the administrator
 Note:access only to the administrator
       - **POST** - edit particular post
 
-* Post categories
+## Post categories
 Note:access only to the administrator
 
 - /posts/categories
@@ -197,9 +193,8 @@ Note:access only to the administrator
 - /posts/categories/edit{id}
       - **POST** - edit particular post category
 
---------------------------------------------------------------------------------------------------------
 
-* Users
+## Users
 Note:access only to the administrator
 
 - /users/
@@ -217,7 +212,7 @@ Note:access only to the administrator
 - /users/google
       - **GET** - set principal data in security context after Google authentication
 
-### Users
+### Users in db
 | Username   | Password | Roles      | 
 |------------|----------|------------|
 | admin@1.ua | password | ROLE_ADMIN | 
@@ -244,7 +239,7 @@ In the category section of posts, add a new category, if it does not already exi
 * And open in browser: 
 > http://localhost:8080
 
-## Technologies used
+## Technologies 
 
 * Spring Boot
 * Spring Security
@@ -259,10 +254,12 @@ In the category section of posts, add a new category, if it does not already exi
 * JUnit
 * Rest Assured
 
+## db diagram
+
 * db diagram
 
-![alt text](diagrams/db diagram.png "db diagram")​
+![Image alt](https://github.com/frytgy22/Pet-Shelter/blob/master/diagrams/db%20diagram.png)
 
 * class diagram
 
-![alt text](diagrams/Package pet.png "class diagram")​
+![Image alt](https://github.com/frytgy22/Pet-Shelter/blob/master/diagrams/Package%20pet.png)
