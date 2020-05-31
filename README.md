@@ -233,7 +233,7 @@ In the category section of posts, add a new category, if it does not already exi
 ## How to run
 
 * Go to the app  folder in project 
-> cd pet/app
+> cd pet
 * Run springboot application 
 > mvn spring-boot:run
 * And open in browser: 
@@ -250,7 +250,7 @@ In the category section of posts, add a new category, if it does not already exi
 * Ajax
 * Thymeleaf
 * Bootstrap
-* HTML, CSS, js
+* HTML, CSS, JS
 * JUnit
 * Rest Assured
 

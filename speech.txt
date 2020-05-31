@@ -1,0 +1,49 @@
+Hello everyone, my name is Valeriia.
+I want to present my project Pet shelter.
+
+So, let's begin! First of all, what is this project for?
+I decided to write this project because some pet shelters cannot buy their own website, so I did it for free.
+
+The main goals of this project is:
+
+-adding and editing information about a new animal (sections for cats and dogs)
+
+- adding and editing useful information (articles, photos, videos) on pet care in the “Posts” section
+  I think it’s convenient. People who took the animal from the shelter can see how to care for it
+
+- sending notifications by email about a new post to all subscribers
+
+- view current weather with automatic geolocation of your city and exchange rates(REST service)
+
+- Google authentication
+
+ The project is ready for expansion and in the future, if you want, you can add sections for other types of animals and other authentication services.
+-------------------------------------------------------------------------------------------------------------
+Next is application creation 
+
+ First of all I set goals for the project and the main functionality
+ After that, I implemented the business layer of the application: entities, services, remote controllers,     controllers
+After I implemented the client part of the application with a convenient and intuitive interface
+And finally, integration and unit testing. Endpoints I tested with Rest Assured.
+----------------------------------------------------------------------------------------------------
+
+Technologies (read from presentation)
+
+--------------------------------------------------------------------------------------------------
+Class diagram 
+(I hope you can clearly see)
+
+I use the main class GenericService with the necessary methods and services that implement this interface.
+Next we see the classes of services with the implementation of methods and injected repositories.
+In controllers I inject service interfaces.
+
+-----------------------------------------------------------------------------------------------------
+DB diagram
+
+animal -> breed relation ManyToOne
+post -> category relation ManyToMany
+
+-----------------------------------------------------------------------------------------------------------
+In demo - improvisation
+
+It's all for me. Thanks for your attention. If you have any questions, ask me
